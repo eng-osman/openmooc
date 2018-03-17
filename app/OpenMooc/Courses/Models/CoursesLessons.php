@@ -1,8 +1,5 @@
 <?php
-
-namespace App\Models;
-
-
+namespace OpenMooc\Courses\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class CoursesLessons extends Model

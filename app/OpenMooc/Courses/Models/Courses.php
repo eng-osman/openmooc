@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace OpenMooc\Courses\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
