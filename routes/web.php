@@ -14,8 +14,7 @@
 Route::get('/', function (){
     return view('welcome');
 });
-
-Route::get('courses', function (){
-    return \App\Models\CoursesCategories::all();
-});
-
+Route::get('api/courses','coursesAPIController@courses');
+Route::get('add','coursesController@addCourse');
+Route::post('add','coursesController@processAddCourse');
+Route::get('courses','coursesController@courses');
