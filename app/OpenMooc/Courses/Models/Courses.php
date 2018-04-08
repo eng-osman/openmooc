@@ -3,7 +3,7 @@ namespace OpenMooc\Courses\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Courses extends Model
+class CoursesModel extends Model
 {
     protected $table='courses';
     protected $primaryKey = 'course_id';
