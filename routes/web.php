@@ -92,7 +92,7 @@ Route::get('getCourse/{id?}','courseController@getCourse');
 //finished by alaa ebrahim at 7/4/2018
 /***********************************************************/
 
-// Course Students Routes by hamad adel 
+// Course Students Routes by hamad adel
 Route::get('subscription/add', 'coursesStudentsController@addStudentSubscription');
 Route::post('subscription/add', 'coursesStudentsController@insertSubscription');
 Route::get('subscription/all', 'coursesStudentsController@getAllSubscription');

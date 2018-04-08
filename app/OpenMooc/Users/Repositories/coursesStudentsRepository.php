@@ -1,7 +1,6 @@
 <?php
 namespace OpenMooc\Courses\Repositories;
 
-
 use OpenMooc\Courses\Models\CoursesStudents;
 use Illuminate\Support\Facades\DB;
 

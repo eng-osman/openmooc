@@ -3,21 +3,23 @@
 namespace App\Http\Controllers;
 
 
+use OpenMooc\Courses\Models\Courses;
 use OpenMooc\Courses\Models\CoursesStudents;
 use OpenMooc\Courses\Services\coursesStudentsService;
 use OpenMooc\Service;
 use Illuminate\Http\Request;
-use OpenMooc\Courses\Models\CoursesModel;
-use OpenMooc\Users\Models\usersModel;
+use OpenMooc\Users\Models\Users;
 
 class coursesStudentsController extends Controller
 {
 
-    public function AddStudentSubscription()
+    public function addStudentSubscription()
     {
-        $students = usersModel::all()->where('user_group','=',2)->where('is_active','=',1);
-        $course = CoursesModel::all()->where('is_active','=',1);
-        return view('subscriptions.add')->with('students', $students)->with('courses', $course);
+        //get all users who is activated and belongs to student group which = 2
+        $students = Users::all()->where('is_active','=', 1)->where('user_group',2) ;
+        // get all activate courses
+        $courses  = Courses::all()->where('is_active',1);
+        return view('subscriptions.add')->with('students', $students)->with('courses', $courses);
     }
 
     public function insertSubscription(Request $request)
@@ -30,7 +32,7 @@ class coursesStudentsController extends Controller
     {
        $subscriptions = new coursesStudentsService();
        $subscriptions = $subscriptions->getAllSubscriptions();
-       return  $subscriptions;
+       return  view('subscriptions.all_subscriptions')->with('all',$subscriptions);
     }
 
     public function approveSubscription($id)
@@ -50,6 +52,7 @@ class coursesStudentsController extends Controller
     {
         $sub = CoursesStudents::find($id)->delete();
         if($sub) return 'subscription deleted';
+        return 'no subscription with this id';
     }
 
     public function getStudentSubscription($id)

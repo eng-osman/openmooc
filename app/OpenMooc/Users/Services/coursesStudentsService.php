@@ -15,7 +15,8 @@ class coursesStudentsService extends Service
         ]);
         // if there are validation errors
         if($v->fails()):
-             self::setErrors($v->errors()->all());
+            $this->setError($v->errors()->all());
+
             return false;
         endif;
 
@@ -23,7 +24,7 @@ class coursesStudentsService extends Service
         $coursesStudentsRepository = new coursesStudentsRepository();
         if($coursesStudentsRepository->addSubscription($request->all()));
             return true;
-        self::setErrors('Unable To save subscription');
+        $this->setError('Unable To save subscription');
         return false;
     }
 
@@ -36,13 +37,13 @@ class coursesStudentsService extends Service
     public function approve($id)
     {
         $subscription = new coursesStudentsRepository();
-        return ($subscription->approve($id)) ? true : self::setErrors('Unable to approve subscription');
+        return ($subscription->approve($id)) ? true : $this->setError('Unable to approve subscription');
     }
 
     public function unApprove($id)
     {
         $subscription = new coursesStudentsRepository();
-        return $subscription->unApprove($id) ? true : self::setErrors('Unable to approve subscription');
+        return $subscription->unApprove($id) ? true : setError('Unable to approve subscription');
     }
 
     public function getStudentSubscriptions($student_id)
@@ -51,7 +52,7 @@ class coursesStudentsService extends Service
         $subscriptions = $service->getStudentSubscription($student_id);
 
         if($subscriptions==[]):
-            self::setErrors('no courses for this student');
+            setError('no courses for this student');
             return false;
         endif;
 
