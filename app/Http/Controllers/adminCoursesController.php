@@ -17,7 +17,7 @@ class adminCoursesController extends Controller
         $coursesService = new coursesService();
         $courses = $coursesService->getCourses();
         return view('dashboard.admin.courses')
-            ->with('coursesList',$courses);
+            ->with('courses',$courses);
     }
 
     // show add course form

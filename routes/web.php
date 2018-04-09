@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function () {
     // Users
     Route::resource('users','adminUsersController');
     // Categories
-    Route::resource('Categories','adminCategoriesController');
+    Route::resource('categories','adminCategoriesController');
     // courses
     Route::resource('courses','adminCoursesController');
 
