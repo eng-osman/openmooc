@@ -1,4 +1,4 @@
-@extends('mooc')
+@extends('instructor.index')
 @section('title')
     Add Course
 @endsection
@@ -13,9 +13,10 @@
                 <option value="{{$category->category_id}}">{{$category->category_name}}</option>
             @endforeach
         </select><br />
+        
         course_instructor <select name="course_instructor">
             @foreach($users as $user)
-                <option value="{{$user->id}}">{{$user->name}}</option>
+                <option value="{{$user->id}}">{{$user->username}}</option>
             @endforeach
         </select><br />
         course_description <textarea name="course_description"></textarea><br>

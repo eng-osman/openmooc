@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use OpenMooc\Courses\Services\coursesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use OpenMooc\Users\Models\Users;
 
 class courseController
 {
@@ -24,11 +25,7 @@ class courseController
 
     public function addCourse()
     {
-        $users = DB::table('users')
-            ->leftjoin('users_groups', 'users_groups.group_id', '=', 'users.id')
-            ->select('users.name','users.id')
-            ->where('users_groups.group_name', 'like', '%Admins%')
-            ->get();
+        $users = Users::all()->where('user_group',3);
         $categories = DB::table('courses_categories')
 
             ->get();

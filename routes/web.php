@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function (){
-    return view('welcome');
+    return view('instructor.index');
 });
 Route::get('api/courses','coursesAPIController@courses');
 /*Route::get('add','coursesController@addCourse');
