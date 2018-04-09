@@ -20,7 +20,7 @@
         </a>
         <ul class="sub">
             <li><a  href="{{url('admin/groups')}}">All Groups</a></li>
-            <li><a  href="{{url('admin/groups/add')}}">Add User Group</a></li>
+            <li><a  href="{{url('admin/groups/create')}}">Add User Group</a></li>
         </ul>
     </li>
 
@@ -31,7 +31,7 @@
         </a>
         <ul class="sub">
             <li><a  href="{{url('admin/users')}}">All users</a></li>
-            <li><a  href="{{url('admin/users/add')}}">Add user</a></li>
+            <li><a  href="{{url('admin/users/create')}}">Add user</a></li>
         </ul>
     </li>
 
@@ -42,7 +42,7 @@
         </a>
         <ul class="sub">
             <li><a  href="{{url('admin/categories')}}">All Categories</a></li>
-            <li><a  href="{{url('admin/categories/add')}}">Add Category</a></li>
+            <li><a  href="{{url('admin/categories/create')}}">Add Category</a></li>
         </ul>
     </li>
 
@@ -53,7 +53,7 @@
         </a>
         <ul class="sub">
             <li><a  href="{{url('admin/courses')}}">All Courses</a></li>
-            <li><a  href="{{url('admin/courses/add')}}">Add Course</a></li>
+            <li><a  href="{{url('admin/courses/create')}}">Add Course</a></li>
         </ul>
     </li>
     <!--multi level menu end-->
