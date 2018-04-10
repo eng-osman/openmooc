@@ -23,6 +23,15 @@ Route::prefix('admin')->group(function () {
     Route::resource('groups','adminUsersGroupsController');
     // Users
     Route::resource('users','adminUsersController');
+    //UpdatePassword
+    Route::get('updatePasswrd/{id}','adminUsersController@updateUserPassword');
+    Route::post('updatePasswrd','adminUsersController@processupdateUserPassword');
+    //getUsersByActiveStatus
+    Route::get('getUsersByActive/{status}','adminUsersController@getUsersByActiveStatus');
+    Route::get('active/{id}','adminUsersController@activeUser');
+    Route::get('delete/{id}','adminUsersController@deleteUser');
+    //Search
+    Route::get('search/{keyword}','adminUsersController@searchUsers');
     // Categories
     Route::resource('categories','adminCategoriesController');
     // courses

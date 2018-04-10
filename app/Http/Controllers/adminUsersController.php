@@ -36,7 +36,7 @@ class adminUsersController extends Controller
         }
     }
 
-    // show user by id
+    // show user group by id
     public function show($id)
     {
         //
@@ -48,9 +48,8 @@ class adminUsersController extends Controller
         $ugService = new userGroupsService();
         $groups = $ugService->getAllGroups();
         $userService = new usersService();
-        $user = $userService->getUser($id);
-        return view('dashboard.admin.updateuser')->with('groups',$groups)
-            ->with('user',$user);
+        $users = $userService->getUser($id);
+        return view('dashboard.admin.updateuser')->with('user',$users)->with('groups',$groups);
     }
 
     // update user in database
@@ -69,7 +68,7 @@ class adminUsersController extends Controller
     {
         $userService = new usersService();
         if($userService->deleteUser($id)){
-            return 'User Deleted';
+            return back();
         }else{
             return $userService->errors();
         }
@@ -88,7 +87,7 @@ class adminUsersController extends Controller
     {
         $userService = new usersService();
         if($userService->updateUserPassword($request)){
-            return 'Password Updated';
+            return back();
         }else{
             return $userService->errors();
         }
@@ -105,7 +104,29 @@ class adminUsersController extends Controller
     {
         $uService = new usersService();
         $users = $uService->getUsersByActiveStatus($status);
-        return view('dashboard.admin.usersbystatus')->with('users',$users);
+        return view('dashboard.admin.usersbystatus')->with('users',$users)->with('status',$status);
+    }
+
+    public function activeUser($id)
+    {
+        $aService = new usersService();
+        if ($aService->activeUser($id))
+        {
+            return back();
+        }else{
+            return $userService->errors();
+        }
+    }
+
+    // delete user from database
+    public function deleteUser($id)
+    {
+        $userService = new usersService();
+        if($userService->deleteUser($id)){
+            return back();
+        }else{
+            return $userService->errors();
+        }
     }
 
     public function searchUsers($keyword)

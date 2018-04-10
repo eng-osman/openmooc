@@ -20,9 +20,9 @@ class usersRepository extends Repository
         $user->user_group = $userData['user_group'];
         $user->about = $userData['about'];
         $user->is_active = $userData['is_active'];
-        $user->remember_token = $userData['remember_token'];
+        $user->remember_token = $userData['_token'];
         if ($user->save()) {
-            return true;
+            return back();
         } else {
             return false;
         }
@@ -63,6 +63,17 @@ class usersRepository extends Repository
         return $users;
     }
 
+    public function activeUser($id)
+    {
+        $user = User::find($id);
+        $user->is_active = 1;
+        if ($user->save()) {
+            return true ;
+        } else {
+            return false;
+        }
+    }
+
     // update user
     public function updateUser($data)
     {
@@ -75,7 +86,7 @@ class usersRepository extends Repository
         $user->user_group = $data['user_group'];
         $user->about = $data['about'];
         $user->is_active = $data['is_active'];
-        $user->remember_token = $data['remember_token'];
+        $user->remember_token = $data['_token'];
         if ($user->save()) {
             return true;
         } else {

@@ -15,11 +15,11 @@ class usersService extends Service
             'username'       => 'required|unique:users|min:5|max:20',
             'password'       => 'required|min:6|max:20',
             'email'          => 'required|unique:users|email',
-            'image'          => 'required|image',
+            'image'          => 'required',
             'about'          => 'required|max:500',
             'user_group'     => 'required|integer',
             'is_active'      => 'required|boolean',
-            'remember_token' => 'required'
+            '_token' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -76,11 +76,22 @@ class usersService extends Service
         }
     }
 
-
     public function getUsersByActiveStatus($status)
     {
         $uRepository = new usersRepository();
         $user = $uRepository->getUsersByActiveStatus($status);
+        if($user){
+            return $user;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
+    public function activeUser($id)
+    {
+        $uRepository = new usersRepository();
+        $user = $uRepository->activeUser($id);
         if($user){
             return $user;
         }else{
@@ -97,11 +108,11 @@ class usersService extends Service
             'username'       => 'required|min:5|max:20',
             'password'       => 'required|min:6|max:20',
             'email'          => 'required|email',
-            'image'          => 'required|image',
+            'image'          => 'required',
             'about'          => 'required|max:500',
             'user_group'     => 'required|integer',
             'is_active'      => 'required|boolean',
-            'remember_token' => 'required'
+            '_token' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);

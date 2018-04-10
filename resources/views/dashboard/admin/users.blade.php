@@ -34,12 +34,12 @@
                                 <td>{{$user->group_name}}</td>
                                 <td>@if($user->is_active == 1) Active @else Not Active @endif</td>
 
-                                <td><button type="button" class="btn btn-primary"><a href="{{url('admin/users/'.$user->id.'/edit')}}">Update</a></button></td>
+                                <td><button type="button" class="btn btn-primary"><a style="color:#fff" href="{{url('admin/users/'.$user->id.'/edit')}}">Update</a></button></td>
                                 <td>
                                     <form action="{{url('admin/users/'.$user->id)}}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-danger" value="Delete"/>
+                                        <input type="submit"  class="btn btn-danger" value="Delete"/>
                                     </form>
                                 </td>
                             </tr>
