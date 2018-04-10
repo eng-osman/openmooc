@@ -8,7 +8,7 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="{{asset('instructor/img/favicon.png')}}">
 
-    <title>Instructor @yield('title')</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('instructor/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -280,7 +280,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="index.html">
+                    <a class="active" href="{{url('instructor/1')}}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -288,61 +288,20 @@
 
                 <!-- Add course Link-->
                 <li>
-                    <a href="addCourse">
+                    <a href="{{url('courses/create')}}">
                         <i class="fa fa-plus"></i>
                         <span>Add Course</span></a>
                 </li>
                 <!-- End Add Course -->
-
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fa fa-tasks"></i>
-                        <span>Form Stuff</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="form_component.html">Form Components</a></li>
-                        <li><a  href="advanced_form_components.html">Advanced Components</a></li>
-                        <li><a  href="form_wizard.html">Form Wizard</a></li>
-                        <li><a  href="form_validation.html">Form Validation</a></li>
-                        <li><a  href="dropzone.html">Dropzone File Upload</a></li>
-                        <li><a  href="inline_editor.html">Inline Editor</a></li>
-                        <li><a  href="image_cropping.html">Image Cropping</a></li>
-                        <li><a  href="file_upload.html">Multiple File Upload</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Shop</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="product_list.html">List View</a></li>
-                        <li><a  href="product_details.html">Details View</a></li>
-                    </ul>
-                </li>
+                <!-- Add course Link-->
                 <li>
-                    <a href="google_maps.html" >
-                        <i class="fa fa-map-marker"></i>
-                        <span>Google Maps </span>
-                    </a>
+                    <a href="{{url('instructor/1/courses')}}">
+                        <i class="fa fa-book"></i>
+                        <span>my courses</span></a>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-comments-o"></i>
-                        <span>Chat Room</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="lobby.html">Lobby</a></li>
-                        <li><a  href="chat_room.html"> Chat Room</a></li>
-                    </ul>
-                </li>
+                <!-- End Add Course -->
 
-                <li>
-                    <a  href="login.html">
-                        <i class="fa fa-user"></i>
-                        <span>Login Page</span>
-                    </a>
-                </li>
+                
 
                 <!--multi level menu start-->
                 <li class="sub-menu">
@@ -378,64 +337,8 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <!--state overview start-->
-            <div class="row state-overview">
-                <div class="col-lg-3 col-sm-6">
-                    <section class="panel">
-                        <div class="symbol terques">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="value">
-                            <h1 class="count">
-                                0
-                            </h1>
-                            <p>New Users</p>
-                        </div>
-                    </section>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <section class="panel">
-                        <div class="symbol red">
-                            <i class="fa fa-tags"></i>
-                        </div>
-                        <div class="value">
-                            <h1 class=" count2">
-                                0
-                            </h1>
-                            <p>Sales</p>
-                        </div>
-                    </section>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <section class="panel">
-                        <div class="symbol yellow">
-                            <i class="fa fa-shopping-cart"></i>
-                        </div>
-                        <div class="value">
-                            <h1 class=" count3">
-                                0
-                            </h1>
-                            <p>New Order</p>
-                        </div>
-                    </section>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <section class="panel">
-                        <div class="symbol blue">
-                            <i class="fa fa-bar-chart-o"></i>
-                        </div>
-                        <div class="value">
-                            <h1 class=" count4">
-                                0
-                            </h1>
-                            <p>Total Profit</p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <!--state overview end-->
 
-
+            @yield('content')
 
         </section>
     </section>

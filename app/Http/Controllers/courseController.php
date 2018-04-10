@@ -25,12 +25,12 @@ class courseController
 
     public function addCourse()
     {
-        $users = Users::all()->where('user_group',3);
+        $instructor = Users::all()->where('user_group',3);
         $categories = DB::table('courses_categories')
 
             ->get();
         return view('addcourse')
-            ->with('users', $users)
+            ->with('instructors', $instructor)
             ->with('categories', $categories);
     }
 

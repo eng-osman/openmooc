@@ -12,11 +12,11 @@ class coursesRepository extends Repository
     {
         //get item
         $item = [
-            'course_name' => $course['course_name'],
-            'course_category' => $course['course_category'],
-            'course_instructor' => $course['course_instructor'],
-            'course_description' => $course['course_description'],
-            'is_active' => $course['active']
+            'course_name' => $course['name'],
+            'course_category' => $course['category'],
+            'course_instructor' => $course['instructor'],
+            'course_description' => $course['description'],
+            'is_active' => $course['status']
         ];
         //insert date
         if (DB::table('courses')->insert([$item]))

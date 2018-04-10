@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function (){
-    return view('instructor.index');
+Route::get('instructor/{id}', function (){
+    return view('instructor.dashboard');
 });
+
 Route::get('api/courses','coursesAPIController@courses');
 /*Route::get('add','coursesController@addCourse');
 Route::post('add','coursesController@processAddCourse');*/
@@ -74,8 +75,8 @@ Route::get('getCategoriesByCreatorId/{creator_id?}','courseCategoryController@ge
 /***********************************************************/
 /** Courses courses routs */
 
-Route::get('addCourse','courseController@addCourse');
-Route::post('addcourse','courseController@processAddCourse');
+Route::get('courses/create','courseController@addCourse');
+Route::post('courses/create','courseController@processAddCourse');
 Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
 Route::post('updateCategory','courseCategoryController@processupdateCategory');
 Route::get('deleteCourse/{id?}','courseController@deleteCourse');
