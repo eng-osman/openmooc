@@ -36,7 +36,7 @@ class adminUsersController extends Controller
         }
     }
 
-    // show user group by id
+    // show user by id
     public function show($id)
     {
         //

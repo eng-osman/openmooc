@@ -35,7 +35,13 @@
                                     <td>{{$category->updated_at}}</td>
 
                                     <td><button type="button" class="btn btn-primary"><a href="{{url('admin/categories/'.$category->category_id.'/edit')}}">Update</a></button></td>
-                                    <td><button type="button" class="btn btn-danger"><a href="{{url('admin/categories/'.$category->category_id)}}">Delete</a></button></td>
+                                    <td>
+                                        <form action="{{url('admin/categories/'.$category->category_id)}}" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
