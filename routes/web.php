@@ -12,19 +12,10 @@
 */
 
 Route::get('/', function (){
-    return view('dashboard.admin.index');
+    return view('welcome');
 });
-
-
-
-Route::get('admin/courses','adminCoursesController@index');
-Route::get('admin/courses/add','adminCoursesController@add');
-Route::post('admin/courses/add','adminCoursesController@processAdd');
-Route::get('admin','adminController@index');
-Route::get('instructor','adminController@index');
-Route::get('student','adminController@index');
-
 Route::get('api/courses','coursesAPIController@courses');
 Route::get('add','coursesController@addCourse');
 Route::post('add','coursesController@processAddCourse');
 Route::get('courses','coursesController@courses');
+Route::get('CoursesStudents/All','coursesStudentsController@getAll');
