@@ -7,39 +7,30 @@ use OpenMooc\Service;
 use Validator;
 class coursesService extends Service
 {
-    public function createCourse($request)
+
+    public  function createCourse($request)
     {
         $rules = [
-            'title'         => 'required|min:3|max:250',
-            'description'   => 'required',
-            'category'      => 'required',
-            'active'        => 'required',
-            'instructor'    => 'required'
+            'title'       => 'required|min:5|max:20',
+            'description' => 'required',
+            'category'    => 'required',
+            'active'      => 'required',
+            'instructor'  => 'required'
         ];
         $validator = Validator::make($request->all(),$rules);
-
         if($validator->fails())
         {
             $this->setError($validator->errors()->all());
             return false;
         }
-        //store
-        $coursesRepository = new coursesRepository();
 
-        if($coursesRepository->createCourse($request->all()))
+        //store
+        $courses = new coursesRepository();
+        if ($courses->createCourse($request->all()))
             return true;
 
-        $this->setError('Error Saving to database');
+        $this->setError('Error saving in DB');
         return false;
-    }
-    public function getCourses()
-    {
-        $coursesRepo = new coursesRepository();
-        $courses = $coursesRepo->getCourses();
-        foreach ($courses as $course)
-        {
-            $course->course_name = strtoupper($course->course_name);
-        }
-        return $courses;
+
     }
 }

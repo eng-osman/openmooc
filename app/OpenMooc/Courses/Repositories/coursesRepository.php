@@ -6,23 +6,20 @@ use OpenMooc\Repository;
 
 class coursesRepository extends Repository
 {
-    public function createCourse($courseData)
+    public  function createCourse($data= [])
     {
+        //valid
         $course = new Courses();
-        $course->course_name        = $courseData['title'];
-        $course->course_category    = $courseData['category'];
-        $course->course_instructor  = $courseData['instructor'];
-        $course->course_description = $courseData['description'];
-        $course->is_active          = $courseData['active'];
+        $course->course_name            = $data['title'];
+        $course->course_description     = $data['description'];
+        $course->course_category        = $data['category'];
+        $course->is_active              = $data['active'];
+        $course->course_instructor      = $data['instructor'];
 
         if($course->save())
             return true;
 
         return false;
-    }
 
-    public function getCourses()
-    {
-        return Courses::orderBy('course_id','DESC')->get();
     }
 }
