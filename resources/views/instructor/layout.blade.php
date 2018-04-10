@@ -300,8 +300,15 @@
                         <span>my courses</span></a>
                 </li>
                 <!-- End Add Course -->
+                <!-- Add my course Link-->
+                <li>
+                    <a href="{{url('instructor/1/courses')}}">
+                        <i class="fa fa-book"></i>
+                        <span>my courses</span></a>
+                </li>
+                <!-- End Add Course -->
 
-                
+
 
                 <!--multi level menu start-->
                 <li class="sub-menu">

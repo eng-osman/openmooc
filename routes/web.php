@@ -11,9 +11,14 @@
 |
 */
 
+// Start instructor permissions
 Route::get('instructor/{id}', function (){
     return view('instructor.dashboard');
 });
+Route::get('instructor/{id}/courses', 'courseController@getCoursesByInstructor');
+Route::get('courses/edit/{id}', 'courseController@updateCourse');
+Route::post('courses/edit/{id}', 'courseController@updateCourseProcess');
+// end instructor permissions
 
 Route::get('api/courses','coursesAPIController@courses');
 /*Route::get('add','coursesController@addCourse');

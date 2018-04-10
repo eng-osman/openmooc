@@ -27,23 +27,10 @@ class coursesRepository extends Repository
     // update courses
 
 
-    public function updateCourse($course)
+    public function updateCourse($course='', $id)
     {
-        //array of data
-        $item = [
-            'course_name' => $course['course_name'],
-            'course_category' => $course['course_category'],
-            'course_instructor' => $course['course_instructor'],
-            'course_description' => $course['course_description'],
-            'is_active' => $course['is_active']
-        ];
-        if (DB::table('courses_lessons')
-            ->where('courses.course_id', $course['course_id'])
-            ->update($item)
-        )
-            return true;
-        return false;
-        //update courses by id
+        $course = Courses::find($id);
+        dd($course);
     }
 
     // update active
@@ -85,12 +72,12 @@ class coursesRepository extends Repository
         return $courses;
     }
 
-    public function getCoursesByInstructor($InstructorId = 0)
+    public function getCoursesByInstructor($InstructorId)
     {
         $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->join('users', 'courses.course_instructor', '=', 'users.id')
-            ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
+            ->select('courses.course_name', 'courses.course_id', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
             ->where('courses.course_instructor', '=', $InstructorId)
             ->get();
         return $courses;
@@ -133,15 +120,16 @@ class coursesRepository extends Repository
     }
 
     // get course
-    public function getCourse($id = 0)
+    public function getCourse($id)
     {
-        $courses = DB::table('courses')
-            ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
-            ->join('users', 'courses.course_instructor', '=', 'users.id')
-            ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
-            ->where('courses.course_id', '=', $id)
-            ->get();
-        return $courses;
+        $course = Courses::find($id);
+//        $courses = DB::table('courses')
+//            ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
+//            ->join('users', 'courses.course_instructor', '=', 'users.id')
+//            ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
+//            ->where('courses.course_id', '=', $id)
+//            ->get();
+        return $course;
     }
 
     // search by name and desc
