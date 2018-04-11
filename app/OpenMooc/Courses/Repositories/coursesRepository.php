@@ -70,13 +70,13 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->join('users', 'courses.course_instructor', '=', 'users.id')
-            ->select('courses.course_name', 'courses.course_id', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
+            ->select('courses.course_id','courses.course_name','courses.course_instructor' ,'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
             ->where('courses.course_instructor', '=', $InstructorId)
             ->get();
         return $courses;
     }
 
-    // coures careg
+    // courses by category
     public function getCoursesByCategory($category_id)
     {
         $courses = DB::table('courses')
@@ -134,7 +134,7 @@ class coursesRepository extends Repository
             ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
             ->where('courses.course_name', 'like', "%$keyword%")
             ->orWhere('courses.course_description', 'like', "%$keyword%")
-->get();
+            ->get();
         return $courses;
     }
 }

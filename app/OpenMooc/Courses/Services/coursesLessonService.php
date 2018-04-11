@@ -17,28 +17,30 @@ use OpenMooc\Service;
 use Validator;
 
 class coursesLessonService extends Service
-{private $coursesLessonRepo;
-    public function __construct(){
-    $this->coursesLessonRepo= new coursesLessonRepositry();
-}
-    public function addLesson($request)
+{
+    private $coursesLessonRepo;
+
+    public function __construct()
     {
+        $this->coursesLessonRepo = new coursesLessonRepositry();//create object from repositry
+    }
+
+    public function addLesson($request)
+    {//set required rules
         $rules = [
             'lesson_title' => 'required|min:3|max:250',
-            'lesson_course' => 'required',
-            'lesson_instructor' => 'required',
             'lesson_description' => 'required',
             'lesson_video' => 'required',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);//validate inserted date before added it in Db
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
             return false;
         }
 
-        //store
+        //store right data in DB
         if ($this->coursesLessonRepo->addLesson($request->all()))
             return true;
 
@@ -48,21 +50,22 @@ class coursesLessonService extends Service
 
     public function updateLesson(Request $req)
     {
+        //set required rules
         $rules = [
             'lesson_title' => 'required|min:3|max:250',
-            'lesson_course' => 'required',
             'lesson_course' => 'required',
             'lesson_description' => 'required',
             'lesson_video' => 'required',
         ];
-        $validator = Validator::make($req->all(), $rules);
+        $validator = Validator::make($req->all(), $rules);//validate inserted date before added it in Db
 
         if ($validator->fails()) {
+
             $this->setError($validator->errors()->all());
             return false;
         }
         //store
-        if ($this->coursesLessonRepo->updateLesson($req->all()))
+       else if ($this->coursesLessonRepo->updateLesson($req->all()))
             return true;
 
         $this->setError('Error updating to database in courses lesson');
