@@ -90,7 +90,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->join('users', 'courses.course_instructor', '=', 'users.id')
-            ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
+            ->select('courses.course_id','courses.course_name','courses.course_instructor' ,'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
             ->where('courses.course_instructor', '=', $InstructorId)
             ->get();
         return $courses;
