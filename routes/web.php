@@ -15,10 +15,6 @@
 Route::get('instructor/{id}','InstructorController@index');
 
 Route::get('instructor/{id}/courses', 'InstructorController@myCourses');
-Route::get('courses/create','InstructorController@createCourse');
-Route::get('courses/edit/{id}', 'InstructorController@updateCourse');
-Route::post('courses/edit/{id}', 'InstructorController@updateCourseProcess');
-Route::get('courses/delete/{id}','InstructorController@deleteCourse');
 Route::get('students/{id}','InstructorController@showStudentsInCourse');
 Route::get('subscription/approve/{id}', 'InstructorController@approveSubscription');
 Route::get('subscription/unapprove/{id}', 'InstructorController@unApproveSubscription');
