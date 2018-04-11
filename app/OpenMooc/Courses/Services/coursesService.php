@@ -20,11 +20,11 @@ class coursesService extends Service
     public function addCourse($request)
     {
         $rules = [
-            'course_name' => 'required|min:3|max:250',
-            'course_category' => 'required',
-            'course_instructor' => 'required',
-            'course_description' => 'required|min:3|max:250',
-            'active' => 'required',
+            'name' => 'required|min:3|max:50',
+            'category' => 'required',
+            'instructor' => 'required',
+            'description' => 'required|min:3|max:250',
+            'status' => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules);

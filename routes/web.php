@@ -11,10 +11,18 @@
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', function () {
     return view('dashboard.admin.index');
 });
 Route::get('api/courses', 'coursesAPIController@courses');
+=======
+Route::get('instructor/{id}', function (){
+    return view('instructor.dashboard');
+});
+
+Route::get('api/courses','coursesAPIController@courses');
+>>>>>>> f07a435c00bbc8ecaef214ce035a4c4c4e5e0ec9
 /*Route::get('add','coursesController@addCourse');
 Route::post('add','coursesController@processAddCourse');*/
 Route::get('courses', 'coursesController@courses');
@@ -71,6 +79,7 @@ Route::get('getCategoriesByCreatorId/{creator_id?}', 'courseCategoryController@g
 /***********************************************************/
 /** Courses courses routs */
 
+<<<<<<< HEAD
 Route::get('addCourse', 'courseController@addCourse');
 Route::post('addcourse', 'courseController@processAddCourse');
 Route::get('updateCategory/{id?}', 'courseCategoryController@updateCategory');
@@ -83,6 +92,21 @@ Route::get('getCoursesByStudentId/{id?}', 'courseController@getCoursesByStudentI
 Route::get('getCoursesByActiveStatus/{id?}', 'courseController@getCoursesByActiveStatus');
 Route::get('searchCourses/{id?}', 'courseController@searchCourses');
 Route::get('getCourse/{id?}', 'courseController@getCourse');
+=======
+Route::get('courses/create','courseController@addCourse');
+Route::post('courses/create','courseController@processAddCourse');
+Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
+Route::post('updateCategory','courseCategoryController@processupdateCategory');
+Route::get('deleteCourse/{id?}','courseController@deleteCourse');
+Route::get('getCourses','courseController@getCourses');
+Route::get('getCourses/{id?}','courseController@getCoursesByInstructor');
+Route::get('getCoursesByCategory/{id?}','courseController@getCoursesByCategory');
+Route::get('getCoursesByStudentId/{id?}','courseController@getCoursesByStudentId');
+Route::get('getCoursesByActiveStatus/{id?}','courseController@getCoursesByActiveStatus');
+Route::get('searchCourses/{id?}','courseController@searchCourses');
+Route::get('getCourse/{id?}','courseController@getCourse');
+
+>>>>>>> f07a435c00bbc8ecaef214ce035a4c4c4e5e0ec9
 
 
 //finished by alaa ebrahim at 7/4/2018
