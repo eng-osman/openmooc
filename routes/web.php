@@ -20,6 +20,9 @@ Route::get('courses/edit/{id}', 'courseController@updateCourse');
 Route::post('courses/edit/{id}', 'courseController@updateCourseProcess');
 Route::get('courses/delete/{id}','courseController@deleteCourse');
 Route::get('students/{id}','coursesStudentsController@showStudentsInCourse');
+Route::get('subscription/approve/{id}', 'coursesStudentsController@approveSubscription');
+Route::get('subscription/unapprove/{id}', 'coursesStudentsController@unApproveSubscription');
+Route::get('subscription/delete/{id}', 'coursesStudentsController@deleteSubscription');
 // end instructor permissions
 
 Route::get('api/courses','coursesAPIController@courses');
@@ -104,7 +107,4 @@ Route::get('getCourse/{id?}','courseController@getCourse');
 Route::get('subscription/add', 'coursesStudentsController@addStudentSubscription');
 Route::post('subscription/add', 'coursesStudentsController@insertSubscription');
 Route::get('subscription/all', 'coursesStudentsController@getAllSubscription');
-Route::get('subscription/approve/{id}', 'coursesStudentsController@approveSubscription');
-Route::get('subscription/unapprove/{id}', 'coursesStudentsController@unApproveSubscription');
-Route::get('subscription/delete/{id}', 'coursesStudentsController@deleteSubscription');
 Route::get('student/{id}', 'coursesStudentsController@getStudentSubscription');
