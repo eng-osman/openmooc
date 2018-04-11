@@ -20,7 +20,7 @@
                     <tbody>
                     @foreach($coursesList as $course)
                         <tr>
-                            <td>{{$course->course_name}}</td>
+                            <td><a href="{{url('students/'.$course->course_id)}}">{{$course->course_name}}</a></td>
                             <td>{{$course->category_name}}</td>
                             <td>{{$course->course_description}}</td>
                             @if($course->is_active == 1)

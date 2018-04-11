@@ -48,4 +48,13 @@ class coursesStudentsRepository
             ->select('users.username', 'courses.course_name', 'courses_students.*')->get();
         return $student;
     }
+
+    public function showStudentsInCourse($course_id)
+    {
+        $students = DB::table('courses_students')
+            ->join('users', 'users.id', '=', 'courses_students.student_id')
+            ->where('courses_students.course_id','=', $course_id)
+            ->select('users.username', 'courses_students.*')->get();
+        return ($students==true) ? $students: false;
+    }
 }

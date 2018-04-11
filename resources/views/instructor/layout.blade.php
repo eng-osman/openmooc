@@ -302,9 +302,9 @@
                 <!-- End Add Course -->
                 <!-- Add my course Link-->
                 <li>
-                    <a href="{{url('instructor/1/courses')}}">
+                    <a href="{{url('instructor/1/students')}}">
                         <i class="fa fa-book"></i>
-                        <span>my courses</span></a>
+                        <span>my students</span></a>
                 </li>
                 <!-- End Add Course -->
 

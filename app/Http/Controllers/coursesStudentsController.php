@@ -64,4 +64,11 @@ class coursesStudentsController extends Controller
 
         return view('subscriptions.student')->with('student',$student);
     }
+
+    public function showStudentsInCourse($course_id)
+    {
+        $service = new coursesStudentsService();
+        return view('course.students')->with('students', $service->showStudentsInCourse($course_id));
+
+    }
 }

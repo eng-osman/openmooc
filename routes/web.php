@@ -18,6 +18,8 @@ Route::get('instructor/{id}', function (){
 Route::get('instructor/{id}/courses', 'courseController@getCoursesByInstructor');
 Route::get('courses/edit/{id}', 'courseController@updateCourse');
 Route::post('courses/edit/{id}', 'courseController@updateCourseProcess');
+Route::get('courses/delete/{id}','courseController@deleteCourse');
+Route::get('students/{id}','coursesStudentsController@showStudentsInCourse');
 // end instructor permissions
 
 Route::get('api/courses','coursesAPIController@courses');

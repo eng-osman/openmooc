@@ -58,4 +58,10 @@ class coursesStudentsService extends Service
 
         return $subscriptions;
     }
+
+    public function showStudentsInCourse($course_id)
+    {
+        $repository = new coursesStudentsRepository();
+        return $repository->showStudentsInCourse($course_id);
+    }
 }

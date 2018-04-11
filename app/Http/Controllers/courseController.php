@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-use OpenMooc\Courses\Models\Courses;
 use Validator;
 use OpenMooc\Courses\Services\coursesService;
 use Illuminate\Http\Request;
@@ -51,35 +50,17 @@ class courseController extends Controller
     }
 
     // update course process
-    public function updateCourseProcess(Request $request, $id)
+    public function updateCourseProcess(Request $request ,$id)
     {
-        // validation the update form
-        $validator = Validator::make($request->all(), [
-            'name'       =>'required:min:3:max:50',
-            'category'   =>'required',
-            'instructor' =>'required',
-            'description'=>'required',
-            'status'     =>'required'
-        ]);
-        if($validator->fails())
-            return redirect()->back()->withErrors($validator);
+        if ($this->coursesService->updateCourseProcess($request,$id))
+            return 'course updated';
 
-        $course = Courses::find($id);
-        $course->course_name = $request->get('name');
-        $course->course_category = $request->get('category');
-        $course->course_instructor = $request->get('instructor');
-        $course->course_description = $request->get('description');
-        $course->is_active = $request->get('status');
-        if($course->save())
-            return  $course->course_name . ' course updated  successfully';
-
-        //'return Error message'
-        return 'error Updating course ';
+        return $this->coursesService->errors();
     }
 
 
 
-    public function deleteCourse($id = 0)
+    public function deleteCourse($id)
     {
         if ($this->coursesService->deleteCourse($id))
             return 'course deleted';

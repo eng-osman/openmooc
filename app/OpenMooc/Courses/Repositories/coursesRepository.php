@@ -8,32 +8,31 @@ use Illuminate\Support\Facades\DB;
 
 class coursesRepository extends Repository
 {
-    public function addCourse($course)
+    public function addCourse($courseData = [])
     {
-        //get item
-        $item = [
-            'course_name' => $course['name'],
-            'course_category' => $course['category'],
-            'course_instructor' => $course['instructor'],
-            'course_description' => $course['description'],
-            'is_active' => $course['status']
-        ];
-        //insert date
-        if (DB::table('courses')->insert([$item]))
-            return true;
-        return false;
+        $course  = new Courses();
+        $course->course_name = $courseData['name'];
+        $course->course_category = $courseData['category'];
+        $course->course_instructor = $courseData['instructor'];
+        $course->course_description = $courseData['description'];
+        $course->is_active = $courseData['status'];
+
+        return ($course->save()==true) ? true:false;
     }
 
     // update courses
 
-
-    public function updateCourse($course='', $id)
+    public function updateCourseProcess($courseData, $id)
     {
         $course = Courses::find($id);
-        dd($course);
+        $course->course_name        = $courseData['name'];
+        $course->course_category    = $courseData['category'];
+        $course->course_instructor  = $courseData['instructor'];
+        $course->course_description = $courseData['description'];
+        $course->is_active          = $courseData['status'];
+        return ($course->save()==true) ? true: false;
     }
 
-    // update active
 
     public function updateCourseActiveStatus($course)
     {
@@ -51,14 +50,8 @@ class coursesRepository extends Repository
     // delete courese by id
     public function deleteCourse($id)
     {
-        $course = DB::table('courses')
-            ->where('courses.course_id', '=', $id)
-            ->get();
-        if ($course) {
-            DB::table('courses')->delete()->where('courses.course_id', '=', $id);
-            return true;
-        }
-        return false;
+        $course = Courses::find($id);
+       return $course->delete();
     }
 
     // get all coures
