@@ -55,6 +55,20 @@ class coursesStudentsRepository
             ->join('users', 'users.id', '=', 'courses_students.student_id')
             ->where('courses_students.course_id','=', $course_id)
             ->select('users.username', 'courses_students.*')->get();
-        return ($students==true) ? $students: false;
+        return $students;
+    }
+
+    public function getAllInstructorStudents($instructor_id)
+    {
+        $students = DB::table('courses_students')
+            ->join('users', 'users.id','=','courses_students.student_id')
+            ->join('courses','courses.course_id','=','courses_students.course_id')
+            ->where('courses.course_instructor','=',$instructor_id)
+            ->where('users.user_group','=',2)
+            ->select('users.username','users.is_active as user_status','courses.course_name',
+                'courses.is_active as course_status', 'courses.course_instructor','courses_students.is_approved','courses_students.id as subscription_id')
+            ->get();
+        return $students;
+
     }
 }

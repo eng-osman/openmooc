@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use OpenMooc\Courses\Services\coursesCategoriesService;
+use OpenMooc\Users\Services\usersService;
 use Validator;
 use OpenMooc\Courses\Services\coursesService;
 use Illuminate\Http\Request;
@@ -18,9 +20,10 @@ class courseController extends Controller
 
     public function addCourse()
     {
-        $instructor = Users::all()->whereIn('user_group',[1,3]);
-        $categories = DB::table('courses_categories')->get();
-
+        $usersService = new usersService();
+        $categoryService = new coursesCategoriesService();
+        $instructor = $usersService->getUsersByGroup([1,3]);
+        $categories = $categoryService->getCategories();
         return view('course.addcourse')
             ->with('instructors', $instructor)
             ->with('categories', $categories);
@@ -39,6 +42,7 @@ class courseController extends Controller
 
     public function updateCourse($id)
     {
+
         $instructor = Users::all()->whereIn('user_group',[1,3]);
         $categories = DB::table('courses_categories')->get();
         $service=  new coursesService();
@@ -80,12 +84,11 @@ class courseController extends Controller
 
 
     public function getCoursesByInstructor($id)
-    {  $courses = $this->coursesService->getCoursesByInstructor($id);
-        if(count($courses)>0):
-        return view('course.courses')
-        ->with('coursesList', $courses);
-        endif;
-        return 'there is no course matched';
+    {
+         $courses = $this->coursesService->getCoursesByInstructor($id);
+        if(count($courses)>0)
+            return $courses;
+        return 'no course for this instructor';
     }
 
 

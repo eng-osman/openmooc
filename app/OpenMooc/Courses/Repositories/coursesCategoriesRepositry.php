@@ -59,10 +59,7 @@ class coursesCategoriesRepositry extends Repository
 
     public function getCategories()
     {
-        $users = DB::table('courses_categories')
-            ->join('users', 'users.id', '=', 'courses_categories.created_by')
-            ->select('courses_categories.category_name', 'users.username', 'courses_categories.is_active')
-            ->get();
+        $users = CoursesCategories::all();
         return $users;
     }
 

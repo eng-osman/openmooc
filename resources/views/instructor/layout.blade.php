@@ -300,13 +300,14 @@
                         <span>my courses</span></a>
                 </li>
                 <!-- End Add Course -->
-                <!-- Add my course Link-->
+
+                <!-- Add my ٍstudents Link-->
                 <li>
                     <a href="{{url('instructor/1/students')}}">
                         <i class="fa fa-book"></i>
                         <span>my students</span></a>
                 </li>
-                <!-- End Add Course -->
+                <!-- End Add students Course -->
 
 
 
@@ -382,7 +383,7 @@
 <!--script for this page-->
 <script src="{{asset('instructor/js/sparkline-chart.js')}}"></script>
 <script src="{{asset('instructor/js/easy-pie-chart.js')}}"></script>
-<script src="{{asset('instructor/js/count.js')}}"></script>
+{{--<script src="{{asset('instructor/js/count.js')}}"></script>--}}
 
 <script>
 

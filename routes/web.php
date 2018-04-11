@@ -12,17 +12,18 @@
 */
 
 // Start instructor permissions
-Route::get('instructor/{id}', function (){
-    return view('instructor.dashboard');
-});
-Route::get('instructor/{id}/courses', 'courseController@getCoursesByInstructor');
-Route::get('courses/edit/{id}', 'courseController@updateCourse');
-Route::post('courses/edit/{id}', 'courseController@updateCourseProcess');
-Route::get('courses/delete/{id}','courseController@deleteCourse');
-Route::get('students/{id}','coursesStudentsController@showStudentsInCourse');
-Route::get('subscription/approve/{id}', 'coursesStudentsController@approveSubscription');
-Route::get('subscription/unapprove/{id}', 'coursesStudentsController@unApproveSubscription');
-Route::get('subscription/delete/{id}', 'coursesStudentsController@deleteSubscription');
+Route::get('instructor/{id}','InstructorController@index');
+
+Route::get('instructor/{id}/courses', 'InstructorController@myCourses');
+Route::get('courses/create','InstructorController@createCourse');
+Route::get('courses/edit/{id}', 'InstructorController@updateCourse');
+Route::post('courses/edit/{id}', 'InstructorController@updateCourseProcess');
+Route::get('courses/delete/{id}','InstructorController@deleteCourse');
+Route::get('students/{id}','InstructorController@showStudentsInCourse');
+Route::get('subscription/approve/{id}', 'InstructorController@approveSubscription');
+Route::get('subscription/unapprove/{id}', 'InstructorController@unApproveSubscription');
+Route::get('subscription/delete/{id}', 'InstructorController@deleteSubscription');
+Route::get('instructor/{id}/students','InstructorController@myStudents');
 // end instructor permissions
 
 Route::get('api/courses','coursesAPIController@courses');
@@ -85,7 +86,7 @@ Route::get('getCategoriesByCreatorId/{creator_id?}','courseCategoryController@ge
 /***********************************************************/
 /** Courses courses routs */
 
-Route::get('courses/create','courseController@addCourse');
+
 Route::post('courses/create','courseController@processAddCourse');
 Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
 Route::post('updateCategory','courseCategoryController@processupdateCategory');

@@ -35,7 +35,6 @@
                                         <a  class="btn btn-sm btn-danger" href="{{url('subscription/delete/'.$stu->id)}}">Delete</a>
                                     </td>
                                 </tr>
-                                
                             @endforeach
                             @else
                             <tr>

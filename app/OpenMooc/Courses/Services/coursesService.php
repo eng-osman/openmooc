@@ -75,13 +75,11 @@ class coursesService extends Service
 
     public function deleteCourse($id)
     {
-        if ($this->coursesRepo->deleteCourse($id)) {
+        if ($this->coursesRepo->deleteCourse($id))
             return true;
-        }
+
         $this->setError('Error deleting course');
         return false;
-
-
     }
 
     public function getCoursesByStudentId($student_id)
@@ -91,7 +89,10 @@ class coursesService extends Service
 
     public function getCoursesByInstructor($id)
     {
-        return $this->coursesRepo->getCoursesByInstructor($id);
+        if(count($this->coursesRepo->getCoursesByInstructor($id))> 0)
+            return   $this->coursesRepo->getCoursesByInstructor($id);
+        return false;
+
     }
 
     public function getCoursesByCategory($category_id)
@@ -112,6 +113,11 @@ class coursesService extends Service
     public function searchCourses($keywords)
     {
         return $this->coursesRepo->searchCourses($keywords);
+    }
+
+    public function countMyCourses($instructor_id)
+    {
+        return count($this->coursesRepo->getCoursesByInstructor($instructor_id));
     }
 
 }
