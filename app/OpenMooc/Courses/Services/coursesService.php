@@ -16,7 +16,6 @@ class coursesService extends Service
             'active'        => 'required',
             'instructor'    => 'required'
         ];
-
         $validator = Validator::make($request->all(),$rules);
 
         if($validator->fails())
@@ -24,7 +23,6 @@ class coursesService extends Service
             $this->setError($validator->errors()->all());
             return false;
         }
-
         //store
         $coursesRepository = new coursesRepository();
 
@@ -34,7 +32,6 @@ class coursesService extends Service
         $this->setError('Error Saving to database');
         return false;
     }
-
     public function getCourses()
     {
         $coursesRepo = new coursesRepository();
