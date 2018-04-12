@@ -54,6 +54,15 @@ class coursesStudentsService extends Service
         return false;
     }
 
+    public function deleteSubscription($id)
+    {
+        $repo = new coursesStudentsRepository();
+        if($repo->deleteSubscription($id))
+            return 'subscription deleted';
+        $this->setError('unable to delete subscription');
+        return false;
+    }
+
     public function getStudentSubscriptions($student_id)
     {
         $service = new coursesStudentsRepository();

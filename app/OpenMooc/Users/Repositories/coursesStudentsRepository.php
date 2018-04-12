@@ -25,6 +25,11 @@ class coursesStudentsRepository
             ->get();
          return $subscriptions;
     }
+    public function deleteSubscription($id)
+    {
+        $subscription = CoursesStudents::find($id);
+            return $subscription->delete();
+    }
 
     public function approve($id)
     {
@@ -69,6 +74,5 @@ class coursesStudentsRepository
                 'courses.is_active as course_status', 'courses.course_instructor','courses_students.is_approved','courses_students.id as subscription_id')
             ->get();
         return $students;
-
     }
 }

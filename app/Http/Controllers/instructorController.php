@@ -85,6 +85,10 @@ class InstructorController extends Controller
     {
         return $this->coursesStudentsService->unApprove($id);
     }
+    public function deleteSubscription($id)
+    {
+        return $this->coursesStudentsService->deleteSubscription($id);
+    }
 
     public function myStudents($instructor_id)
     {

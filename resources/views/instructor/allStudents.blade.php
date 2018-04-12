@@ -13,7 +13,6 @@
                                <th>Student status</th>
                                <th>Course name</th>
                                <th>course status</th>
-                               <th>instructor</th>
                                <th>Subscription status</th>
                                <th>Control</th>
                            </tr>
@@ -26,7 +25,6 @@
                             <td>@if($stu->user_status==1) Active @else Un active @endif</td>
                             <td>{{$stu->course_name}}</td>
                             <td>@if($stu->course_status==1) Active @else Un active @endif</td>
-                            <td>{{$stu->course_instructor}}</td>
                             <td>@if($stu->is_approved==1)Approved @else Un approved @endif</td>
                            <td>
                                @if($stu->is_approved==1)
@@ -34,7 +32,7 @@
                                @else
                                    <a class="btn-sm btn-success" href="{{url('subscription/approve/'.$stu->subscription_id)}}">Approve</a>
                                @endif
-                                   <a class="btn-sm btn-danger" href="{{url('subscription/approve/'.$stu->subscription_id)}}">delete</a>
+                                   <a class="btn-sm btn-danger" href="{{url('subscription/delete/'.$stu->subscription_id)}}">delete</a>
                            </td>
                         </tr>
                             @endforeach
