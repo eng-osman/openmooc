@@ -12,14 +12,14 @@ class usersRepository extends Repository
     public function addUser($userData)
     {
         $user = new User();
-        $user->username = $userData['username'];
-        $user->name = $userData['name'];
-        $user->image = $userData['image'];
-        $user->email = $userData['email'];
-        $user->password = $userData['password'];
-        $user->user_group = $userData['user_group'];
-        $user->about = $userData['about'];
-        $user->is_active = $userData['is_active'];
+        $user->username       = $userData['username'];
+        $user->name           = $userData['name'];
+        $user->image          = $userData['image'];
+        $user->email          = $userData['email'];
+        $user->password       = $userData['password'];
+        $user->user_group     = $userData['user_group'];
+        $user->about          = $userData['about'];
+        $user->is_active      = $userData['is_active'];
         $user->remember_token = $userData['remember_token'];
         if ($user->save()) {
             return true;
@@ -61,6 +61,18 @@ class usersRepository extends Repository
             ->where('is_active', '=', $status)
             ->get();
         return $users;
+    }
+
+    // update user status (is_active)
+    public function activeUser($id)
+    {
+        $user = User::find($id);
+        $user->is_active = 1;
+        if ($user->save()) {
+            return true ;
+        } else {
+            return false;
+        }
     }
 
     // update user

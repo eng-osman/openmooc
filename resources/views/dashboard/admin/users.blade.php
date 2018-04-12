@@ -10,8 +10,10 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Users
+                        Users
                 </header>
+                <!-- search -->
+                <!-- /search -->
                 <div class="panel-body">
                     <section id="unseen">
                         <table class="table table-bordered table-striped table-condensed">
@@ -34,7 +36,7 @@
                                 <td>{{$user->group_name}}</td>
                                 <td>@if($user->is_active == 1) Active @else Not Active @endif</td>
 
-                                <td><button type="button" class="btn btn-primary"><a href="{{url('admin/users/'.$user->id.'/edit')}}">Update</a></button></td>
+                                <td><a class="btn btn-primary" href="{{url('admin/users/'.$user->id.'/edit')}}">Update</a></td>
                                 <td>
                                     <form action="{{url('admin/users/'.$user->id)}}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">

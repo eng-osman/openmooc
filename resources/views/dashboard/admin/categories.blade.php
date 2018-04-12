@@ -34,7 +34,7 @@
                                     <td>{{$category->created_at}}</td>
                                     <td>{{$category->updated_at}}</td>
 
-                                    <td><button type="button" class="btn btn-primary"><a href="{{url('admin/categories/'.$category->category_id.'/edit')}}">Update</a></button></td>
+                                    <td><a class="btn btn-primary" href="{{url('admin/categories/'.$category->category_id.'/edit')}}">Update</a></td>
                                     <td>
                                         <form action="{{url('admin/categories/'.$category->category_id)}}" method="POST">
                                             <input type="hidden" name="_method" value="DELETE">

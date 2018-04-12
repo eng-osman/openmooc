@@ -30,7 +30,7 @@
                                 <td>{{$group->created_at}}</td>
                                 <td>{{$group->updated_at}}</td>
 
-                                <td><button type="button" class="btn btn-primary"><a href="{{url('admin/groups/'.$group->group_id.'/edit')}}">Update</a></button></td>
+                                <td><a class="btn btn-primary" href="{{url('admin/groups/'.$group->group_id.'/edit')}}">Update</a></td>
                                 <td>
                                     <form action="{{url('admin/groups/'.$group->group_id)}}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">

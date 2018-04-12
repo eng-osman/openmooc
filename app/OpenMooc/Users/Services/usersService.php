@@ -90,6 +90,19 @@ class usersService extends Service
     }
 
 
+    public function activeUser($id)
+    {
+        $uRepository = new usersRepository();
+        $user = $uRepository->activeUser($id);
+        if($user){
+            return $user;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
+
     public function updateUser($request)
     {
         $rules = [

@@ -36,9 +36,9 @@
                                     <td>{{$course->created_at}}</td>
                                     <td>{{$course->updated_at}}</td>
 
-                                    <td><button type="button" class="btn btn-primary"><a href="{{url('admin/lessons/'.$course->course_id)}}">Lessons</a></button></td>
+                                    <td><a class="btn btn-primary" href="{{url('admin/lessons/'.$course->course_id)}}">Lessons</a></td>
 
-                                    <td><button type="button" class="btn btn-primary"><a href="{{url('admin/courses/'.$course->course_id.'/edit')}}">Update</a></button></td>
+                                    <td><a class="btn btn-primary" href="{{url('admin/courses/'.$course->course_id.'/edit')}}">Update</a></td>
                                     <td>
                                         <form action="{{url('admin/courses/'.$course->course_id)}}" method="POST">
                                             <input type="hidden" name="_method" value="DELETE">

@@ -115,4 +115,27 @@ class adminUsersController extends Controller
         return view('dashboard.admin.usersearch')->with('users',$users);
     }
 
+    // active user
+    public function activeUser($id)
+    {
+        $userService = new usersService();
+        if ($userService->activeUser($id))
+        {
+            return back();
+        }else{
+            return $userService->errors();
+        }
+    }
+
+    // delete user from database
+    public function deleteUser($id)
+    {
+        $userService = new usersService();
+        if($userService->deleteUser($id)){
+            return back();
+        }else{
+            return $userService->errors();
+        }
+    }
+
 }

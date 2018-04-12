@@ -30,4 +30,14 @@ Route::prefix('admin')->group(function () {
     // lessons
     Route::resource('lessons','adminLessonsController');
 
+    // Update Password
+    Route::get('updatePasswrd/{id}','adminUsersController@updateUserPassword');
+    Route::post('updatePasswrd','adminUsersController@processupdateUserPassword');
+    // Users By Active Status
+    Route::get('getUsersByActive/{status}','adminUsersController@getUsersByActiveStatus');
+    Route::get('active/{id}','adminUsersController@activeUser');
+    Route::get('delete/{id}','adminUsersController@deleteUser');
+    //Search
+    Route::get('search/{keyword}','adminUsersController@searchUsers');
+
 });

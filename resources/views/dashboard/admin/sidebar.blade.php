@@ -32,6 +32,8 @@
         <ul class="sub">
             <li><a  href="{{url('admin/users')}}">All users</a></li>
             <li><a  href="{{url('admin/users/create')}}">Add user</a></li>
+            <li><a  href="{{url('admin/getUsersByActive/1')}}">Active User</a></li>
+            <li><a  href="{{url('admin/getUsersByActive/0')}}">Not Active User</a></li>
         </ul>
     </li>
 
