@@ -27,6 +27,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('categories','adminCategoriesController');
     // courses
     Route::resource('courses','adminCoursesController');
+    Route::get('coursesactive/{id}','adminCoursesController@getCoursesByActiveStatus');
     // lessons
     Route::resource('lessons','adminLessonsController');
 
