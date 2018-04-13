@@ -28,6 +28,7 @@ class commentsRepository extends Repository
     {
         $comments = DB::table('courses_lessons_comments')
             ->leftJoin('users', 'courses_lessons_comments.created_by', '=', 'users.id')
+            ->select('courses_lessons_comments.*','users.name')
             ->where('lesson_id','=',$id)
             ->get();
         if(count($comments)>0)
@@ -69,6 +70,7 @@ class commentsRepository extends Repository
     {
         $comments = DB::table('courses_lessons_comments')
             ->leftJoin('users', 'courses_lessons_comments.created_by', '=', 'users.id')
+            ->select('courses_lessons_comments.*','users.name')
             ->where('created_by','=',$id)
             ->get();
         if(count($comments)>0)

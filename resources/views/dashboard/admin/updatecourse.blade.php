@@ -8,10 +8,10 @@
     <!--state overview start-->
     <section class="panel">
         <header class="panel-heading">
-            Add Course
+            Update Course
         </header>
         <div class="panel-body">
-            <form  action="{{url('updatecourse')}}" method="post" enctype="multipart/form-data" role="form">
+            <form  action="{{url('admin/courses')}}" method="post" enctype="multipart/form-data" role="form">
                 <div class="form-group">
                     <label for="exampleInputEmail1">title</label>
                     <input type="text" name="title" value="{{$course['course_name']}}" class="form-control" id="exampleInputEmail1">
@@ -42,8 +42,6 @@
                     <p class="help-block">choose your file.</p>
                 </div>
                 {{csrf_field()}}
-                {{ method_field('PUT') }}
-
                 <input type="hidden" name="course_instructor" value="{{$course['course_instructor']}}">
                 <input type="hidden" name="id" value="{{$course['course_id']}}">
                 <button type="submit" class="btn btn-danger">Save</button>

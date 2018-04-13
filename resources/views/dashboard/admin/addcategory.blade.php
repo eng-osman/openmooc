@@ -8,41 +8,24 @@
     <!--state overview start-->
     <section class="panel">
         <header class="panel-heading">
-            Add Course
+            Add Category
         </header>
         <div class="panel-body">
-            <form  action="{{url('addcourse')}}" method="post" enctype="multipart/form-data" role="form">
+            <form  action="{{url('admin/categories')}}" method="post" role="form">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">title</label>
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter course title">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">category</label>
-                    <select name="category" class="form-control">
-                        @foreach($categories as $category)
-                            <option value="{{$category['category_id']}}">{{$category['category_name']}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">description</label>
-                    <textarea name="description" class="form-control" rows="7"></textarea>
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" name="category_name" class="form-control" id="exampleInputEmail1">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">status</label>
-                    <select name="active" class="form-control">
+                    <select name="is_active" class="form-control">
                         <option value="1">Active</option>
                         <option value="0">Not Active</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">cover</label>
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">choose your file.</p>
-                </div>
-
-                <input type="hidden" value="instructor">
-                <button type="submit" class="btn btn-info">Add Course</button>
+                {{csrf_field()}}
+                <input type="hidden" name="created_by" value="1">
+                <button type="submit" class="btn btn-primary">Save</button>
                 <button type="reset" class="btn btn-danger">Cancel</button>
             </form>
         </div>

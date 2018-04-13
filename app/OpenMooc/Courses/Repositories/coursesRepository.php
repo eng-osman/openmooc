@@ -30,6 +30,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->leftJoin('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->leftJoin('users', 'courses.course_instructor', '=', 'users.id')
+            ->select('courses.*','courses_categories.category_name','users.name')
             ->get();
         if(count($courses)>0)
            return $courses;
@@ -47,6 +48,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->leftJoin('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->leftJoin('users', 'courses.course_instructor', '=', 'users.id')
+            ->select('courses.*','courses_categories.category_name','users.name')
             ->where('course_category','=',$id)
             ->get();
         if(count($courses)>0)
@@ -59,6 +61,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->leftJoin('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->leftJoin('users', 'courses.course_instructor', '=', 'users.id')
+            ->select('courses.*','courses_categories.category_name','users.name')
             ->where('course_instructor','=',$id)
             ->get();
         if(count($courses)>0)
@@ -71,6 +74,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses_students')
             ->leftJoin('courses', 'courses_students.course_id', '=', 'courses.course_id')
             ->leftJoin('users', 'courses_students.student_id', '=', 'users.id')
+            ->select('courses.*','courses_categories.category_name','users.name')
             ->where('student_id','=',$studentId)
             ->get();
         if(count($courses)>0)
@@ -83,6 +87,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->leftJoin('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->leftJoin('users', 'courses.course_instructor', '=', 'users.id')
+            ->select('courses.*','courses_categories.category_name','users.name')
             ->where('courses.is_active','=',$status)
             ->get();
         if(count($courses)>0)
@@ -134,6 +139,9 @@ class coursesRepository extends Repository
     public function searchCourses($keyword)
     {
         $courses = DB::table('courses')
+            ->leftJoin('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
+            ->leftJoin('users', 'courses.course_instructor', '=', 'users.id')
+            ->select('courses.*','courses_categories.category_name','users.name')
             ->where('course_name', 'like','%' . $keyword .'%' )
             ->get();
         if(count($courses)>0)

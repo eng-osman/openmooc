@@ -42,4 +42,13 @@ Route::prefix('admin')->group(function () {
     //Search
     Route::get('search/{keyword}','adminUsersController@searchUsers');
 
+    // users by group
+    Route::get('usersgroup/{id}','adminUsersController@getUsersByGroup');
+
+    // categories by status
+    Route::get('categoriesstatus/{id}','adminCategoriesController@getCategoriesByStatus');
+
+    // categories by creator
+    Route::get('categoriescreator/{id}','adminCategoriesController@getCategoriesByCreatorId');
+
 });

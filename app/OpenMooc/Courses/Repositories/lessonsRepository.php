@@ -29,6 +29,7 @@ class lessonsRepository extends Repository
         $lessons = DB::table('courses_lessons')
             ->leftJoin('courses', 'courses_lessons.lesson_course', '=', 'courses.course_id')
             ->leftJoin('users', 'courses_lessons.lesson_instructor', '=', 'users.id')
+            ->select('courses_lessons.*','courses.course_name','users.name')
             ->where('lesson_course','=',$id)
             ->get();
         if(count($lessons)>0)
@@ -41,6 +42,7 @@ class lessonsRepository extends Repository
         $lessons = DB::table('courses_lessons')
             ->leftJoin('courses', 'courses_lessons.lesson_course', '=', 'courses.course_id')
             ->leftJoin('users', 'courses_lessons.lesson_instructor', '=', 'users.id')
+            ->select('courses_lessons.*','courses.course_name','users.name')
             ->where('lesson_instructor','=',$instructorId)
             ->get();
         if(count($lessons)>0)
@@ -59,7 +61,7 @@ class lessonsRepository extends Repository
         $lesson = CoursesLessons::find($Data['lesson_id']);
         $lesson->lesson_title        = $Data['lesson_title'];
         $lesson->lesson_course       = $Data['lesson_course'];
-        $lesson->lesson_instructor  = $Data['lesson_instructor'];
+        $lesson->lesson_instructor   = $Data['lesson_instructor'];
         $lesson->lesson_description  = $Data['lesson_description'];
         $lesson->lesson_video        = $Data['lesson_video'];
         if($lesson->save()){

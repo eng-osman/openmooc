@@ -33,6 +33,7 @@ class categoryRepository extends Repository
     {
         $categories = DB::table('courses_categories')
             ->leftJoin('users', 'courses_categories.created_by', '=', 'users.id')
+            ->select('courses_categories.*','users.name')
             ->get();
         if(count($categories)>0)
            return $categories;
@@ -74,6 +75,7 @@ class categoryRepository extends Repository
     {
         $categories = DB::table('courses_categories')
             ->leftJoin('users', 'courses_categories.created_by', '=', 'users.id')
+            ->select('courses_categories.*','users.name')
             ->where('courses_categories.is_active','=',$status)
             ->get();
         if(count($categories)>0)
@@ -85,6 +87,7 @@ class categoryRepository extends Repository
     {
         $categories = DB::table('courses_categories')
             ->leftJoin('users', 'courses_categories.created_by', '=', 'users.id')
+            ->select('courses_categories.*','users.name')
             ->where('courses_categories.created_by','=',$id)
             ->get();
         if(count($categories)>0)
