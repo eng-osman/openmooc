@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Users
+                    Categories
                 </header>
                 <div class="panel-body">
                     <section id="unseen">
@@ -18,25 +18,25 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>username</th>
-                                <th>email</th>
-                                <th>user group</th>
-                                <th>is active</th>
+                                <th>Created By</th>
+                                <th>Is Active</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
                                 <th colspan="2">Control</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($categories as $category)
                                 <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->username}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->group_name}}</td>
-                                    <td>@if($user->is_active == 1) Active @else Not Active @endif</td>
+                                    <td>{{$category->category_name}}</td>
+                                    <td>{{$category->name}}</td>
+                                    <td>@if($category->is_active == 1) Active @else Not Active @endif</td>
+                                    <td>{{$category->created_at}}</td>
+                                    <td>{{$category->updated_at}}</td>
 
-                                    <td><a class="btn btn-primary" href="{{url('admin/users/'.$user->id.'/edit')}}">Update</a></td>
+                                    <td><a class="btn btn-primary" href="{{url('admin/categories/'.$category->category_id.'/edit')}}">Update</a></td>
                                     <td>
-                                        <form action="{{url('admin/users/'.$user->id)}}" method="POST">
+                                        <form action="{{url('admin/categories/'.$category->category_id)}}" method="POST">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="submit" class="btn btn-danger" value="Delete"/>

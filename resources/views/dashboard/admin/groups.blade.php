@@ -20,7 +20,7 @@
                                 <th>Name</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
-                                <th colspan="2">Control</th>
+                                <th colspan="3">Control</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,6 +38,7 @@
                                         <input type="submit" class="btn btn-danger" value="Delete"/>
                                     </form>
                                 </td>
+                                <td><a class="btn btn-success" href="{{url('admin/usersgroup/'.$group->group_id)}}"> Show Users </a></td>
                             </tr>
                             @endforeach
                             </tbody>
