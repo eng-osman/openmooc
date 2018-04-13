@@ -49,14 +49,14 @@ class coursesService extends Service
     }
 
 // update
-    public function updateCourseProcess($request, $id)
+    public function updateCourseProcess($request)
     {
         $rules = [
-            'name' => 'required|min:3|max:250',
-            'category' => 'required',
-            'instructor' => 'required',
-            'description' => 'required',
-            'status' => 'required',
+            'course_name' => 'required|min:3|max:250',
+            'course_category' => 'required',
+            'course_instructor' => 'required',
+            'course_description' => 'required',
+            'is_active' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
 
@@ -65,7 +65,7 @@ class coursesService extends Service
             return false;
         }
         //store
-        if ($this->coursesRepo->updateCourseProcess($request->all(),$id))
+        if ($this->coursesRepo->updateCourseProcess($request->all()))
             return true;
 
         $this->setError('Error Saving to database in courses ');
@@ -75,11 +75,11 @@ class coursesService extends Service
 
     public function deleteCourse($id)
     {
-        if ($this->coursesRepo->deleteCourse($id))
-            return true;
+        return $this->coursesRepo->deleteCourse($id);
 
-        $this->setError('Error deleting course');
-        return false;
+
+
+
     }
 
     public function getCoursesByStudentId($student_id)
@@ -89,9 +89,9 @@ class coursesService extends Service
 
     public function getCoursesByInstructor($id)
     {
-        if(count($this->coursesRepo->getCoursesByInstructor($id))> 0)
-            return   $this->coursesRepo->getCoursesByInstructor($id);
-        return false;
+
+        return $this->coursesRepo->getCoursesByInstructor($id);
+
 
     }
 

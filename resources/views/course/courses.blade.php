@@ -14,7 +14,7 @@
                             <th>Category</th>
                             <th>Description</th>
                             <th>status</th>
-                            <th>Control</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,8 +30,11 @@
                                     <td>Not active</td>
                                 @endif
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="{{url('courses/edit/'.$course->course_id)}}"><i class="fa fa-pencil-square"></i> edit</a>
-                                    <a class="btn btn-danger btn-sm" href="{{url('courses/delete/'.$course->course_id)}}"><i class="fa fa-trash-o"></i> delete</a>
+
+
+                                    <button class="btn btn-primary btn-xs"><a href="{{url('courses/edit/'.$course->course_id)}}" ><i class="fa fa-pencil"></i></a></button>
+                                    <button class="btn btn-danger btn-xs"><a href="{{url('courses/delete/'.$course->course_id)}}"><i class="fa fa-trash-o "></i></a></button>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -45,6 +48,9 @@
             </div>
         </section>
     </div>
+
+
+
 
 </div>
 @endsection

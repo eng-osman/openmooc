@@ -16,3 +16,4 @@ class adminController extends Controller
             ->with('courses',$allCourse);
     }
 }
+// end

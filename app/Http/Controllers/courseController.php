@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use OpenMooc\Courses\Services\coursesCategoriesService;
+use OpenMooc\Courses\Services\coursesLessonService;
 use OpenMooc\Users\Services\usersService;
 use Validator;
 use OpenMooc\Courses\Services\coursesService;
@@ -43,32 +44,59 @@ class courseController extends Controller
     public function updateCourse($id)
     {
 
-        $instructor = Users::all()->whereIn('user_group',[1,3]);
+        // get categories data
         $categories = DB::table('courses_categories')->get();
-        $service=  new coursesService();
-        $course = $service->getCourse($id);
-        return view('course.edit')->with('instructors', $instructor)
-                                ->with('categories',$categories)
-                                ->with('course', $course);
+        // get course data
+         $course =$this->coursesService->getCourse($id);
+        // return to view
+        return view('dashboard.instructor.editcoursebyinst')
+            ->with('categories',$categories)
+            ->with('course', $course);
 
     }
 
     // update course process
-    public function updateCourseProcess(Request $request ,$id)
+    public function updateCourseProcess(Request $request)
     {
-        if ($this->coursesService->updateCourseProcess($request,$id))
-            return 'course updated';
+        if ($this->coursesService->updateCourseProcess($request)){
 
-        return $this->coursesService->errors();
+
+            $message = "Courses Successfully Edit ";
+            return view('dashboard.instructor.success')
+                ->with('message',$message);
+           }
+           else{
+                $error = $this->coursesService->errors();
+
+                return redirect()
+                    ->back()
+                    ->withErrors($error);
+
+    }
     }
 
 
-
+    // delelet coures By id
     public function deleteCourse($id)
     {
-        if ($this->coursesService->deleteCourse($id))
-            return 'course deleted';
-        return $this->coursesService->errors();
+        //chk data
+        $data = $this->coursesService->getCourse($id);
+
+
+        // if data true call del method
+        if($data){
+            $del =$this->coursesService->deleteCourse($id);
+            // if del Course
+            if($del){
+                $message='Courses Successfully Deleted ';
+                return view('dashboard.instructor.success')
+                    ->with('message',$message);
+            }
+            //if not found data
+        return view('dashboard.instructor.oopsmessage');
+        }
+
+
     }
 
 
@@ -132,4 +160,7 @@ class courseController extends Controller
                 ->with('coursesList', $courses);}
         return 'there is no course matched';
     }
+
+
 }
+
