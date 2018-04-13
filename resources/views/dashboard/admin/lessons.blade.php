@@ -32,7 +32,7 @@
                                 <td>{{$lesson->lesson_title}}</td>
                                 <td>{{$lesson->lesson_description}}</td>
 
-                                <td><button type="button" class="btn btn-primary"><a href="{{url('admin/lessons/'.$lesson->lesson_id.'/edit')}}">Update</a></button></td>
+                                <td><a href="{{url('admin/lessons/'.$lesson->lesson_id.'/edit')}} " class="btn btn-primary">Update</a></td>
                                 <td>
                                     <form action="{{url('admin/lessons/'.$lesson->lesson_id)}}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">

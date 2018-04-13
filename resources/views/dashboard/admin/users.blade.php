@@ -13,7 +13,20 @@
                         Users
                 </header>
                 <!-- search -->
+                <div class="panel-body">
+                <form class="form-horizontal search-result">
+                    <div class="form-group">
+                        <label class="col-lg-1 col-sm-1 control-label">Search</label>
+                        <div class="col-lg-4 col-sm-4">
+                            <input type="text" class="form-control input-medium">
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn " type="submit">SEARCH</button>
+                        </div>
+                    </div>
+                </form>
                 <!-- /search -->
+                </div>
                 <div class="panel-body">
                     <section id="unseen">
                         <table class="table table-bordered table-striped table-condensed">

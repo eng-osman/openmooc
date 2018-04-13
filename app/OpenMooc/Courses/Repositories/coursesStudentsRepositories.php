@@ -57,7 +57,7 @@ class coursesStudentsRepositories extends Repository
             ['is_approved', '=', '1']
         ])->first();
 
-        if($user){
+        if(count($user)>0){
             return $user;
         }else{
             return false;

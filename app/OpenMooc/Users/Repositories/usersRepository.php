@@ -33,6 +33,7 @@ class usersRepository extends Repository
     {
         $users = DB::table('users')
             ->leftJoin('users_groups', 'users.user_group', '=', 'users_groups.group_id')
+            ->select('users.*','users_groups.group_name')
             ->get();
         return $users;
     }
@@ -48,6 +49,7 @@ class usersRepository extends Repository
     {
         $users = DB::table('users')
             ->leftJoin('users_groups', 'users.user_group', '=', 'users_groups.group_id')
+            ->select('users.*','users_groups.group_name')
             ->where('user_group', '=', $id)
             ->get();
         return $users;
@@ -58,6 +60,7 @@ class usersRepository extends Repository
     {
         $users = DB::table('users')
             ->leftJoin('users_groups', 'users.user_group', '=', 'users_groups.group_id')
+            ->select('users.*','users_groups.group_name')
             ->where('is_active', '=', $status)
             ->get();
         return $users;
@@ -133,6 +136,8 @@ class usersRepository extends Repository
     public function searchUsers($keyword)
     {
         $users = DB::table('users')
+            ->leftJoin('users_groups', 'users.user_group', '=', 'users_groups.group_id')
+            ->select('users.*','users_groups.group_name')
             ->where('name', 'like','%' . $keyword .'%' )
             ->get();
         return $users;
