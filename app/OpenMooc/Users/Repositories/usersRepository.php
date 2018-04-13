@@ -74,6 +74,16 @@ class usersRepository extends Repository
             return false;
         }
     }
+    public function deActivateUser($id)
+    {
+        $user = User::find($id);
+        $user->is_active = 0;
+        if ($user->save()) {
+            return true ;
+        } else {
+            return false;
+        }
+    }
 
     // update user
     public function updateUser($data)

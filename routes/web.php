@@ -36,6 +36,7 @@ Route::prefix('admin')->group(function () {
     // Users By Active Status
     Route::get('getUsersByActive/{status}','adminUsersController@getUsersByActiveStatus');
     Route::get('active/{id}','adminUsersController@activeUser');
+    Route::get('deactivate/{id}','adminUsersController@deActivateUser');
     Route::get('delete/{id}','adminUsersController@deleteUser');
     //Search
     Route::get('search/{keyword}','adminUsersController@searchUsers');

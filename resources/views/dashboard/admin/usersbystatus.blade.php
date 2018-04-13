@@ -40,6 +40,8 @@
                                     <td class="numeric">
                                         @if($user->is_active == 0)
                                             <a class="btn btn-success" href="{{url('admin/active/'.$user->id)}}" style="color: #fff"> Active </a>
+                                        @elseif($user->is_active == 1)
+                                            <a class="btn btn-info" style="color: #fff" href="{{url('admin/deactivate/'.$user->id)}}">dectivate</a>
                                         @endif
                                         <a class="btn btn-danger" style="color: #fff" href="{{url('admin/delete/'.$user->id)}}">Delete</a>
                                     </td>

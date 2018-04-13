@@ -102,6 +102,18 @@ class usersService extends Service
         }
     }
 
+    public function deActivateUser($id)
+    {
+        $uRepository = new usersRepository();
+        $user = $uRepository->deActivateUser($id);
+        if($user){
+            return $user;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
 
     public function updateUser($request)
     {

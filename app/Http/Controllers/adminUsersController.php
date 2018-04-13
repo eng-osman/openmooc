@@ -127,6 +127,17 @@ class adminUsersController extends Controller
         }
     }
 
+    public function deActivateUser($id)
+    {
+        $userService = new usersService();
+        if ($userService->deActivateUser($id))
+        {
+            return back();
+        }else{
+            return $userService->errors();
+        }
+    }
+
     // delete user from database
     public function deleteUser($id)
     {
