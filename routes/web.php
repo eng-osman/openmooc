@@ -50,4 +50,8 @@ Route::prefix('admin')->group(function () {
     // categories by creator
     Route::get('categoriescreator/{id}','adminCategoriesController@getCategoriesByCreatorId');
 
+    //search
+    Route::get('usersearch/{keyword?}','adminUsersController@searchUsers');
+
+
 });

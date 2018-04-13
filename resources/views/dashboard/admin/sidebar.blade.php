@@ -31,9 +31,9 @@
         </a>
         <ul class="sub">
             <li><a  href="{{url('admin/users')}}">All users</a></li>
-            <li><a  href="{{url('admin/users/create')}}">Add user</a></li>
             <li><a  href="{{url('admin/getUsersByActive/1')}}">Active User</a></li>
             <li><a  href="{{url('admin/getUsersByActive/0')}}">Not Active User</a></li>
+            <li><a  href="{{url('admin/users/create')}}">Add user</a></li>
         </ul>
     </li>
 
@@ -44,6 +44,8 @@
         </a>
         <ul class="sub">
             <li><a  href="{{url('admin/categories')}}">All Categories</a></li>
+            <li><a  href="{{url('admin/categoriesstatus/1')}}">Active Categories</a></li>
+            <li><a  href="{{url('admin/categoriesstatus/0')}}">Not Active Categories</a></li>
             <li><a  href="{{url('admin/categories/create')}}">Add Category</a></li>
         </ul>
     </li>

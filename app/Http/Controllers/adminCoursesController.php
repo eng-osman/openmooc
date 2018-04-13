@@ -78,7 +78,6 @@ class adminCoursesController extends Controller
     }
 
 
-
     public function getCoursesByCategory($id)
     {
         $cService = new coursesService();
