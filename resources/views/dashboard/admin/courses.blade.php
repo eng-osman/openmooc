@@ -47,8 +47,8 @@
                                     <td>{{$course->category_name}}</td>
                                     <td>@if($course->is_active == 1) Active @else Not Active @endif</td>
                                     <td>{{$course->name}}</td>
-                                    <td>{{$course->created_at}}</td>
-                                    <td>{{$course->updated_at}}</td>
+                                    <td>{{date("d-m-Y", strtotime($course->created_at))}}</td>
+                                    <td>{{date("d-m-Y", strtotime($course->updated_at))}}</td>
 
                                     <td><a class="btn btn-primary" href="{{url('admin/lessons/'.$course->course_id)}}">Lessons</a></td>
 

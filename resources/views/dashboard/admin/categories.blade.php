@@ -31,8 +31,8 @@
                                     <td>{{$category->category_name}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>@if($category->is_active == 1) Active @else Not Active @endif</td>
-                                    <td>{{$category->created_at}}</td>
-                                    <td>{{$category->updated_at}}</td>
+                                    <td>{{date("d-m-Y", strtotime($category->created_at))}}</td>
+                                    <td>{{date("d-m-Y", strtotime($category->updated_at))}}</td>
 
                                     <td><a class="btn btn-primary" href="{{url('admin/categories/'.$category->category_id.'/edit')}}">Update</a></td>
                                     <td>

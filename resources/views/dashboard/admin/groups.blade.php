@@ -27,8 +27,8 @@
                             @foreach($groups as $group)
                             <tr>
                                 <td>{{$group->group_name}}</td>
-                                <td>{{$group->created_at}}</td>
-                                <td>{{$group->updated_at}}</td>
+                                <td>{{date("d-m-Y", strtotime($group->created_at))}}</td>
+                                <td>{{date("d-m-Y", strtotime($group->updated_at))}}</td>
 
                                 <td><a class="btn btn-primary" href="{{url('admin/groups/'.$group->group_id.'/edit')}}">Update</a></td>
                                 <td>
