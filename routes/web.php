@@ -11,18 +11,24 @@
 |
 */
 
-<<<<<<< HEAD
+
 Route::get('/', function () {
     return view('dashboard.admin.index');
 });
-Route::get('api/courses', 'coursesAPIController@courses');
-=======
-Route::get('instructor/{id}', function (){
-    return view('instructor.dashboard');
-});
 
-Route::get('api/courses','coursesAPIController@courses');
->>>>>>> f07a435c00bbc8ecaef214ce035a4c4c4e5e0ec9
+/*Route::get('instructor/{id}', function (){
+    return view('instructor.dashboard');
+});*/
+Route::get('instructor/{id}','InstructorController@index');
+
+Route::get('instructor/{id}/courses', 'InstructorController@myCourses');
+Route::get('students/{id}','InstructorController@showStudentsInCourse');
+Route::get('subscription/approve/{id}', 'InstructorController@approveSubscription');
+Route::get('subscription/unapprove/{id}', 'InstructorController@unApproveSubscription');
+Route::get('subscription/delete/{id}', 'InstructorController@deleteSubscription');
+Route::get('instructor/{id}/students','InstructorController@myStudents');
+
+
 /*Route::get('add','coursesController@addCourse');
 Route::post('add','coursesController@processAddCourse');*/
 Route::get('courses', 'coursesController@courses');
@@ -47,7 +53,7 @@ Route::get('updateUserPassword/{id?}', 'usersController@updateUserPassword');
 Route::post('updateUserPassword', 'usersController@processupdateUserPassword');
 /***********************************************************/
 /** courses lessons routs */
-Route::get('lesson/{id?}', 'InstructorLessonController@getLessonsByCourseId');
+Route::get('lesson/{course_id?}', 'InstructorLessonController@getLessonsByCourseId');
 Route::get('addLesson/{course_id?}', 'InstructorLessonController@addLesson');
 Route::post('addlesson', 'InstructorLessonController@processaddLesson');
 Route::get('updateLesson/{lesson_id}', 'InstructorLessonController@updateLesson');
@@ -62,7 +68,7 @@ Route::post('updateusergroup', 'usersGroupController@processupdateUserGroup');
 Route::get('deleteusergroup/{id?}', 'usersGroupController@deleteUserGroup');
 Route::get('getAllGroups', 'usersGroupController@getAllGroups');
 Route::get('getGroupById/{id?}', 'usersGroupController@getGroupById');
-
+/***********************************************************/
 /** Courses CATEGORY routs */
 
 Route::get('addCategory', 'courseCategoryController@addCategory');
@@ -79,7 +85,7 @@ Route::get('getCategoriesByCreatorId/{creator_id?}', 'courseCategoryController@g
 /***********************************************************/
 /** Courses courses routs */
 
-<<<<<<< HEAD
+
 Route::get('addCourse', 'courseController@addCourse');
 Route::post('addcourse', 'courseController@processAddCourse');
 Route::get('updateCategory/{id?}', 'courseCategoryController@updateCategory');
@@ -92,22 +98,6 @@ Route::get('getCoursesByStudentId/{id?}', 'courseController@getCoursesByStudentI
 Route::get('getCoursesByActiveStatus/{id?}', 'courseController@getCoursesByActiveStatus');
 Route::get('searchCourses/{id?}', 'courseController@searchCourses');
 Route::get('getCourse/{id?}', 'courseController@getCourse');
-=======
-Route::get('courses/create','courseController@addCourse');
-Route::post('courses/create','courseController@processAddCourse');
-Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
-Route::post('updateCategory','courseCategoryController@processupdateCategory');
-Route::get('deleteCourse/{id?}','courseController@deleteCourse');
-Route::get('getCourses','courseController@getCourses');
-Route::get('getCourses/{id?}','courseController@getCoursesByInstructor');
-Route::get('getCoursesByCategory/{id?}','courseController@getCoursesByCategory');
-Route::get('getCoursesByStudentId/{id?}','courseController@getCoursesByStudentId');
-Route::get('getCoursesByActiveStatus/{id?}','courseController@getCoursesByActiveStatus');
-Route::get('searchCourses/{id?}','courseController@searchCourses');
-Route::get('getCourse/{id?}','courseController@getCourse');
-
->>>>>>> f07a435c00bbc8ecaef214ce035a4c4c4e5e0ec9
-
 
 //finished by alaa ebrahim at 7/4/2018
 /***********************************************************/
@@ -120,3 +110,24 @@ Route::get('subscription/approve/{id}', 'coursesStudentsController@approveSubscr
 Route::get('subscription/unapprove/{id}', 'coursesStudentsController@unApproveSubscription');
 Route::get('subscription/delete/{id}', 'coursesStudentsController@deleteSubscription');
 Route::get('student/{id}', 'coursesStudentsController@getStudentSubscription');
+/*******************************************************************/
+  Route::get('courses/create','courseController@addCourse');
+Route::post('courses/create','courseController@processAddCourse');
+Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
+Route::post('updateCategory','courseCategoryController@processupdateCategory');
+Route::get('deleteCourse/{id?}','courseController@deleteCourse');
+Route::get('getCourses','courseController@getCourses');
+Route::get('getCourses/{id?}','courseController@getCoursesByInstructor');
+Route::get('getCoursesByCategory/{id?}','courseController@getCoursesByCategory');
+Route::get('getCoursesByStudentId/{id?}','courseController@getCoursesByStudentId');
+Route::get('getCoursesByActiveStatus/{id?}','courseController@getCoursesByActiveStatus');
+Route::get('searchCourses/{id?}','courseController@searchCourses');
+Route::get('getCourse/{id?}','courseController@getCourse');
+/************************************************************************************/
+//Course_lesson_comment Routes
+Route::get('allcomments/{lesson_id?}', 'InstructorLessonController@getCommentsByLessonId');
+Route::get('updateComment/{comment_id?}', 'InstructorLessonController@updateComment');
+Route::post('updatecomment', 'InstructorLessonController@processupdateComment');
+Route::get('DeleteComment/{comment_id?}', 'InstructorLessonController@deleteComment');
+Route::get('addComment/{lesson_id?}', 'InstructorLessonController@addComment');
+Route::post('addcomment/{lesson_id?}', 'InstructorLessonController@processAddCourseLessonComment');

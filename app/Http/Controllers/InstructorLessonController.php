@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use OpenMooc\Courses\Services\coursesLessonsCommentsService;
 use OpenMooc\Courses\Services\coursesLessonService;
 
 use OpenMooc\Courses\Services\coursesService;
@@ -20,12 +21,15 @@ use Illuminate\Support\Facades\DB;
 class InstructorLessonController extends Controller
 {
     private $lessonService;
+    private $courseLessonCommentService;
 
     public function __construct()
     {
         $this->lessonService = new coursesLessonService();
+        $this->courseLessonCommentService = new coursesLessonsCommentsService();
     }
 
+//start functions of course_lessons
     public function addLesson($course_id = 0)
     {
         $lesson_instructor_id = 0;
@@ -98,9 +102,80 @@ class InstructorLessonController extends Controller
     public function processupdateLesson(Request $request)
     {
         if ($this->lessonService->updateLesson($request))
-            return view('dashboard.instructor.success')->with('message', 'course lesson updated successfully');
+            return view('dashboard.instructor.success')->with('message', 'course lesson  updated successfully');
 
 
         return view('dashboard.instructor.error1')->with('errorMessage', $this->lessonService->errors());
+    }//end functions of courses_lessons
+
+    //start functions of lesson comments
+
+    public function getCommentsByLessonId($lessonId = 0)
+    {
+        $comments = $this->courseLessonCommentService->getCommentsByLessonId($lessonId);
+        if (count($comments) > 0) {
+            return view('dashboard.instructor.allcomments')
+                ->with('commentsList', $comments);
+        } else {
+            return view('dashboard.instructor.error')->with('errorMessage', 'there is no comments yet!');
+        }
+    }
+
+    public function addComment($lesson_id)
+    {
+        $comment = $this->courseLessonCommentService->getCommentsByLessonId($lesson_id);
+
+        return view('dashboard.instructor.addcomment')
+            ->with('lesson_id', $lesson_id)
+            ->with('comment', $comment);
+
+    }
+
+    public function processAddCourseLessonComment(Request $request)
+    {
+        if ($this->courseLessonCommentService->addComment($request))
+            return view('dashboard.instructor.success')->with('message', 'course lesson comment Added successfully');
+        return view('dashboard.instructor.error')->with('errorMessage', $this->courseLessonCommentService->errors());
+
+    }
+
+    public function updateComment($commentId = 0)
+    {
+        $courseLessonComment = $this->courseLessonCommentService->getCommentsByCommentId($commentId);
+        if (count($courseLessonComment) > 0) {
+
+            return view('dashboard.instructor.updatecomment')
+                ->with('courseLessonComments', $courseLessonComment);
+        }
+        return 'there no comment ';
+
+    }
+
+    public function processupdateComment(Request $request)
+    {
+        if ($this->courseLessonCommentService->updateComment($request))
+
+            return view('dashboard.instructor.success')->with('message', 'course comment updated successfully');
+
+        return view('dashboard.instructor.error1')->with('errorMessage', $this->courseLessonCommentService->errors());
+    }
+
+    public function deleteComment($commentId = 0)
+    {
+        if ($this->courseLessonCommentService->deletecomment($commentId))
+            return view('dashboard.instructor.success')->with('message', 'course comment deleted successfully');
+        return view('dashboard.instructor.error1')->with('errorMessage', $this->courseLessonCommentService->errors());
+
+    }
+
+    public function getCommentsByUserId($userId = 0)
+    {
+        $comment = $this->courseLessonCommentService->getCommentsByUserId($userId);
+        if (count($comment) > 0) {
+            return view('userComments')
+                ->with('commentList', $comment);
+        } else {
+            return 'there is no comments';
+        }
     }
 }

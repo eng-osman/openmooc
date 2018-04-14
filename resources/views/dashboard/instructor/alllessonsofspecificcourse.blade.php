@@ -37,8 +37,9 @@
                                     &nbsp &nbsp &nbsp<a href="{{url('DeleteLesson')}}/{{$lesson->lesson_id}}"type="button" class="btn btn-danger delete">
                                         <i class="glyphicon glyphicon-trash"></i>
                                         <span>Delete</span>
+
                                     </a>
-                                    &nbsp &nbsp<button type="button" class="btn btn-success"><i class="fa fa-eye"></i> View comments </button>
+                                    &nbsp &nbsp<a href="{{url('allcomments')}}/{{$lesson->lesson_id}} " class="btn btn-success"><i class="fa fa-eye"></i> View comments </a>
 
                                 </td>
 
