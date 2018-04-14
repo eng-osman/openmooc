@@ -34,6 +34,7 @@
 
                                     <button class="btn btn-primary btn-xs"><a href="{{url('courses/edit/'.$course->course_id)}}" ><i class="fa fa-pencil"></i></a></button>
                                     <button class="btn btn-danger btn-xs"><a href="{{url('courses/delete/'.$course->course_id)}}"><i class="fa fa-trash-o "></i></a></button>
+                                    <button class="btn btn-success btn-xs"><a href="{{url('lesson')}}/{{$course->course_id}} "><i class="fa fa-eye"></i>Lessons</a></button>
 
                                 </td>
                             </tr>

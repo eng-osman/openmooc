@@ -1,16 +1,15 @@
-function countUp(count)
-{
+function countUp(count) {
     var div_by = 100,
         speed = Math.round(count / div_by),
         $display = $('.count'),
         run_count = 1,
         int_speed = 24;
 
-    var int = setInterval(function() {
-        if(run_count < div_by){
+    var int = setInterval(function () {
+        if (run_count < div_by) {
             $display.text(speed * run_count);
             run_count++;
-        } else if(parseInt($display.text()) < count) {
+        } else if (parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
             $display.text(curr_count);
         } else {
@@ -21,19 +20,18 @@ function countUp(count)
 
 countUp(495);
 
-function countUp2(count)
-{
+function countUp2(count) {
     var div_by = 100,
         speed = Math.round(count / div_by),
         $display = $('.count2'),
         run_count = 1,
         int_speed = 24;
 
-    var int = setInterval(function() {
-        if(run_count < div_by){
+    var int = setInterval(function () {
+        if (run_count < div_by) {
             $display.text(speed * run_count);
             run_count++;
-        } else if(parseInt($display.text()) < count) {
+        } else if (parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
             $display.text(curr_count);
         } else {
@@ -44,19 +42,18 @@ function countUp2(count)
 
 countUp2(947);
 
-function countUp3(count)
-{
+function countUp3(count) {
     var div_by = 100,
         speed = Math.round(count / div_by),
         $display = $('.count3'),
         run_count = 1,
         int_speed = 24;
 
-    var int = setInterval(function() {
-        if(run_count < div_by){
+    var int = setInterval(function () {
+        if (run_count < div_by) {
             $display.text(speed * run_count);
             run_count++;
-        } else if(parseInt($display.text()) < count) {
+        } else if (parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
             $display.text(curr_count);
         } else {
@@ -67,19 +64,18 @@ function countUp3(count)
 
 countUp3(328);
 
-function countUp4(count)
-{
+function countUp4(count) {
     var div_by = 100,
         speed = Math.round(count / div_by),
         $display = $('.count4'),
         run_count = 1,
         int_speed = 24;
 
-    var int = setInterval(function() {
-        if(run_count < div_by){
+    var int = setInterval(function () {
+        if (run_count < div_by) {
             $display.text(speed * run_count);
             run_count++;
-        } else if(parseInt($display.text()) < count) {
+        } else if (parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
             $display.text(curr_count);
         } else {

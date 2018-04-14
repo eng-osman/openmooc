@@ -71,12 +71,14 @@ class coursesLessonController extends Controller
 
         return $this->lessonService->errors();
     }
-    public function deleteLesson($lessonId=0)
+
+    public function deleteLesson($lessonId = 0)
     {
         if ($this->lessonService->deleteLesson($lessonId))
             return 'course lesson deleted';
         return $this->lessonService->errors();
     }
+
     public function getLessonsByCourseId($course_id = 0)
     {
         $lesson = $this->lessonService->getLessonsByCourseId($course_id);
@@ -87,7 +89,9 @@ class coursesLessonController extends Controller
             return 'there is no course lesson match this id';
         }
     }
-    public function getLessonsByInstructorId($instructor_id=0){
+
+    public function getLessonsByInstructorId($instructor_id = 0)
+    {
         $lesson = $this->lessonService->getLessonsByInstructorId($instructor_id);
         if (count($lesson) > 0) {
             return view('lessons')

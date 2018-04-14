@@ -12,36 +12,33 @@
 */
 
 
-
-Route::get('/', function (){
+Route::get('/', function () {
     return view('dashboard.admin.index');
 });
 
 
+Route::get('admin/courses', 'adminCoursesController@index');
+Route::get('admin/courses/add', 'adminCoursesController@add');
+Route::post('admin/courses/add', 'adminCoursesController@processAdd');
+Route::get('admin', 'adminController@index');
+Route::get('instructor', 'adminController@index');
+Route::get('student', 'adminController@index');
 
-Route::get('admin/courses','adminCoursesController@index');
-Route::get('admin/courses/add','adminCoursesController@add');
-Route::post('admin/courses/add','adminCoursesController@processAdd');
-Route::get('admin','adminController@index');
-Route::get('instructor','adminController@index');
-Route::get('student','adminController@index');
-
-Route::get('api/courses','coursesAPIController@courses');
-Route::get('add','coursesController@addCourse');
-Route::post('add','coursesController@processAddCourse');
-Route::get('courses','coursesController@courses');
+Route::get('api/courses', 'coursesAPIController@courses');
+Route::get('add', 'coursesController@addCourse');
+Route::post('add', 'coursesController@processAddCourse');
+Route::get('courses', 'coursesController@courses');
 
 // Start instructor permissions
-Route::get('instructor/{id}','InstructorController@index');
+Route::get('instructor/{id}', 'InstructorController@index');
 
 Route::get('instructor/{id}/courses', 'InstructorController@myCourses');
-Route::get('students/{id}','InstructorController@showStudentsInCourse');
+Route::get('students/{id}', 'InstructorController@showStudentsInCourse');
 Route::get('subscription/approve/{id}', 'InstructorController@approveSubscription');
 Route::get('subscription/unapprove/{id}', 'InstructorController@unApproveSubscription');
 Route::get('subscription/delete/{id}', 'InstructorController@deleteSubscription');
-Route::get('instructor/{id}/students','InstructorController@myStudents');
+Route::get('instructor/{id}/students', 'InstructorController@myStudents');
 // end instructor permissions
-
 
 
 Route::get('api/courses', 'coursesAPIController@courses');
@@ -104,7 +101,6 @@ Route::get('getCategoriesByCreatorId/{creator_id?}', 'courseCategoryController@g
 /** Courses courses routs */
 
 
-
 /*Route::get('addCourse', 'courseController@addCourse');
 Route::post('addcourse', 'courseController@processAddCourse');
 Route::get('updateCategory/{id?}', 'courseCategoryController@updateCategory');
@@ -118,18 +114,18 @@ Route::get('getCoursesByActiveStatus/{id?}', 'courseController@getCoursesByActiv
 Route::get('searchCourses/{id?}', 'courseController@searchCourses');
 Route::get('getCourse/{id?}', 'courseController@getCourse');*/
 /*******************************************/
-Route::get('courses/create','courseController@addCourse');
-Route::post('courses/create','courseController@processAddCourse');
-Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
-Route::post('updateCategory','courseCategoryController@processupdateCategory');
-Route::get('deleteCourse/{id?}','courseController@deleteCourse');
-Route::get('getCourses','courseController@getCourses');
-Route::get('getCourses/{id?}','courseController@getCoursesByInstructor');
-Route::get('getCoursesByCategory/{id?}','courseController@getCoursesByCategory');
-Route::get('getCoursesByStudentId/{id?}','courseController@getCoursesByStudentId');
-Route::get('getCoursesByActiveStatus/{id?}','courseController@getCoursesByActiveStatus');
-Route::get('searchCourses/{id?}','courseController@searchCourses');
-Route::get('getCourse/{id?}','courseController@getCourse');
+Route::get('courses/create', 'courseController@addCourse');
+Route::post('courses/create', 'courseController@processAddCourse');
+Route::get('updateCategory/{id?}', 'courseCategoryController@updateCategory');
+Route::post('updateCategory', 'courseCategoryController@processupdateCategory');
+Route::get('deleteCourse/{id?}', 'courseController@deleteCourse');
+Route::get('getCourses', 'courseController@getCourses');
+Route::get('getCourses/{id?}', 'courseController@getCoursesByInstructor');
+Route::get('getCoursesByCategory/{id?}', 'courseController@getCoursesByCategory');
+Route::get('getCoursesByStudentId/{id?}', 'courseController@getCoursesByStudentId');
+Route::get('getCoursesByActiveStatus/{id?}', 'courseController@getCoursesByActiveStatus');
+Route::get('searchCourses/{id?}', 'courseController@searchCourses');
+Route::get('getCourse/{id?}', 'courseController@getCourse');
 
 
 //finished by alaa ebrahim at 7/4/2018
@@ -142,18 +138,18 @@ Route::get('subscription/all', 'coursesStudentsController@getAllSubscription');
 Route::get('student/{id}', 'coursesStudentsController@getStudentSubscription');
 
 /*******************************************************************/
-  Route::get('courses/create','courseController@addCourse');
-Route::post('courses/create','courseController@processAddCourse');
-Route::get('updateCategory/{id?}','courseCategoryController@updateCategory');
-Route::post('updateCategory','courseCategoryController@processupdateCategory');
-Route::get('deleteCourse/{id?}','courseController@deleteCourse');
-Route::get('getCourses','courseController@getCourses');
-Route::get('getCourses/{id?}','courseController@getCoursesByInstructor');
-Route::get('getCoursesByCategory/{id?}','courseController@getCoursesByCategory');
-Route::get('getCoursesByStudentId/{id?}','courseController@getCoursesByStudentId');
-Route::get('getCoursesByActiveStatus/{id?}','courseController@getCoursesByActiveStatus');
-Route::get('searchCourses/{id?}','courseController@searchCourses');
-Route::get('getCourse/{id?}','courseController@getCourse');
+Route::get('courses/create', 'courseController@addCourse');
+Route::post('courses/create', 'courseController@processAddCourse');
+Route::get('updateCategory/{id?}', 'courseCategoryController@updateCategory');
+Route::post('updateCategory', 'courseCategoryController@processupdateCategory');
+Route::get('deleteCourse/{id?}', 'courseController@deleteCourse');
+Route::get('getCourses', 'courseController@getCourses');
+Route::get('getCourses/{id?}', 'courseController@getCoursesByInstructor');
+Route::get('getCoursesByCategory/{id?}', 'courseController@getCoursesByCategory');
+Route::get('getCoursesByStudentId/{id?}', 'courseController@getCoursesByStudentId');
+Route::get('getCoursesByActiveStatus/{id?}', 'courseController@getCoursesByActiveStatus');
+Route::get('searchCourses/{id?}', 'courseController@searchCourses');
+Route::get('getCourse/{id?}', 'courseController@getCourse');
 /************************************************************************************/
 //Course_lesson_comment Routes By alaa ebrahim at 13/4
 Route::get('allcomments/{lesson_id?}', 'InstructorLessonController@getCommentsByLessonId');
@@ -164,11 +160,10 @@ Route::get('addComment/{lesson_id?}', 'InstructorLessonController@addComment');
 Route::post('addcomment/{lesson_id?}', 'InstructorLessonController@processAddCourseLessonComment');
 
 
-
 //__________________________________________//
 // Course Edit and Remove By M.sayed
 
-Route::get('courses/edit/{id}','courseController@updateCourse');
-Route::post('courses/edit/{id}','courseController@updateCourseProcess');
-Route::get('courses/delete/{id}','courseController@deleteCourse');
+Route::get('courses/edit/{id}', 'courseController@updateCourse');
+Route::post('courses/edit/{id}', 'courseController@updateCourseProcess');
+Route::get('courses/delete/{id}', 'courseController@deleteCourse');
 

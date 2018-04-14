@@ -13,7 +13,7 @@ class adminController extends Controller
         $allCourse = $coursesService->getCourses();
 
         return view('dashboard.admin.index')
-            ->with('courses',$allCourse);
+            ->with('courses', $allCourse);
     }
 }
 // end

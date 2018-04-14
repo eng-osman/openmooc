@@ -72,7 +72,7 @@ class usersGroupController extends Controller
             ->with('userGroupsList', $userGroups);
     }
 
-    public function getGroupById($id= 0)
+    public function getGroupById($id = 0)
     {
         $usersGroup = $this->usersGroupService->getGroupById($id);
         if (count($usersGroup) > 0) {
@@ -80,5 +80,6 @@ class usersGroupController extends Controller
                 ->with('userGroupsList', $usersGroup);
         } else {
             return 'there is no users Group match this id';
-        }}
+        }
+    }
 }

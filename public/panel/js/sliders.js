@@ -58,10 +58,10 @@ var Sliders = function () {
 
     //
     // setup graphic EQ
-    $( "#eq > span" ).each(function() {
-    // read initial values from markup and remove that
-        var value = parseInt( $( this ).text(), 10 );
-        $( this ).empty().slider({
+    $("#eq > span").each(function () {
+        // read initial values from markup and remove that
+        var value = parseInt($(this).text(), 10);
+        $(this).empty().slider({
             value: value,
             range: "min",
             animate: true,
@@ -71,18 +71,18 @@ var Sliders = function () {
 
     // bound to select
 
-    var select = $( "#minbeds" );
-    var slider = $( "<div id='slider'></div>" ).insertAfter( select ).slider({
+    var select = $("#minbeds");
+    var slider = $("<div id='slider'></div>").insertAfter(select).slider({
         min: 1,
         max: 6,
         range: "min",
-        value: select[ 0 ].selectedIndex + 1,
-        slide: function( event, ui ) {
-            select[ 0 ].selectedIndex = ui.value - 1;
+        value: select[0].selectedIndex + 1,
+        slide: function (event, ui) {
+            select[0].selectedIndex = ui.value - 1;
         }
     });
-    $( "#minbeds" ).change(function() {
-        slider.slider( "value", this.selectedIndex + 1 );
+    $("#minbeds").change(function () {
+        slider.slider("value", this.selectedIndex + 1);
     });
 
     // vertical slider

@@ -104,9 +104,10 @@ class InstructorLessonController extends Controller
         if ($this->lessonService->updateLesson($request))
             return view('dashboard.instructor.success')->with('message', 'course lesson  updated successfully');
 
-
         return view('dashboard.instructor.error1')->with('errorMessage', $this->lessonService->errors());
-    }//end functions of courses_lessons
+    }
+
+    //end functions of courses_lessons
 
     //start functions of lesson comments
 
