@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Categories
+                    Courses
                 </header>
                 <div class="panel-body">
                     <section id="unseen">
@@ -18,28 +18,29 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Created By</th>
+                                <th>category</th>
+                                <th>Is Active</th>
+                                <th>instructor</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th colspan="3">Control</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($courses as $course)
                                 <tr>
-                                    <td>{{$category->category_name}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td>{{$category->created_at}}</td>
-                                    <td>{{$category->updated_at}}</td>
+                                    <td>{{$course->course_name}}</td>
+                                    <td>{{$course->category_name}}</td>
+                                    <td>@if($course->is_active == 1) Active @else Not Active @endif</td>
+                                    <td>{{$course->name}}</td>
+                                    <td>{{$course->created_at}}</td>
+                                    <td>{{$course->updated_at}}</td>
 
-                                    @if($category->is_active == 1)
-                                        <td><a class="btn btn-info" href="{{url('admin/catbystatus/'.$category->category_id).'/0'}}">deactivate</a></td>
-                                    @else
-                                        <td><a class="btn btn-success" href="{{url('admin/catbystatus/'.$category->category_id).'/1'}}">Active</a></td>
-                                    @endif
-                                    <td><a class="btn btn-primary" href="{{url('admin/categories/'.$category->category_id.'/edit')}}">Update</a></td>
+                                    <td><a class="btn btn-primary" href="{{url('admin/lessons/'.$course->course_id)}}">Lessons</a></td>
+
+                                    <td><a class="btn btn-primary" href="{{url('admin/courses/'.$course->course_id.'/edit')}}">Update</a></td>
                                     <td>
-                                        <form action="{{url('admin/categories/'.$category->category_id)}}" method="POST">
+                                        <form action="{{url('admin/courses/'.$course->course_id)}}" method="POST">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="submit" class="btn btn-danger" value="Delete"/>

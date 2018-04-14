@@ -23,6 +23,18 @@ class commentsRepository extends Repository
         }
     }
 
+    //get all comments
+    public function getComments()
+    {
+        $comments = DB::table('courses_lessons_comments')
+            ->leftJoin('users', 'courses_lessons_comments.created_by', '=', 'users.id')
+            ->leftJoin('courses_lessons', 'courses_lessons_comments.lesson_id', '=', 'courses_lessons_comments.lesson_id')
+            ->select('courses_lessons_comments.*','users.name','courses_lessons.lesson_title')
+            ->get();
+        if(count($comments)>0)
+           return $comments;
+    }
+
     //get all comments of a lesson
     public function getCommentsByLessonId($id)
     {

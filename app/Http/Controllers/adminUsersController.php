@@ -30,7 +30,7 @@ class adminUsersController extends Controller
     {
         $userService = new usersService();
         if($userService->addUser($request)){
-            return 'User Added';
+            return back();
         }else{
             return $userService->errors();
         }
@@ -58,7 +58,7 @@ class adminUsersController extends Controller
     {
         $userService = new usersService();
         if($userService->updateUser($request)){
-            return 'User Updated';
+            return back();
         }else{
             return $userService->errors();
         }
@@ -69,7 +69,7 @@ class adminUsersController extends Controller
     {
         $userService = new usersService();
         if($userService->deleteUser($id)){
-            return 'User Deleted';
+            return back();;
         }else{
             return $userService->errors();
         }
@@ -88,7 +88,7 @@ class adminUsersController extends Controller
     {
         $userService = new usersService();
         if($userService->updateUserPassword($request)){
-            return 'Password Updated';
+            return back();;
         }else{
             return $userService->errors();
         }
@@ -108,8 +108,9 @@ class adminUsersController extends Controller
         return view('dashboard.admin.usersbystatus')->with('users',$users);
     }
 
-    public function searchUsers($keyword)
+    public function searchUsers()
     {
+        $keyword = $_GET['search'];
         $uService = new usersService();
         $users = $uService->searchUsers($keyword);
         return view('dashboard.admin.usersearch')->with('users',$users);

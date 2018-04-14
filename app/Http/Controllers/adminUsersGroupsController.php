@@ -27,7 +27,7 @@ class adminUsersGroupsController extends Controller
     {
         $ugService = new userGroupsService();
         if($ugService->addUserGroup($request)){
-            return 'User Group Added';
+            return back();
         }else{
             return $ugService->errors();
         }
@@ -54,7 +54,7 @@ class adminUsersGroupsController extends Controller
     {
         $ugService = new userGroupsService();
         if($ugService->updateUserGroup($request)){
-            return 'User Group Updated';
+            return back();
         }else{
             return $ugService->errors();
         }
@@ -65,7 +65,7 @@ class adminUsersGroupsController extends Controller
     {
         $ugService = new userGroupsService();
         if($ugService->deleteUserGroup($id)){
-            return 'User Group deleted';
+            return back();
         }else{
             return $ugService->errors();
         }

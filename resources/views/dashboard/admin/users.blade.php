@@ -18,9 +18,8 @@
                     <div class="form-group">
                         <label class="col-lg-1 col-sm-1 control-label">Search</label>
                         <div class="col-lg-4 col-sm-4">
-                            <input type="text" name="keyword/" class="form-control input-medium">
+                            <input type="text" name="search" class="form-control input-medium">
                         </div>
-                        {{csrf_field()}}
                         <div class="col-lg-2">
                             <button class="btn " type="submit">SEARCH</button>
                         </div>

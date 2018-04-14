@@ -52,6 +52,18 @@ class coursesRateService extends Service
         }
     }
 
+    public function getRates()
+    {
+        $rRepository = new coursesRateRepository();
+        $rate = $rRepository->getRates();
+        if($rate){
+            return $rate;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
     // get course rates by course id
     public function getRateByCourseId($id)
     {

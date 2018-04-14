@@ -142,24 +142,12 @@ class coursesService extends Service
     }
 
 
-    public function updateCourseActiveStatus($request)
+    public function updateCourseActiveStatus($id,$status)
     {
-        $rules = [
-            'is_active'  => 'required|boolean'
-        ];
-
-        $validator = Validator::make($request->all(),$rules);
-
-        if($validator->fails())
-        {
-            $this->setError($validator->errors()->all());
-            return false;
-        }
-
         //store
         $coursesRepository = new coursesRepository();
 
-        if($coursesRepository->updateCourseActiveStatus($request->all()))
+        if($coursesRepository->updateCourseActiveStatus($id,$status))
             return true;
 
         $this->setError('Error Saving to database');
@@ -183,6 +171,17 @@ class coursesService extends Service
     {
         $cRepository = new coursesRepository();
         $courses = $cRepository->searchCourses($keyword);
+        if ($courses) {
+            return $courses;
+        } else {
+            $this->setError('Error');
+            return false;
+        }
+    }
+    public function coursesnum()
+    {
+        $cRepository = new coursesRepository();
+        $courses = $cRepository->coursesnum();
         if ($courses) {
             return $courses;
         } else {

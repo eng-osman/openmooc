@@ -129,4 +129,27 @@ class categoryService extends Service
         }
     }
 
+    public function updateCategoryStatus($id,$status)
+    {
+        //store
+        $cRepository = new categoryRepository();
+
+        if($cRepository->updateCategoryStatus($id,$status))
+            return true;
+
+        $this->setError('Error Saving to database');
+        return false;
+    }
+
+    public function categoriesnum()
+    {
+        //store
+        $cRepository = new categoryRepository();
+        $categoriesnum = $cRepository->categoriesnum();
+        if($categoriesnum)
+            return $categoriesnum;
+
+        $this->setError('Error Saving to database');
+        return false;
+    }
 }

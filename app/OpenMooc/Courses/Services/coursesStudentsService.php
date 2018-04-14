@@ -39,22 +39,34 @@ class coursesStudentsService extends Service
         }
     }
 
-    public function approveSubscription($request)
+    public function getStudent()
     {
-        $rules = [
-            'is_approved' => 'required|boolean'
-        ];
-
-        $validator = Validator::make($request->all(),$rules);
-
-        if($validator->fails())
-        {
-            $this->setError($validator->errors()->all());
+        $sRepository = new coursesStudentsRepositories();
+        $Students = $sRepository->getStudent();
+        if($Students){
+            return $Students;
+        }else{
+            $this->setError('Error');
             return false;
         }
+    }
 
+    public function getunapprovestudent()
+    {
         $sRepository = new coursesStudentsRepositories();
-        $student = $sRepository->approveSubscription($request->all());
+        $Students = $sRepository->getunapprovestudent();
+        if($Students){
+            return $Students;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
+    public function approveSubscription($id,$status)
+    {
+        $sRepository = new coursesStudentsRepositories();
+        $student = $sRepository->approveSubscription($id,$status);
         if($student){
             return $student;
         }else{
@@ -81,6 +93,18 @@ class coursesStudentsService extends Service
         $sRepository = new coursesStudentsRepositories();
         if($sRepository->checkSubscription($studentId,$courseId)){
             return 'true';
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
+    public function subscribenum()
+    {
+        $sRepository = new coursesStudentsRepositories();
+        $subscribenum = $sRepository->subscribenum();
+        if($subscribenum){
+            return $subscribenum;
         }else{
             $this->setError('Error');
             return false;

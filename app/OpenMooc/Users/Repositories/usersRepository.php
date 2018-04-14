@@ -143,4 +143,9 @@ class usersRepository extends Repository
         return $users;
 
     }
+
+    public function usersnum()
+    {
+        return User::count();
+    }
 }

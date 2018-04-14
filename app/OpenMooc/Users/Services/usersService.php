@@ -191,4 +191,16 @@ class usersService extends Service
         }
     }
 
+    public function usersnum()
+    {
+        $uRepository = new usersRepository();
+        $num = $uRepository->usersnum();
+        if($num){
+            return $num;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
 }

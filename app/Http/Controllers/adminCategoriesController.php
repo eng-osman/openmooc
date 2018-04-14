@@ -26,7 +26,7 @@ class adminCategoriesController extends Controller
     {
         $cService = new categoryService();
         if($cService->addCategory($request)){
-            return 'Category Added';
+            return back();
         }else{
             return $cService->errors();
         }
@@ -51,7 +51,7 @@ class adminCategoriesController extends Controller
     {
         $cService = new categoryService();
         if($cService->updateCategory($request)){
-            return 'Category Updated';
+            return back();
         }else{
             return $cService->errors();
         }
@@ -62,7 +62,7 @@ class adminCategoriesController extends Controller
     {
         $cService = new categoryService();
         if($cService->deleteCategory($id)){
-            return 'Category deleted';
+            return back();
         }else{
             return $cService->errors();
         }
@@ -83,4 +83,13 @@ class adminCategoriesController extends Controller
         return view('dashboard.admin.catbycreator')->with('categories',$categories);
     }
 
+    public function updateCategoryStatus($id,$status)
+    {
+        $cService = new categoryService();
+        if($cService->updateCategoryStatus($id,$status)){
+            return back();
+        }else{
+            return $cService->errors();
+        }
+    }
 }

@@ -35,9 +35,9 @@
                                     <td>{{$course->updated_at}}</td>
                                     <td>
                                     @if($course->is_active == 0)
-                                        <a class="btn btn-success" href="{{url('admin/active/'.$course->course_id)}}" style="color: #fff"> Active </a>
+                                        <a class="btn btn-success" href="{{url('admin/coursesstatus/'.$course->course_id).'/1'}}" style="color: #fff"> Active </a>
                                     @elseif($course->is_active == 1)
-                                        <a class="btn btn-info" style="color: #fff" href="{{url('admin/deactivate/'.$course->course_id)}}">dectivate</a>
+                                        <a class="btn btn-info" style="color: #fff" href="{{url('admin/coursesstatus/'.$course->course_id).'/0'}}">dectivate</a>
                                     @endif
                                     <a class="btn btn-danger" style="color: #fff" href="{{url('admin/delete/'.$course->course_id)}}">Delete</a>
                                     </td>

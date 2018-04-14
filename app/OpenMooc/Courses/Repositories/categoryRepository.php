@@ -94,4 +94,20 @@ class categoryRepository extends Repository
            return $categories;
     }
 
+    // update category status
+    public function updateCategoryStatus($id,$status)
+    {
+        $categories = CoursesCategories::find($id);
+        $categories->is_active = $status;
+        if($categories->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function categoriesnum()
+    {
+        return CoursesCategories::count();
+    }
 }

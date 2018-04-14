@@ -18,7 +18,7 @@ Route::get('/', function (){
 
 Route::prefix('admin')->group(function () {
     // Home
-    Route::get('/','adminController@index')->name('home');
+    Route::get('/','adminController@index');
     // Users Groups
     Route::resource('groups','adminUsersGroupsController');
     // Users
@@ -39,20 +39,44 @@ Route::prefix('admin')->group(function () {
     Route::get('active/{id}','adminUsersController@activeUser');
     Route::get('deactivate/{id}','adminUsersController@deActivateUser');
     Route::get('delete/{id}','adminUsersController@deleteUser');
-    //Search
-    Route::get('search/{keyword}','adminUsersController@searchUsers');
+
 
     // users by group
     Route::get('usersgroup/{id}','adminUsersController@getUsersByGroup');
 
     // categories by status
     Route::get('categoriesstatus/{id}','adminCategoriesController@getCategoriesByStatus');
-
     // categories by creator
     Route::get('categoriescreator/{id}','adminCategoriesController@getCategoriesByCreatorId');
 
-    //search
-    Route::get('usersearch/{keyword?}','adminUsersController@searchUsers');
+    // user search
+    Route::get('usersearch','adminUsersController@searchUsers');
+    // course search
+    Route::get('coursesearch','adminCoursesController@searchCourses');
+    // courses by status
+    Route::get('coursesbystatus/{status}','adminCoursesController@getCoursesByActiveStatus');
+    // update course status
+    Route::get('coursesstatus/{id}/{status}','adminCoursesController@updateCourseActiveStatus');
+    // update category status
+    Route::get('catbystatus/{id}/{status}','adminCategoriesController@updateCategoryStatus');
+    // show subscribe
+    Route::get('subscribe','adminStudentsController@approveSub');
+    // delete subscribe
+    Route::get('subscribe/{id}','adminStudentsController@deleteSubscription');
+    // show subscribe (Not approve)
+    Route::get('unapproved','adminStudentsController@getunapprovestudent');
+    // approve subscribe
+    Route::get('approved/{id}/{status}','adminStudentsController@approveSubscription');
+
+    // show comments
+    Route::get('comments','adminLessonsController@getComments');
+    // delete comments
+    Route::get('deletecomment/{id}','adminLessonsController@deleteComment');
+
+    // show rates
+    Route::get('rates','adminCoursesController@getRates');
+    // delete rate
+    Route::get('deleterate/{id}','adminCoursesController@deleteRate');
 
 
 });

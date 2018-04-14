@@ -39,6 +39,18 @@ class commentsService extends Service
         }
     }
 
+    public function getComments()
+    {
+        $cRepository = new commentsRepository();
+        $comments = $cRepository->getComments();
+        if($comments){
+            return $comments;
+        }else{
+            $this->setError('Error');
+            return false;
+        }
+    }
+
     public function getCommentsByLessonId($id)
     {
         $cRepository = new commentsRepository();

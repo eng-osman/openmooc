@@ -8,6 +8,7 @@ use OpenMooc\Courses\Services\coursesService;
 use Validator;
 use Illuminate\Http\Request;
 use OpenMooc\Courses\Models\CoursesCategories;
+use OpenMooc\Courses\Services\coursesRateService;
 
 class adminCoursesController extends Controller
 {
@@ -33,7 +34,7 @@ class adminCoursesController extends Controller
     {
         $coursesService = new coursesService();
         if($coursesService->addCourse($request))
-            return 'Course Added';
+            return back();
 
         return $coursesService->errors();
     }
@@ -60,7 +61,7 @@ class adminCoursesController extends Controller
     {
         $cService = new coursesService();
         if($cService->updateCourse($request)){
-            return 'Course Updated';
+            return back();;
         }else{
             return $cService->errors();
         }
@@ -71,7 +72,7 @@ class adminCoursesController extends Controller
     {
         $cService = new coursesService();
         if($cService->deleteCourse($id)){
-            return 'Course deleted';
+            return back();;
         }else{
             return $cService->errors();
         }
@@ -109,30 +110,42 @@ class adminCoursesController extends Controller
     }
 
 
-    public function courseStatus($id)
+    public function updateCourseActiveStatus($id,$status)
     {
         $cService = new coursesService();
-        $course = $cService->getCourse($id);
-        return view('dashboard.admin.updatecoursestatus')->with('course',$course);
-    }
-
-
-    public function updateCourseActiveStatus(Request $request)
-    {
-        $cService = new coursesService();
-        if($cService->updateCourseActiveStatus($request)){
-            return 'Updated';
+        if($cService->updateCourseActiveStatus($id,$status)){
+            return back();
         }else{
             return $cService->errors();
         }
     }
 
 
-    public function searchCourses($keyword)
+    public function searchCourses()
     {
+        $keyword = $_GET['search'];
         $cService = new coursesService();
         $courses = $cService->searchCourses($keyword);
         return view('dashboard.admin.coursesearch')->with('courses',$courses);
+    }
+
+
+    // get rates
+    public function getRates()
+    {
+        $rService = new coursesRateService();
+        $rates = $rService->getRates();
+        return view('dashboard.admin.rates')->with('rates',$rates);
+    }
+
+    public function deleteRate($id)
+    {
+        $rService = new coursesRateService();
+        if($rService->deleteRate($id)){
+            return back();
+        }else{
+            return $rService->errors();
+        }
     }
 
 }

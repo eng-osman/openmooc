@@ -112,10 +112,10 @@ class coursesRepository extends Repository
     }
 
     // update course status
-    public function updateCourseActiveStatus($Data)
+    public function updateCourseActiveStatus($id,$status)
     {
-        $course = Courses::find($Data['id']);
-        $course->is_active = $Data['is_active'];
+        $course = Courses::find($id);
+        $course->is_active = $status;
         if($course->save()){
             return true;
         }else{
@@ -146,5 +146,10 @@ class coursesRepository extends Repository
             ->get();
         if(count($courses)>0)
            return $courses;
+    }
+
+    public function coursesnum()
+    {
+        return Courses::count();
     }
 }

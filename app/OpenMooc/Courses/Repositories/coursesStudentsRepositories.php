@@ -24,11 +24,36 @@ class coursesStudentsRepositories extends Repository
         }
     }
 
-    // approve subscription
-    public function approveSubscription($Data)
+    // get students subscribe
+    public function getStudent()
     {
-        $student = CoursesStudents::find($Data['id']);
-        $student->is_approved  = $Data['is_approved'];
+        $subscribe = DB::table('courses_students')
+            ->leftJoin('courses', 'courses_students.course_id', '=', 'courses.course_id')
+            ->leftJoin('users', 'courses_students.student_id', '=', 'users.id')
+            ->select('courses_students.*','courses.course_name','users.name')
+            ->get();
+        if(count($subscribe)>0)
+            return $subscribe;
+    }
+
+    // get unapprove students subscribe
+    public function getunapprovestudent()
+    {
+        $subscribe = DB::table('courses_students')
+            ->leftJoin('courses', 'courses_students.course_id', '=', 'courses.course_id')
+            ->leftJoin('users', 'courses_students.student_id', '=', 'users.id')
+            ->where('courses_students.is_approved','=','0')
+            ->select('courses_students.*','courses.course_name','users.name')
+            ->get();
+        if(count($subscribe)>0)
+            return $subscribe;
+    }
+
+    // approve subscription
+    public function approveSubscription($id,$status)
+    {
+        $student = CoursesStudents::find($id);
+        $student->is_approved  = $status;
         if($student->save()){
             return true;
         }else{
@@ -62,6 +87,11 @@ class coursesStudentsRepositories extends Repository
         }else{
             return false;
         }
+    }
+
+    public function subscribenum()
+    {
+        return CoursesStudents::count();
     }
 
 }

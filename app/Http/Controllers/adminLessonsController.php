@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use OpenMooc\Courses\Services\commentsService;
 use OpenMooc\Courses\Services\lessonsService;
 
 class adminLessonsController extends Controller
@@ -45,7 +46,7 @@ class adminLessonsController extends Controller
     {
         $lService = new lessonsService();
         if($lService->updateLesson($request)){
-            return 'lesson Updated';
+            return back();;
         }else{
             return $lService->errors();
         }
@@ -56,7 +57,7 @@ class adminLessonsController extends Controller
     {
         $lService = new lessonsService();
         if($lService->deleteLesson($id)){
-            return 'Lesson deleted';
+            return back();;
         }else{
             return $lService->errors();
         }
@@ -67,6 +68,26 @@ class adminLessonsController extends Controller
         $lService = new lessonsService();
         $lessons = $lService->getLessonsByInstructorId($id);
         return view('lessonsIns')->with('lessons',$lessons);
+    }
+
+
+    public function getComments()
+    {
+        $cService = new commentsService();
+        $comments = $cService->getComments();
+        return view('dashboard.admin.comments')->with('comments',$comments);
+
+    }
+
+
+    public function deleteComment($id)
+    {
+        $cService = new commentsService();
+        if($cService->deleteComment($id)){
+            return back();
+        }else{
+            return $cService->errors();
+        }
     }
 
 }

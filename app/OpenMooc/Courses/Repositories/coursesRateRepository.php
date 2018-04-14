@@ -31,6 +31,18 @@ class coursesRateRepository extends Repository
         return CoursesRate::find($id);
     }
 
+    // get course rates
+    public function getRates()
+    {
+        $rate = DB::table('courses_rate')
+            ->leftJoin('courses', 'courses_rate.course_id', '=', 'courses.course_id')
+            ->leftJoin('users', 'courses_rate.student_id', '=', 'users.id')
+            ->select('courses_rate.*','courses.course_name','users.name')
+            ->get();
+        if(count($rate)>0)
+           return $rate;
+    }
+
     // get course rates by course id
     public function getRateByCourseId($id)
     {
