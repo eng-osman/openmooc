@@ -59,7 +59,7 @@ class usersController extends Controller
         }
     }
 
-    public function getUsersByGroup($group_id = 0)
+    public function getUsersByGroup($group_id)
     {
         $users = $this->usersService->getUsersByGroup($group_id);
         if (count($users) > 0) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use OpenMooc\Courses\Models\Courses;
 use OpenMooc\Courses\Models\CoursesStudents;
+use OpenMooc\Courses\Repositories\coursesStudentsRepository;
 use OpenMooc\Courses\Services\coursesStudentsService;
 use OpenMooc\Service;
 use Illuminate\Http\Request;
@@ -38,13 +39,13 @@ class coursesStudentsController extends Controller
     public function approveSubscription($id)
     {
         $service = new coursesStudentsService();
-       return $service->approve($id) ? 'subscription approved': Service::getError();
+       return $service->approve($id) ? 'subscription approved': $service->errors();
     }
 
     public function unApproveSubscription($id)
     {
        $service = new coursesStudentsService();
-       return $service->unApprove($id)==true ? 'subscription un approved': $service::getError();
+       return $service->unApprove($id)==true ? 'subscription un approved': $service->errors();
     }
 
 
@@ -63,5 +64,17 @@ class coursesStudentsController extends Controller
             return  Service::getError();
 
         return view('subscriptions.student')->with('student',$student);
+    }
+
+    public function showStudentsInCourse($course_id)
+    {
+        $service = new coursesStudentsService();
+        return view('course.students')->with('students', $service->showStudentsInCourse($course_id));
+    }
+    public function getAllInstructorStudents($instructor_id)
+    {
+       $service = new coursesStudentsRepository();
+       $students = $service->getAllInstructorStudents($instructor_id);
+        return view('instructor.allStudents')->with('students', $students);
     }
 }

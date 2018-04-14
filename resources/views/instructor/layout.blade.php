@@ -301,7 +301,15 @@
                 </li>
                 <!-- End Add Course -->
 
-                
+                <!-- Add my ٍstudents Link-->
+                <li>
+                    <a href="{{url('instructor/1/students')}}">
+                        <i class="fa fa-book"></i>
+                        <span>my students</span></a>
+                </li>
+                <!-- End Add students Course -->
+
+
 
                 <!--multi level menu start-->
                 <li class="sub-menu">
@@ -375,7 +383,7 @@
 <!--script for this page-->
 <script src="{{asset('instructor/js/sparkline-chart.js')}}"></script>
 <script src="{{asset('instructor/js/easy-pie-chart.js')}}"></script>
-<script src="{{asset('instructor/js/count.js')}}"></script>
+{{--<script src="{{asset('instructor/js/count.js')}}"></script>--}}
 
 <script>
 

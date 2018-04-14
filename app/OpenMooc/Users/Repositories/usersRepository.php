@@ -7,6 +7,7 @@ use OpenMooc\Courses\Repositories\coursesCategoriesRepositry;
 use Illuminate\Support\Facades\DB;
 use OpenMooc\Service;
 use OpenMooc\Users\Models\Users;
+use OpenMooc\Users\Models\usersModel;
 use Validator;
 
 class usersRepository extends Repository
@@ -97,14 +98,9 @@ class usersRepository extends Repository
 
     }
 
-    public function getUsersByGroup($group_id)
+    public function getUsersByGroup($group_id= [])
     {
-        $users = DB::table('users')
-            ->join('users_groups', 'users.user_group', '=', 'users_groups.group_id')
-            ->select('users.username', 'users.name', 'users.email', 'users.about', 'users.is_active', 'users_groups.group_name')
-            ->where('users.user_group', '=', $group_id)
-            ->get();
-
+        $users = Users::all()->whereIn('user_group', $group_id);
         return $users;
     }
 

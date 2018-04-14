@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-
 use OpenMooc\Courses\Models\Courses;
 use OpenMooc\Courses\Services\coursesService;
 
@@ -16,5 +15,5 @@ class adminController extends Controller
         return view('dashboard.admin.index')
             ->with('courses',$allCourse);
     }
-
 }
+// end

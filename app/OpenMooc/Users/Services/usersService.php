@@ -108,7 +108,7 @@ class usersService extends Service
         return $this->usersRepository->getUser($id);
     }
 
-    public function getUsersByGroup($group_id)
+    public function getUsersByGroup($group_id = [])
     {
         return $this->usersRepository->getUsersByGroup($group_id);
     }

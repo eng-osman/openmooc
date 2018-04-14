@@ -15,9 +15,9 @@
                 </div>
                 <div class="value">
                     <h1 class="count">
-                        0
+                        {{$studentsCount}}
                     </h1>
-                    <p>New Users</p>
+                    <p>my Students</p>
                 </div>
             </section>
         </div>
@@ -28,9 +28,9 @@
                 </div>
                 <div class="value">
                     <h1 class=" count2">
-                        0
+                        {{$coursesCount}}
                     </h1>
-                    <p>Sales</p>
+                    <p>my courses</p>
                 </div>
             </section>
         </div>

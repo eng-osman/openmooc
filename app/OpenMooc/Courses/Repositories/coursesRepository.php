@@ -8,70 +8,57 @@ use Illuminate\Support\Facades\DB;
 
 class coursesRepository extends Repository
 {
-    public function addCourse($course)
+    public function addCourse($courseData = [])
     {
-        //get item
-        $item = [
-            'course_name' => $course['name'],
-            'course_category' => $course['category'],
-            'course_instructor' => $course['instructor'],
-            'course_description' => $course['description'],
-            'is_active' => $course['status']
-        ];
-        //insert date
-        if (DB::table('courses')->insert([$item]))
-            return true;
-        return false;
+        $course  = new Courses();
+        $course->course_name = $courseData['name'];
+        $course->course_category = $courseData['category'];
+        $course->course_instructor = $courseData['instructor'];
+        $course->course_description = $courseData['description'];
+        $course->is_active = $courseData['status'];
+
+        return ($course->save()==true) ? true:false;
     }
 
     // update courses
 
-
-    public function updateCourse($course)
+    public function updateCourseProcess($courseData)
     {
-        //array of data
         $item = [
-            'course_name' => $course['course_name'],
-            'course_category' => $course['course_category'],
-            'course_instructor' => $course['course_instructor'],
-            'course_description' => $course['course_description'],
-            'is_active' => $course['is_active']
+        'course_name'        => $courseData['course_name'],
+        'course_category'    => $courseData['course_category'],
+        'course_instructor'  => $courseData['course_instructor'],
+        'course_description' => $courseData['course_description'],
+        'is_active'          => $courseData['is_active']
         ];
-        if (DB::table('courses_lessons')
-            ->where('courses.course_id', $course['course_id'])
+        if (DB::table('courses')
+            ->where('course_id', $courseData['course_id'])
             ->update($item)
         )
             return true;
         return false;
-        //update courses by id
     }
 
-    // update active
 
     public function updateCourseActiveStatus($course)
     {
         $item = [
             'is_active' => $course['is_active']
         ];
-        if (DB::table('courses')
+
+        return  $query= DB::table('courses')
             ->where('courses.course_id', $course['course_id'])
-            ->update($item)
-        )
-            return true;
-        return false;
+            ->update($item);
+
     }
 
     // delete courese by id
     public function deleteCourse($id)
     {
-        $course = DB::table('courses')
-            ->where('courses.course_id', '=', $id)
-            ->get();
-        if ($course) {
-            DB::table('courses')->delete()->where('courses.course_id', '=', $id);
-            return true;
-        }
-        return false;
+        $del = DB::table('courses')->where('course_id','=',$id)->delete();
+
+        return $del ;
+
     }
 
     // get all coures
@@ -85,7 +72,7 @@ class coursesRepository extends Repository
         return $courses;
     }
 
-    public function getCoursesByInstructor($InstructorId = 0)
+    public function getCoursesByInstructor($InstructorId)
     {
         $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
@@ -96,7 +83,7 @@ class coursesRepository extends Repository
         return $courses;
     }
 
-    // coures careg
+    // courses by category
     public function getCoursesByCategory($category_id)
     {
         $courses = DB::table('courses')
@@ -133,14 +120,19 @@ class coursesRepository extends Repository
     }
 
     // get course
-    public function getCourse($id = 0)
+    public function getCourse($id)
     {
-        $courses = DB::table('courses')
+        $courses= DB::table('courses')
+        ->where('courses.course_id', $id)
+        ->get();
+        /*
+      $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->join('users', 'courses.course_instructor', '=', 'users.id')
             ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
             ->where('courses.course_id', '=', $id)
             ->get();
+        */
         return $courses;
     }
 
@@ -153,7 +145,7 @@ class coursesRepository extends Repository
             ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
             ->where('courses.course_name', 'like', "%$keyword%")
             ->orWhere('courses.course_description', 'like', "%$keyword%")
-->get();
+            ->get();
         return $courses;
     }
 }

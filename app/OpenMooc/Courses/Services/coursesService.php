@@ -2,10 +2,10 @@
 
 namespace OpenMooc\Courses\Services;
 
+use Illuminate\Http\Request;
 use OpenMooc\Courses\Repositories\coursesRepository;
 use OpenMooc\Service;
 use Validator;
-use Illuminate\Http\Request;
 
 class coursesService extends Service
 {
@@ -49,57 +49,35 @@ class coursesService extends Service
     }
 
 // update
-    public function updateCourse($req)
+    public function updateCourseProcess($request)
     {
         $rules = [
             'course_name' => 'required|min:3|max:250',
             'course_category' => 'required',
             'course_instructor' => 'required',
             'course_description' => 'required',
-            'course_cover' => 'required',
             'is_active' => 'required',
         ];
-        $validator = Validator::make($req->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
             return false;
         }
         //store
-        if ($this->coursesRepo->updateCourse($req->all()))
+        if ($this->coursesRepo->updateCourseProcess($request->all()))
             return true;
 
-        $this->setError('Error updating to database in courses ');
+        $this->setError('Error Saving to database in courses ');
         return false;
     }
 
-    public function updateCourseActiveStatus($req)
+
+    public function deleteCourse($id)
     {
-        $rules = [
+        return $this->coursesRepo->deleteCourse($id);
 
-            'is_active' => 'required',
-        ];
-        $validator = Validator::make($req->all(), $rules);
 
-        if ($validator->fails()) {
-            $this->setError($validator->errors()->all());
-            return false;
-        }
-        //store
-        if ($this->coursesRepo->updateCourseActiveStatus($req->all()))
-            return true;
-
-        $this->setError('Error updating to database in courses status ');
-        return false;
-    }
-
-    public function deleteCourse($id = 0)
-    {
-        if ($this->coursesRepo->deleteCourse($id)) {
-            return true;
-        }
-        $this->setError('Error deleteing from courses  database');
-        return false;
 
 
     }
@@ -111,7 +89,10 @@ class coursesService extends Service
 
     public function getCoursesByInstructor($id)
     {
+
         return $this->coursesRepo->getCoursesByInstructor($id);
+
+
     }
 
     public function getCoursesByCategory($category_id)
@@ -132,6 +113,11 @@ class coursesService extends Service
     public function searchCourses($keywords)
     {
         return $this->coursesRepo->searchCourses($keywords);
+    }
+
+    public function countMyCourses($instructor_id)
+    {
+        return count($this->coursesRepo->getCoursesByInstructor($instructor_id));
     }
 
 }

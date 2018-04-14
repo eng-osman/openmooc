@@ -1,20 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hp
- * Date: 4/7/2018
- * Time: 8:44 AM
- */
-
 namespace App\Http\Controllers;
 
-
+use OpenMooc\Courses\Services\coursesCategoriesService;
+use OpenMooc\Courses\Services\coursesLessonService;
+use OpenMooc\Users\Services\usersService;
+use Validator;
 use OpenMooc\Courses\Services\coursesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use OpenMooc\Users\Models\Users;
 
-class courseController
+class courseController extends Controller
 {
     private $coursesService;
 
@@ -25,11 +21,11 @@ class courseController
 
     public function addCourse()
     {
-        $instructor = Users::all()->where('user_group',3);
-        $categories = DB::table('courses_categories')
-
-            ->get();
-        return view('addcourse')
+        $usersService = new usersService();
+        $categoryService = new coursesCategoriesService();
+        $instructor = $usersService->getUsersByGroup([1,3]);
+        $categories = $categoryService->getCategories();
+        return view('course.addcourse')
             ->with('instructors', $instructor)
             ->with('categories', $categories);
     }
@@ -42,48 +38,65 @@ class courseController
         return $this->coursesService->errors();
     }
 
+
     // update courses
 
-
-    public function updateCourse(courseEntity $course)
+    public function updateCourse($id)
     {
-        //array of data
-        $data = [
-            'course_id' => $course->getCourseId(),
-            'course_name' => $course->getCourseName(),
-            'course_category' => $course->getCourseCategory(),
-            'course_instructor' => $course->getCourseInstructor(),
-            'course_description' => $course->getCourseDescription(),
-            'course_cover' => $course->getCourseCover(),
-            'is_active' => $course->getisActive()
-        ];
 
-        //update courses by id
-
-        return $this->Update($data, "WHERE `course_id`=" . $data['course_id']);
-
+        // get categories data
+        $categories = DB::table('courses_categories')->get();
+        // get course data
+         $course =$this->coursesService->getCourse($id);
+        // return to view
+        return view('dashboard.instructor.editcoursebyinst')
+            ->with('categories',$categories)
+            ->with('course', $course);
 
     }
 
-    // update active
-
-    public function updateCourseActiveStatus(courseEntity $course)
+    // update course process
+    public function updateCourseProcess(Request $request)
     {
-        // get status
-        $date = ['is_active' => $course->getisActive()];
-        //query update
-        $query = $this->Update($date, "WHERE `course_id`=" . $course->getCourseId());
+        if ($this->coursesService->updateCourseProcess($request)){
 
-        return $query;
 
+            $message = "Courses Successfully Edit ";
+            return view('dashboard.instructor.success')
+                ->with('message',$message);
+           }
+           else{
+                $error = $this->coursesService->errors();
+
+                return redirect()
+                    ->back()
+                    ->withErrors($error);
+
+    }
     }
 
 
-    public function deleteCourse($id = 0)
+    // delelet coures By id
+    public function deleteCourse($id)
     {
-        if ($this->coursesService->deleteCourse($id))
-            return 'course deleted';
-        return $this->coursesService->errors();
+        //chk data
+        $data = $this->coursesService->getCourse($id);
+
+
+        // if data true call del method
+        if($data){
+            $del =$this->coursesService->deleteCourse($id);
+            // if del Course
+            if($del){
+                $message='Courses Successfully Deleted ';
+                return view('dashboard.instructor.success')
+                    ->with('message',$message);
+            }
+            //if not found data
+        return view('dashboard.instructor.oopsmessage');
+        }
+
+
     }
 
 
@@ -92,18 +105,18 @@ class courseController
 
         $courses = $this->coursesService->getCourses();
 
-        return view('course')
+        return view('courses')
             ->with('coursesList', $courses);
 
     }
 
 
-    public function getCoursesByInstructor($id=0)
-    {  $courses = $this->coursesService->getCoursesByInstructor($id);
-        if(count($courses)>0){
-        return view('course')
-        ->with('coursesList', $courses);}
-        return 'there is no course matched';
+    public function getCoursesByInstructor($id)
+    {
+         $courses = $this->coursesService->getCoursesByInstructor($id);
+        if(count($courses)>0)
+            return $courses;
+        return 'no course for this instructor';
     }
 
 
@@ -137,14 +150,6 @@ class courseController
     }
 
 
-    public function getCourse($id=0)
-    {
-        $courses = $this->coursesService->getCourse($id);
-        if(count($courses)>0){
-            return view('course')
-                ->with('coursesList', $courses);}
-        return 'there is no course matched';
-    }
 
     public function searchCourses($keywords)
     {
@@ -155,4 +160,7 @@ class courseController
                 ->with('coursesList', $courses);}
         return 'there is no course matched';
     }
+
+
 }
+
