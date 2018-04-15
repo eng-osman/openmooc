@@ -33,7 +33,7 @@ class adminCoursesController extends Controller
     public function store(Request $request)
     {
         $coursesService = new coursesService();
-        if($coursesService->addCourse($request))
+        if($coursesService->addCourse($request->all()))
             return back();
 
         return $coursesService->errors();
@@ -60,7 +60,7 @@ class adminCoursesController extends Controller
     public function update(Request $request)
     {
         $cService = new coursesService();
-        if($cService->updateCourse($request)){
+        if($cService->updateCourse($request->all())){
             return back();;
         }else{
             return $cService->errors();

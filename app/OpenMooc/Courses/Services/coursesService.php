@@ -7,7 +7,7 @@ use OpenMooc\Service;
 use Validator;
 class coursesService extends Service
 {
-    public function addCourse($request)
+    public function addCourse($data)
     {
         $rules = [
             'title'         => 'required|max:100',
@@ -18,7 +18,7 @@ class coursesService extends Service
             'cover'         => 'required|image'
         ];
 
-        $validator = Validator::make($request->all(),$rules);
+        $validator = Validator::make($data,$rules);
 
         if($validator->fails())
         {
@@ -29,7 +29,7 @@ class coursesService extends Service
         //store
         $coursesRepository = new coursesRepository();
 
-        if($coursesRepository->addCourse($request->all()))
+        if($coursesRepository->addCourse($data))
             return true;
 
         $this->setError('Error Saving to database');
@@ -112,7 +112,7 @@ class coursesService extends Service
     }
 
 
-    public function updateCourse($request)
+    public function updateCourse($data)
     {
         $rules = [
             'course_name'          => 'required|max:100',
@@ -123,7 +123,7 @@ class coursesService extends Service
             'course_cover'         => 'required|image'
         ];
 
-        $validator = Validator::make($request->all(),$rules);
+        $validator = Validator::make($data,$rules);
 
         if($validator->fails())
         {
@@ -134,7 +134,7 @@ class coursesService extends Service
         //store
         $coursesRepository = new coursesRepository();
 
-        if($coursesRepository->updateCourse($request->all()))
+        if($coursesRepository->updateCourse($data))
             return true;
 
         $this->setError('Error Saving to database');
