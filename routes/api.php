@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Http\Request;
 
@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('courses','coursesAPIController@index');
 Route::get('courses/{id}','coursesAPIController@show');
 Route::post('courses/add','coursesAPIController@store');
+Route::get('statuscourses/{status}','coursesAPIController@getCoursesByActiveStatus');
+Route::get('updateactive/{id}/{status}','coursesAPIController@updateCourseActiveStatus');
