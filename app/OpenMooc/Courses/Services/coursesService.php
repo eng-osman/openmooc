@@ -67,6 +67,11 @@ class coursesService extends Service
         {
             return $courses;
         }
+        else
+        {
+            $this->setError('Error getting course');
+            return false;
+        }
     }
 
 

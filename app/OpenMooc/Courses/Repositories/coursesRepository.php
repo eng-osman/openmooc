@@ -38,9 +38,10 @@ class coursesRepository extends Repository
     public function getAllCourses()
     {
         $courses = DB::table('courses')->leftJoin('courses_categories','courses.course_category', '=', 'courses_categories.category_id')
-                                       ->leftJoin('users','course.course_instructor','=', 'users.id');
+                                       ->leftJoin('users','courses.course_instructor','=', 'users.id')
+                                       ->select('courses.*','courses_categories.category_name','users.username')->get() ;
 
-        if($courses && count($courses) > 0)
+        if( count($courses) > 0)
             return $courses;
         else
             return false;

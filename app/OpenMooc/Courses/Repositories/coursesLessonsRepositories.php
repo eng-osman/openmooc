@@ -71,7 +71,7 @@ class coursesLessonsRepositories extends  Repository
         $lessons = DB::table('courses_lessons')
             ->leftJoin('courses', 'courses_lessons.lesson_course', '=', 'courses.course_id')
             ->leftJoin('users', 'courses_lessons.lesson_instructor', '=', 'users.id')
-            ->where('lesson_course',$id)
+            ->where('lesson_course',$id)->select('courses_lessons.*','users.username','courses.course_name')
             ->get();
         if(count($lessons) > 0)
             return $lessons;

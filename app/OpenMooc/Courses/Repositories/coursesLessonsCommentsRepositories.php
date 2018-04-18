@@ -99,7 +99,7 @@ class coursesLessonsCommentsRepositories extends  Repository
     public function getCommentsByLessonId($id)
     {
         $comments = DB::table('courses_lessons_comments')->leftJoin('users', 'courses_lessons_comments.created_by', '=', 'users.id')
-            ->where('lesson_id',$id)
+            ->where('lesson_id',$id)->select('courses_lessons_comments.*','users.username')
             ->get();
         if(count($comments) > 0)
             return $comments;

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\OpenMooc\Courses\Services;
+namespace OpenMooc\Courses\Services;
+
 use OpenMooc\Courses\Repositories\coursesStudentsRepositories;
 use OpenMooc\Service;
 use Validator;
@@ -16,8 +17,8 @@ class coursesStudentsServices extends  Service
     public function addStudentToCourse($request)
     {
         $rules = [
-            'student_id' => 'required|integer',
-            'course_id' => 'required|integer',
+            'student_id'  => 'required|integer',
+            'course_id'   => 'required|integer',
             'is_approved' => 'required'
         ];
         //validation
@@ -27,9 +28,12 @@ class coursesStudentsServices extends  Service
             return false;
         }
         $studentRepo = new coursesStudentsRepositories();
-        if ($studentRepo->addStudentToCourse($request->all())) {
+        if ($studentRepo->addStudentToCourse($request->all()))
+        {
             return true;
-        } else {
+        }
+        else
+        {
             $this->setError('Error Adding');
             return false;
         }

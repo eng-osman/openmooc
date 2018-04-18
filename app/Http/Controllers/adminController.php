@@ -10,7 +10,7 @@ class adminController extends Controller
     {
         //service to get data
         $coursesService = new coursesService();
-        $allCourse = $coursesService->getCourses();
+        $allCourse = $coursesService->getAllCourses();
 
         return view('dashboard.admin.index')
             ->with('courses',$allCourse);

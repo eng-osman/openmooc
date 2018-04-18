@@ -1,6 +1,6 @@
 <?php
 
-namespace App\OpenMooc\Courses\Services;
+namespace OpenMooc\Courses\Services;
 use OpenMooc\Courses\Repositories\coursesRateRepositories;
 use OpenMooc\Service;
 use Validator;
