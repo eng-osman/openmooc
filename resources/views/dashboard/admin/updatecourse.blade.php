@@ -43,7 +43,7 @@
                 </div>
                 {{csrf_field()}}
                 <input type="hidden" name="course_instructor" value="{{$course['course_instructor']}}">
-                <input type="hidden" name="id" value="{{$course['course_id']}}">
+                <input type="hidden" name="course_id" value="{{$course['course_id']}}">
                 <button type="submit" class="btn btn-danger">Save</button>
                 <button type="reset" class="btn btn-default">Cancel</button>
             </form>

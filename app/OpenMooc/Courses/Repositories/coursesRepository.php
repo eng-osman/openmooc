@@ -97,7 +97,7 @@ class coursesRepository extends Repository
     //update course
     public function updateCourse($Data)
     {
-        $course = Courses::find($Data['id']);
+        $course = Courses::find($Data['course_id']);
         $course->course_name          = $Data['course_name'];
         $course->course_category      = $Data['course_category'];
         $course->course_instructor    = $Data['course_instructor'];

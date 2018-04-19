@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('courses','coursesAPIController@index');
 Route::get('courses/{id}','coursesAPIController@show');
 Route::post('courses/add','coursesAPIController@store');
+Route::post('courses/update/{id}','coursesAPIController@update');
+Route::get('courses/delete/{id}','coursesAPIController@destroy');
+Route::get('coursesbycategory/{id}','coursesAPIController@getCoursesByCategory');
+Route::get('coursesbyinstructor/{id}','coursesAPIController@getCoursesByInstructor');

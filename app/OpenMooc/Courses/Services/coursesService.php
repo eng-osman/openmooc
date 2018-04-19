@@ -120,7 +120,7 @@ class coursesService extends Service
             'course_instructor'    => 'required|integer',
             'course_description'   => 'required|max:1000',
             'is_active'            => 'required|boolean',
-            'course_cover'         => 'required|image'
+            'course_cover'         => 'required'
         ];
 
         $validator = Validator::make($data,$rules);

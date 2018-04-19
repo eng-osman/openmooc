@@ -15,6 +15,19 @@ Route::get('/', function (){
     return view('dashboard.admin.index');
 });
 
+Route::get('login', function (){
+    return view('login');
+});
+
+
+Route::post('login', 'LoginController@authenticate');
+Route::get('logout', 'LoginController@logout');
+
+
+Route::get('register', function (){
+    return view('register');
+});
+
 
 Route::prefix('admin')->group(function () {
     // Home

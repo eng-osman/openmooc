@@ -72,21 +72,73 @@ class coursesAPIController extends Controller
     // update course in database
     public function update(Request $request)
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $data = $request->json()->all();
+            if($this->coursesService->updateCourse($data)){
+                $allData =[];
+                $allData['status']  = true;
+                $allData['message'] = 'course updated';
+
+                return response()->json($allData);
+
+            }else{
+                $allData =[];
+                $allData['status']  = false;
+                $allData['message'] = 'course not updated';
+                $allData['errors'] = $this->coursesService->errors();
+
+                return response()->json($allData);
+            }
+        }
     }
 
     // delete course from database
     public function destroy($id)
     {
+        if($this->coursesService->deleteCourse($id))
+        {
+            $allData =[];
+            $allData['status']  = true;
+            $allData['message'] = 'course deleted';
+
+            return response()->json($allData);
+        }else{
+            $allData =[];
+            $allData['status']  = false;
+            $allData['message'] = 'course not deleted';
+            $allData['errors'] = $this->coursesService->errors();
+
+            return response()->json($allData);
+        }
     }
 
     // get courses by category
     public function getCoursesByCategory($id)
     {
+        $courses = $this->coursesService->getCoursesByCategory($id);
+        $statuscode = ($courses) ? 200 : 404;
+        $allData = [];
+        $allData['status']  = ($courses) ? true : false;
+        $allData['message'] = ($courses) ? 'All Courses' : 'No courses Found';
+        $allData['errors']  = [];
+        $allData['data']    = $courses;
+
+        return response()->json($allData,$statuscode);
     }
 
     // get courses by instructor
     public function getCoursesByInstructor($id)
     {
+        $courses = $this->coursesService->getCoursesByInstructor($id);
+        $statuscode = ($courses) ? 200 : 404;
+        $allData = [];
+        $allData['status']  = ($courses) ? true : false;
+        $allData['message'] = ($courses) ? 'All Courses' : 'No courses Found';
+        $allData['errors']  = [];
+        $allData['data']    = $courses;
+
+        return response()->json($allData,$statuscode);
     }
 
     // get courses by status
