@@ -144,11 +144,27 @@ class coursesAPIController extends Controller
     // get courses by status
     public function getCoursesByActiveStatus($status)
     {
+        $courses = $this->coursesService->getCoursesByActiveStatus($status);
+        $responseData = [];
+        $statusCode = ($courses)? 200 : 404;
+        $responseData['status'] = ($courses) ? true : false ;
+        $responseData['message'] = ($courses) ? 'coursrs details' : "course not found";
+        $responseData['errors'] = [];
+        $responseData['data'] = $courses;
+        return response()->json($responseData,$statusCode);
     }
 
     // update courses status
     public function updateCourseActiveStatus($id,$status)
     {
+        $Activestatus = $this->coursesService->updateCourseActiveStatus($id,$status);
+        $responseData = [];
+        $statusCode = ($Activestatus)? 200 : 404;
+        $responseData['status'] = ($Activestatus) ? true : false ;
+        $responseData['message'] = ($Activestatus) ? 'coursrs Update Status' : "course not found";
+        $responseData['errors'] = [];
+        $responseData['data'] = $Activestatus;
+        return response()->json($responseData,$statusCode);
     }
 
 }

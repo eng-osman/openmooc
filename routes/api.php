@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Http\Request;
 
@@ -24,3 +24,5 @@ Route::post('courses/update/{id}','coursesAPIController@update');
 Route::get('courses/delete/{id}','coursesAPIController@destroy');
 Route::get('coursesbycategory/{id}','coursesAPIController@getCoursesByCategory');
 Route::get('coursesbyinstructor/{id}','coursesAPIController@getCoursesByInstructor');
+Route::get('statuscourses/{status}','coursesAPIController@getCoursesByActiveStatus');
+Route::get('updateactive/{id}/{status}','coursesAPIController@updateCourseActiveStatus');
