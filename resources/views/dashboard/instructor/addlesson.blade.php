@@ -19,8 +19,8 @@
                     <label > lesson_description</label><br>
                     <textarea class="form-control" name="lesson_description" cols="150" rows="10"
                             ></textarea><br>
-                    <input type="hidden" name="lesson_instructor" value="{{$lesson_instructor}}">
-                <input type="hidden" name="lesson_course" value="{{$course_id}}">
+                    <input type="hidden" name="lesson_instructor" value="4">
+                <input type="hidden" name="lesson_course" value="4">
 
 
                 <input type="hidden" name="_token" value="{{csrf_token()}}">

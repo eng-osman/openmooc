@@ -7,97 +7,102 @@ use Validator;
 
 class coursesStudentsService extends Service
 {
-    public function addSubscription($request)
+    private $coursesStudentsRepository;
+    public function __construct()
     {
-        $v = Validator::make($request->all(), [
+        $this->coursesStudentsRepository = new coursesStudentsRepository();
+    }
+
+    public function addSubscription($data = [])
+    {
+        $v = Validator::make($data, [
             'student'   =>'required',
             'course'    =>'required'
         ]);
         // if there are validation errors
         if($v->fails()):
             $this->setError($v->errors()->all());
-
             return false;
         endif;
 
         // if no validations Errors  Add subscription
-        $coursesStudentsRepository = new coursesStudentsRepository();
-        if($coursesStudentsRepository->addSubscription($request->all()));
+        if ($this->coursesStudentsRepository->addSubscription($data))
             return true;
-        $this->setError('Unable To save subscription');
+
+        $this->setError('Failed to save subscription');
         return false;
     }
 
     public function getAllSubscriptions()
     {
-       $subscriptions = new coursesStudentsRepository();
-        return $subscriptions->getAllSubscriptions();
+        if(count($this->coursesStudentsRepository->getAllSubscriptions())>0)
+            return $this->coursesStudentsRepository->getAllSubscriptions();
+
+        $this->setError('No subscriptions to view');
+        return false;
     }
 
     public function approve($id)
     {
-        $subscription = new coursesStudentsRepository();
-        if ($subscription->approve($id))
-            return 'subscription approved';
+        $subscription = $this->coursesStudentsRepository->approve($id);
+        if ($subscription)
+            return true;
 
-        $this->setError('Unable to approve subscription');
+        $this->setError('Error approving subscription');
         return false;
     }
 
     public function unApprove($id)
     {
-        $subscription = new coursesStudentsRepository();
-        if($subscription->unApprove($id))
-            return 'subscription un approved';
+        $subscription = $this->coursesStudentsRepository->unApprove($id);
+        if($subscription)
+            return true;
 
-        $this->setError('Unable to approve subscription');
+        $this->setError('Error un approving subscription');
         return false;
     }
 
     public function deleteSubscription($id)
     {
-        $repo = new coursesStudentsRepository();
-        if($repo->deleteSubscription($id))
-            return 'subscription deleted';
-        $this->setError('unable to delete subscription');
+        $delete =  $this->coursesStudentsRepository->deleteSubscription($id);
+        if($delete)
+            return true;
+        $this->setError('Failed to delete subscription');
         return false;
     }
 
     public function getStudentSubscriptions($student_id)
     {
-        $service = new coursesStudentsRepository();
-        $subscriptions = $service->getStudentSubscription($student_id);
+        $subscriptions =$this->coursesStudentsRepository->getStudentSubscription($student_id);
+        if(count($subscriptions)>0)
+            return $subscriptions;
 
-        if($subscriptions==[]):
-            setError('no courses for this student');
-            return false;
-        endif;
-
-        return $subscriptions;
+        $this->setError('This students has no subscription');
+        return false;
     }
 
     public function showStudentsInCourse($course_id)
     {
-        $repository = new coursesStudentsRepository();
-        if(count($repository->showStudentsInCourse($course_id))> 0)
-            return  $repository->showStudentsInCourse($course_id);
+        $students = $this->coursesStudentsRepository->showStudentsInCourse($course_id);
+        if(count($students)> 0)
+            return  $students;
 
-        $this->setError('no students in this course');
+        $this->setError('this course has no students subscription');
         return false;
     }
 
     public function getAllInstructorStudents($instructor_id)
     {
-        $repository = new coursesStudentsRepository();
-        if(count($repository->getAllInstructorStudents($instructor_id)))
-            return $repository->getAllInstructorStudents($instructor_id);
+        $instructorStudents = $this->coursesStudentsRepository->getAllInstructorStudents($instructor_id);
+        if (count($instructorStudents) > 0)
+            return $instructorStudents;
 
+        $this->setError('This instructor has no students subscription');
         return false;
     }
     public function countMyStudents($instructor_id)
     {
-        $repository = new coursesStudentsRepository();
-        return count($repository->getAllInstructorStudents($instructor_id));
+        return count($this->coursesStudentsRepository->getAllInstructorStudents($instructor_id));
     }
 
 

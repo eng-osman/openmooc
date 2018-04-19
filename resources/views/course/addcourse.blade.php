@@ -19,7 +19,7 @@
                         <!-- start course name -->
                         <div class="form-group">
                             <label for="name">course name</label>
-                            <input type="text"  name="name" class="form-control" id="name">
+                            <input type="text"  name="course" class="form-control" id="name">
                         </div>
                         <!-- end course name-->
 

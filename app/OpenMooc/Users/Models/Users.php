@@ -16,7 +16,5 @@ class Users extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';
-    public  function  CoursesCategories(){
-        return $this->hasMany('CoursesCategories');
-    }
+
 }

@@ -15,7 +15,7 @@ class usersService extends Service
         $this->usersRepository = new usersRepository();
     }
 
-    public function addUser($request)
+    public function addUser($data)
     {
         $rules = [
             'username' => 'required|min:3|max:250',
@@ -23,10 +23,11 @@ class usersService extends Service
             'email' => 'required|email',
             'password' => 'required|min:3|max:250',
             'user_group' => 'required',
-            'active' => 'required'
+            'active' => 'required',
+            'about' => 'required'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
@@ -36,14 +37,14 @@ class usersService extends Service
         //store
 
 
-        if ($this->usersRepository->addUser($request->all()))
+        if ($this->usersRepository->addUser($data))
             return true;
 
         $this->setError('Error Saving to database in table users');
         return false;
     }
 
-    public function updateUser($request)
+    public function updateUser($data)
     {
         $rules = [
             'username' => 'required|min:3|max:250',
@@ -54,33 +55,33 @@ class usersService extends Service
             'active' => 'required'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
             return false;
         }
         //store
-        if ($this->usersRepository->updateUser($request->all()))
+        if ($this->usersRepository->updateUser($data))
             return true;
 
         $this->setError('Error update to database in table users');
         return false;
     }
 
-    public function updateUserPassword($request)
+    public function updateUserPassword($data)
     {
         $rules = [
             'password' => 'required|min:3|max:250'
         ];
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
             return false;
         }
         //store
-        if ($this->usersRepository->updateUserPassword($request->all()))
+        if ($this->usersRepository->updateUserPassword($data))
             return true;
 
         $this->setError('Error update password to database in table users');

@@ -25,36 +25,36 @@ class usersGroupSevice extends Service
     public function addUserGroup($request)
     {
         $rules = [
-            'group_name' => 'required|min:3|max:250',
+            'group_name' => 'required|min:3|max:50',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request, $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
             return false;
         }
         //store
-        if ($this->userGroupRep->addUserGroup($request->all()))
+        if ($this->userGroupRep->addUserGroup($request))
             return true;
 
         $this->setError('Error Saving to database in table users groups');
         return false;
     }
 
-    public function updateUserGroup($request)
+    public function updateUserGroup($request , $id)
     {
         $rules = [
-            'group_name' => 'required|min:3|max:250'
+            'group_name' => 'required|min:3|max:50'
         ];
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request, $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
             return false;
         }
         //store
-        if ($this->userGroupRep->updateUserGroup($request->all()))
+        if ($this->userGroupRep->updateUserGroup($request, $id))
             return true;
 
         $this->setError('Error update group to database in table user group');

@@ -17,17 +17,16 @@ class coursesService extends Service
         $this->coursesRepo = new coursesRepository();
     }
 
-    public function addCourse($request)
+    public function addCourse($data)
     {
         $rules = [
-            'name' => 'required|min:3|max:50',
-            'category' => 'required',
-            'instructor' => 'required',
-            'description' => 'required|min:3|max:250',
-            'status' => 'required',
+            'course'        => 'required|min:3|max:100',
+            'category'      => 'required|',
+            'instructor'    => 'required',
+            'description'   => 'required|min:3|max:250',
+            'status'        => 'required',
         ];
-
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         if ($validator->fails()) {
             $this->setError($validator->errors()->all());
@@ -35,10 +34,10 @@ class coursesService extends Service
         }
 
         //store
-        if ($this->coursesRepo->addCourse($request->all()))
+        if ($this->coursesRepo->addCourse($data))
             return true;
 
-        $this->setError('Error Saving to database in courses ');
+        $this->setError('Error saving data');
         return false;
     }
 
@@ -76,10 +75,6 @@ class coursesService extends Service
     public function deleteCourse($id)
     {
         return $this->coursesRepo->deleteCourse($id);
-
-
-
-
     }
 
     public function getCoursesByStudentId($student_id)
@@ -89,10 +84,7 @@ class coursesService extends Service
 
     public function getCoursesByInstructor($id)
     {
-
         return $this->coursesRepo->getCoursesByInstructor($id);
-
-
     }
 
     public function getCoursesByCategory($category_id)
@@ -102,7 +94,7 @@ class coursesService extends Service
 
     public function getCoursesByActiveStatus($status)
     {
-        return $this->coursesRepo->getCoursesByActiveStatus();
+        return $this->coursesRepo->getCoursesByActiveStatus($status);
     }
 
     public function getCourse($id)

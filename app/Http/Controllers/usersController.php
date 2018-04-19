@@ -26,7 +26,7 @@ class usersController extends Controller
 
     public function processAddUser(Request $request)
     {
-        if ($this->usersService->addUser($request))
+        if ($this->usersService->addUser($request->all()))
             return 'user Added';
 
         return $this->usersService->errors();
@@ -109,7 +109,7 @@ class usersController extends Controller
 
     public function processupdateuser(Request $request)
     {
-        if ($this->usersService->updateUser($request))
+        if ($this->usersService->updateUser($request->all()))
             return 'user updated';
 
         return $this->usersService->errors();
@@ -134,7 +134,7 @@ class usersController extends Controller
 
     public function processupdateUserPassword(Request $request)
     {
-        if ($this->usersService->updateUserPassword($request))
+        if ($this->usersService->updateUserPassword($request->all()))
             return 'user updated';
 
         return $this->usersService->errors();

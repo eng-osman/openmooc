@@ -11,7 +11,6 @@ class coursesStudentsRepository
         $subscription = new CoursesStudents();
         $subscription->student_id = $data['student'];
         $subscription->course_id  = $data['course'];
-
         return $subscription->save();
     }
 
@@ -28,21 +27,32 @@ class coursesStudentsRepository
     public function deleteSubscription($id)
     {
         $subscription = CoursesStudents::find($id);
+        if($subscription)
             return $subscription->delete();
+
+        return false;
     }
 
     public function approve($id)
     {
         $subscription = CoursesStudents::find($id);
-        $subscription->is_approved = 1;
-        return $subscription->save();
+        if($subscription):
+            $subscription->is_approved = 1;
+            return $subscription->save();
+        endif;
+            return false;
     }
 
     public function unApprove($id)
     {
         $subscription = CoursesStudents::find($id);
-        $subscription->is_approved = 0;
-        return $subscription->save();
+
+        if($subscription):
+            $subscription->is_approved = 0;
+            return $subscription->save();
+        endif;
+
+        return false;
     }
     public function getStudentSubscription($student_id)
     {
@@ -72,6 +82,7 @@ class coursesStudentsRepository
             ->where('users.user_group','=',2)
             ->select('users.username','users.is_active as user_status','courses.course_name',
                 'courses.is_active as course_status', 'courses.course_instructor','courses_students.is_approved','courses_students.id as subscription_id')
+            ->orderBy('courses_students.id', 'DESC')
             ->get();
         return $students;
     }

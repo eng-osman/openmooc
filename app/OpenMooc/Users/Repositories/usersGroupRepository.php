@@ -24,48 +24,43 @@ class usersGroupRepository extends Repository
         ];
 
         if(DB::table('users_groups')->insert([$usergroup]))
-        return true;
+             return true;
+
         return false;
     }
 
-    public function updateUserGroup($data)
+    public function updateUserGroup($data, $id)
     {
 
-        $item = [
-            'group_name' => $data['group_name']
-        ];
-        // update Query
-      if(  DB::table('users_groups')
-            ->where('users_groups.group_id', $data['group_id'])
-            ->update($item))
-        return true;
+        $userGroup = UsersGroups::find($id);
+        if($userGroup){
+            $userGroup->group_name = $data['group_name'];
+            return $userGroup->save();
+        }
         return false;
     }
 
     public function deleteUserGroup($id)
     {
         // Query del by id
-        $CoursesCategories = DB::table('users_groups')->where('group_id', $id)->get();
-        if ($CoursesCategories) {
-            DB::table('users_groups')->where('group_id', $id)->delete();
+        $userGroup = UsersGroups::find($id);
+        if($userGroup):
+            $userGroup->delete();
             return true;
-        }
+        endif;
         return false;
-
     }
 
     public function getAllGroups()
     {
         $item = DB::table('users_groups')->get();
-
         return $item;
-
     }
 
     public function getGroupById($id)
     {
         $item = DB::table('users_groups')
-            ->select('users_groups.group_name')
+            ->select('users_groups.*')
             ->WHERE('group_id', $id)
             ->get();
         return $item;

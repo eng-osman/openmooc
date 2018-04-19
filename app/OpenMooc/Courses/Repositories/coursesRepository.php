@@ -11,7 +11,7 @@ class coursesRepository extends Repository
     public function addCourse($courseData = [])
     {
         $course  = new Courses();
-        $course->course_name = $courseData['name'];
+        $course->course_name = $courseData['course'];
         $course->course_category = $courseData['category'];
         $course->course_instructor = $courseData['instructor'];
         $course->course_description = $courseData['description'];
@@ -67,7 +67,7 @@ class coursesRepository extends Repository
         $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->join('users', 'courses.course_instructor', '=', 'users.id')
-            ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
+            ->select('courses.*', 'users.username','courses_categories.category_name')
             ->get();
         return $courses;
     }
@@ -122,17 +122,13 @@ class coursesRepository extends Repository
     // get course
     public function getCourse($id)
     {
-        $courses= DB::table('courses')
-        ->where('courses.course_id', $id)
-        ->get();
-        /*
+
       $courses = DB::table('courses')
             ->join('courses_categories', 'courses.course_category', '=', 'courses_categories.category_id')
             ->join('users', 'courses.course_instructor', '=', 'users.id')
-            ->select('courses.course_name', 'users.username', 'courses_categories.category_name', 'courses.course_description', 'courses.is_active')
+            ->select('courses.*', 'users.username', 'courses_categories.category_name')
             ->where('courses.course_id', '=', $id)
             ->get();
-        */
         return $courses;
     }
 

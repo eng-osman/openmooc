@@ -20,7 +20,7 @@ class usersRepository extends Repository
         $users->email = $userData['email'];
         $users->password = $userData['password'];
         $users->user_group = $userData['user_group'];
-        $users->about = $userData['about'];
+        $users->about = ($userData['about'])? $userData['about']:null;
         $users->is_active = $userData['active'];
         if ($users->save())
             return true;

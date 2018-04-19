@@ -300,6 +300,14 @@
                         <span>my courses</span></a>
                 </li>
                 <!-- End Add Course -->
+                <!-- start add lesson-->
+                <li>
+                    <a href="{{url('addLesson/4')}}">
+                        <i class="fa fa-video-camera"></i>
+                        <span>Add Lesson</span>
+                    </a>
+                </li>
+                <!-- end lesson add lesson-->
 
                 <!-- Add my ٍstudents Link-->
                 <li>
