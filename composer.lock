@@ -1045,10 +1045,14 @@
         {
             "name": "symfony/console",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+=======
+<<<<<<< HEAD
             "version": "v3.4.7",
 =======
             "version": "v3.4.8",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -1118,6 +1122,18 @@
         {
             "name": "symfony/css-selector",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "519a80d7c1d95c6cc0b67f686d15fe27c6910de0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/519a80d7c1d95c6cc0b67f686d15fe27c6910de0",
+                "reference": "519a80d7c1d95c6cc0b67f686d15fe27c6910de0",
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
             "version": "v3.4.7",
 =======
@@ -1144,6 +1160,7 @@
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/544655f1fc078a9cd839fdda2b7b1e64627c826a",
                 "reference": "544655f1fc078a9cd839fdda2b7b1e64627c826a",
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1185,6 +1202,13 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
             "time": "2018-03-19T22:32:39+00:00"
+        },
+        {
+            "name": "symfony/debug",
+            "version": "v3.4.8",
+=======
+<<<<<<< HEAD
+            "time": "2018-03-19T22:32:39+00:00"
 =======
             "time": "2018-02-03T14:55:07+00:00"
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
@@ -1196,6 +1220,7 @@
 =======
             "version": "v3.4.8",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -1252,6 +1277,18 @@
         {
             "name": "symfony/event-dispatcher",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
+                "reference": "fdd5abcebd1061ec647089c6c41a07ed60af09f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/fdd5abcebd1061ec647089c6c41a07ed60af09f8",
+                "reference": "fdd5abcebd1061ec647089c6c41a07ed60af09f8",
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
             "version": "v3.4.7",
             "source": {
@@ -1287,6 +1324,7 @@
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/58990682ac3fdc1f563b7e705452921372aad11d",
                 "reference": "58990682ac3fdc1f563b7e705452921372aad11d",
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1337,6 +1375,22 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+            "time": "2018-04-06T07:35:25+00:00"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v3.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/bd14efe8b1fabc4de82bf50dce62f05f9a102433",
+                "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433",
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2018-02-14T10:03:57+00:00"
         },
@@ -1371,6 +1425,7 @@
                 "url": "https://api.github.com/repos/symfony/finder/zipball/bd14efe8b1fabc4de82bf50dce62f05f9a102433",
                 "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1407,6 +1462,13 @@
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+            "time": "2018-04-04T05:07:11+00:00"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "v3.4.8",
+=======
+<<<<<<< HEAD
             "time": "2018-03-28T18:23:39+00:00"
         },
         {
@@ -1419,6 +1481,7 @@
             "name": "symfony/http-foundation",
             "version": "v3.4.8",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
@@ -1473,6 +1536,18 @@
         {
             "name": "symfony/http-kernel",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-kernel.git",
+                "reference": "3cc2d4374aa9590c09277ad68657671cf49dbbf4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3cc2d4374aa9590c09277ad68657671cf49dbbf4",
+                "reference": "3cc2d4374aa9590c09277ad68657671cf49dbbf4",
+=======
+<<<<<<< HEAD
             "version": "v3.4.7",
             "source": {
                 "type": "git",
@@ -1495,6 +1570,7 @@
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3cc2d4374aa9590c09277ad68657671cf49dbbf4",
                 "reference": "3cc2d4374aa9590c09277ad68657671cf49dbbf4",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1570,10 +1646,14 @@
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+            "time": "2018-04-06T15:19:48+00:00"
+=======
+<<<<<<< HEAD
             "time": "2018-04-03T05:49:44+00:00"
 =======
             "time": "2018-04-06T15:19:48+00:00"
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1696,10 +1776,14 @@
         {
             "name": "symfony/process",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+=======
+<<<<<<< HEAD
             "version": "v3.4.7",
 =======
             "version": "v3.4.8",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -1749,6 +1833,8 @@
         {
             "name": "symfony/routing",
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             "version": "v3.4.7",
             "source": {
                 "type": "git",
@@ -1760,6 +1846,7 @@
                 "url": "https://api.github.com/repos/symfony/routing/zipball/5f90733adbf19ea71468a5761fb8f5a043d424dd",
                 "reference": "5f90733adbf19ea71468a5761fb8f5a043d424dd",
 =======
+>>>>>>> master
             "version": "v3.4.8",
             "source": {
                 "type": "git",
@@ -1770,7 +1857,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/routing/zipball/50f333b707bef9f6972ad04e6df3ec8875c9a67c",
                 "reference": "50f333b707bef9f6972ad04e6df3ec8875c9a67c",
+<<<<<<< HEAD
+=======
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1836,22 +1926,29 @@
                 "url"
             ],
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             "time": "2018-03-23T08:14:09+00:00"
         },
         {
             "name": "symfony/translation",
             "version": "v3.4.7",
 =======
+>>>>>>> master
             "time": "2018-04-04T13:22:16+00:00"
         },
         {
             "name": "symfony/translation",
 <<<<<<< HEAD
             "version": "v3.4.8",
+=======
+<<<<<<< HEAD
+            "version": "v3.4.8",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
 =======
             "version": "v3.4.6",
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -1920,6 +2017,18 @@
         {
             "name": "symfony/var-dumper",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/var-dumper.git",
+                "reference": "951643091b39a6fd40fce56cd16e21e12bef3feb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/951643091b39a6fd40fce56cd16e21e12bef3feb",
+                "reference": "951643091b39a6fd40fce56cd16e21e12bef3feb",
+=======
+<<<<<<< HEAD
             "version": "v3.4.7",
             "source": {
                 "type": "git",
@@ -1942,6 +2051,7 @@
                 "url": "https://api.github.com/repos/symfony/var-dumper/zipball/951643091b39a6fd40fce56cd16e21e12bef3feb",
                 "reference": "951643091b39a6fd40fce56cd16e21e12bef3feb",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1998,10 +2108,14 @@
                 "dump"
             ],
 <<<<<<< HEAD
+            "time": "2018-04-03T20:34:11+00:00"
+=======
+<<<<<<< HEAD
             "time": "2018-04-03T05:22:50+00:00"
 =======
             "time": "2018-04-03T20:34:11+00:00"
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
+>>>>>>> master
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -3879,6 +3993,18 @@
         {
             "name": "symfony/yaml",
 <<<<<<< HEAD
+            "version": "v3.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a42f9da85c7c38d59f5e53f076fe81a091f894d0",
+                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0",
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
             "version": "v3.4.7",
 =======
@@ -3905,6 +4031,7 @@
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/6af42631dcf89e9c616242c900d6c52bd53bd1bb",
                 "reference": "6af42631dcf89e9c616242c900d6c52bd53bd1bb",
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -3952,8 +4079,12 @@
 <<<<<<< HEAD
             "time": "2018-04-03T05:14:20+00:00"
 =======
+<<<<<<< HEAD
+            "time": "2018-04-03T05:14:20+00:00"
+=======
             "time": "2018-02-16T09:50:28+00:00"
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
         },
         {
             "name": "webmozart/assert",

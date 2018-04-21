@@ -1,7 +1,8 @@
 #sidebar, .header, .site-footer {
-    display: none ;
+    display: none;
 }
-.header , .site-footer{
+
+.header, .site-footer {
     min-height: 0;
 }
 
