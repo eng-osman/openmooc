@@ -1122,6 +1122,8 @@
         {
             "name": "symfony/css-selector",
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             "version": "v3.4.8",
             "source": {
                 "type": "git",
@@ -1149,6 +1151,7 @@
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/519a80d7c1d95c6cc0b67f686d15fe27c6910de0",
                 "reference": "519a80d7c1d95c6cc0b67f686d15fe27c6910de0",
 =======
+>>>>>>> master
             "version": "v3.4.6",
             "source": {
                 "type": "git",
@@ -1159,7 +1162,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/544655f1fc078a9cd839fdda2b7b1e64627c826a",
                 "reference": "544655f1fc078a9cd839fdda2b7b1e64627c826a",
+<<<<<<< HEAD
+=======
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
 >>>>>>> master
                 "shasum": ""
             },
@@ -1201,7 +1207,11 @@
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+            "time": "2018-02-03T14:55:07+00:00"
+=======
+<<<<<<< HEAD
             "time": "2018-03-19T22:32:39+00:00"
+>>>>>>> master
         },
         {
             "name": "symfony/debug",
@@ -1277,6 +1287,8 @@
         {
             "name": "symfony/event-dispatcher",
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             "version": "v3.4.8",
             "source": {
                 "type": "git",
@@ -1313,6 +1325,7 @@
                 "reference": "fdd5abcebd1061ec647089c6c41a07ed60af09f8",
 >>>>>>> 11783d8ae756c752a1ef9e51c21458c7db772c84
 =======
+>>>>>>> master
             "version": "v3.4.6",
             "source": {
                 "type": "git",
@@ -1323,7 +1336,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/58990682ac3fdc1f563b7e705452921372aad11d",
                 "reference": "58990682ac3fdc1f563b7e705452921372aad11d",
+<<<<<<< HEAD
+=======
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
 >>>>>>> master
                 "shasum": ""
             },
@@ -1375,7 +1391,11 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+            "time": "2018-02-14T10:03:57+00:00"
+=======
+<<<<<<< HEAD
             "time": "2018-04-06T07:35:25+00:00"
+>>>>>>> master
         },
         {
             "name": "symfony/finder",
@@ -1932,6 +1952,9 @@
         },
         {
             "name": "symfony/translation",
+<<<<<<< HEAD
+            "version": "v3.4.6",
+=======
             "version": "v3.4.7",
 =======
 >>>>>>> master
@@ -1948,6 +1971,7 @@
 =======
             "version": "v3.4.6",
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
 >>>>>>> master
             "source": {
                 "type": "git",
@@ -3993,6 +4017,8 @@
         {
             "name": "symfony/yaml",
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             "version": "v3.4.8",
             "source": {
                 "type": "git",
@@ -4020,6 +4046,7 @@
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/a42f9da85c7c38d59f5e53f076fe81a091f894d0",
                 "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0",
 =======
+>>>>>>> master
             "version": "v3.4.6",
             "source": {
                 "type": "git",
@@ -4030,7 +4057,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/6af42631dcf89e9c616242c900d6c52bd53bd1bb",
                 "reference": "6af42631dcf89e9c616242c900d6c52bd53bd1bb",
+<<<<<<< HEAD
+=======
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
 >>>>>>> master
                 "shasum": ""
             },
@@ -4077,6 +4107,9 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+            "time": "2018-02-16T09:50:28+00:00"
+=======
+<<<<<<< HEAD
             "time": "2018-04-03T05:14:20+00:00"
 =======
 <<<<<<< HEAD
@@ -4084,6 +4117,7 @@
 =======
             "time": "2018-02-16T09:50:28+00:00"
 >>>>>>> abb49563214d1d1034125120eaee595b6a23680b
+>>>>>>> master
 >>>>>>> master
         },
         {

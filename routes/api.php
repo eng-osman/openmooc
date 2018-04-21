@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Http\Request;
 
@@ -17,6 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('courses','coursesAPIController@index');
+Route::get('courses/{id}','coursesAPIController@show');
+Route::post('courses/add','coursesAPIController@store');
+Route::post('courses/update/{id}','coursesAPIController@update');
+Route::get('courses/delete/{id}','coursesAPIController@destroy');
+Route::get('coursesbycategory/{id}','coursesAPIController@getCoursesByCategory');
+Route::get('coursesbyinstructor/{id}','coursesAPIController@getCoursesByInstructor');
+Route::get('statuscourses/{status}','coursesAPIController@getCoursesByActiveStatus');
+Route::get('updateactive/{id}/{status}','coursesAPIController@updateCourseActiveStatus');
 /*****userControllerAPI Rotes*******/
 Route::get('addUser','UserControllerAPI@addUser');
 Route::post('addUser','UserControllerAPI@processAddUser');
