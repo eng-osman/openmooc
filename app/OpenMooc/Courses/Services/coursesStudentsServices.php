@@ -39,6 +39,8 @@ class coursesStudentsServices extends  Service
         }
     }
 
+
+
     /**
      * approve or not approve subscription
      * @param $request
@@ -73,8 +75,8 @@ class coursesStudentsServices extends  Service
     public function deleteSubscription($subscriptionId)
     {
 
-        $sRepository = new coursesStudentsRepositories();
-        if($sRepository->deleteSubscription($subscriptionId))
+        $studentRepo = new coursesStudentsRepositories();
+        if($studentRepo->deleteSubscription($subscriptionId))
         {
             return true;
         }
@@ -93,10 +95,10 @@ class coursesStudentsServices extends  Service
      */
     public function checkSubscription($studentId,$courseId)
     {
-        $sRepository = new coursesStudentsRepositories();
-        if($sRepository->checkSubscription($studentId,$courseId))
+        $studentRepo = new coursesStudentsRepositories();
+        if($studentRepo->checkSubscription($studentId,$courseId))
         {
-            return 'true';
+            return true;
         }
         else
         {

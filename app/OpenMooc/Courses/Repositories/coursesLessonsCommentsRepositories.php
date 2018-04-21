@@ -36,7 +36,7 @@ class coursesLessonsCommentsRepositories extends  Repository
      */
     public function updateCommentById($data)
     {
-        $comment = CoursesLessonsComments::find($data['id']);
+        $comment = CoursesLessonsComments::find($data['comment_id']);
         $comment->comment = $data['comment'];
 
         //store

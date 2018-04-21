@@ -20,24 +20,40 @@ Route::post('admin/courses/add','adminCoursesController@processAdd');
 Route::get('admin','adminController@index');
 Route::get('instructor','adminController@index');
 
-//subs
+
+
+
+
+
+
+
+//student
 Route::get('student','studentController@index');
+
 Route::get('student/course/{id}','studentController@CourseDetails');
+
 Route::get('student/course/lessons/{id}','studentController@lessonAndComments');
+
 Route::post('student/course/lessons/{id}','studentController@addCommentOnLesson');
+
 Route::get('student/course/lessons/delete/{id}','studentController@deleteCommentFromLesson');
 
+Route::get('student/course/lessons/update/{id}','studentController@updateComment');
+
+Route::post('student/course/lessons/update/{id}','studentController@updateCommentToDB');
+
+Route::get('student/course/{id}/subscribe','studentController@addSubscription');
+
+Route::post('student/course/{id}/subscribe','studentController@addSubscribeToDB');
+
+Route::get('student/course/{id}/rate','studentController@addRate');
+
+Route::post('student/course/{id}/rate','studentController@addRateToDB');
 
 
 
 
 
-
-
-
-
-Route::get('student/addSubscription','studentController@addSubscription');
-Route::post('student/addSubscription','studentController@addSubscribeToDB');
 Route::get('student/{id?}/updateSubscription','studentController@approveSubscription');
 Route::post('student/updateSubscription','studentController@approveSubscriptionToDB');
 Route::get('student/mySubsCourses','studentController@mySubsCourses');
