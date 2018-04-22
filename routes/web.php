@@ -28,10 +28,18 @@ Route::get('instructor','adminController@index');
 
 
 //student
+
+//catgrgoris
+Route::get('student/categories','studentController@allCategories');
+Route::get('student/categories/{id}/courses','studentController@getCoursesByCategoryId');
+
+
+//courses
 Route::get('student','studentController@index');
 
 Route::get('student/course/{id}','studentController@CourseDetails');
 
+// lessons and comments
 Route::get('student/course/lessons/{id}','studentController@lessonAndComments');
 
 Route::post('student/course/lessons/{id}','studentController@addCommentOnLesson');
@@ -42,10 +50,12 @@ Route::get('student/course/lessons/update/{id}','studentController@updateComment
 
 Route::post('student/course/lessons/update/{id}','studentController@updateCommentToDB');
 
+//subscription
 Route::get('student/course/{id}/subscribe','studentController@addSubscription');
 
 Route::post('student/course/{id}/subscribe','studentController@addSubscribeToDB');
 
+//rate
 Route::get('student/course/{id}/rate','studentController@addRate');
 
 Route::post('student/course/{id}/rate','studentController@addRateToDB');

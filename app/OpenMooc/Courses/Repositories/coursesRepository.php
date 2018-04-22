@@ -135,7 +135,8 @@ class coursesRepository extends Repository
     {
         $courseByCat = DB::table('courses')->leftJoin('courses_categories', 'courses.course_category','courses_categories.category_id')
                                            ->leftJoin('users', 'courses.course_instructor', '=', 'users.id')
-                                           ->where('course.course_category',$id)->get();
+                                           ->select('courses.*','courses_categories.category_name','users.username')
+                                           ->where('courses.course_category',$id)->get();
         if(count($courseByCat) > 0 && $courseByCat)
             return $courseByCat;
         else

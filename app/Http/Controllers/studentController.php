@@ -4,15 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use OpenMooc\Courses\Models\Courses;
-use OpenMooc\Courses\Models\CoursesLessonsComments;
-use OpenMooc\Courses\Services\coursesRateServices;
+use OpenMooc\Courses\Services\coursesCategoriesServices;
 use OpenMooc\Courses\Services\coursesService;
 use OpenMooc\Courses\Services\coursesLessonsServices;
-use OpenMooc\Courses\Services\coursesStudentsServices;
 use OpenMooc\Courses\Services\coursesLessonsCommentsServices;
+use OpenMooc\Courses\Services\coursesStudentsServices;
+use OpenMooc\Courses\Services\coursesRateServices;
 
 class studentController extends Controller
 {
+
+    /**
+     * return all categories
+     */
+    public function allCategories()
+    {
+        $categoriesServ = new coursesCategoriesServices();
+        $categories     = $categoriesServ->getAllCategories();
+        if(count($categories) > 0)
+            return view('dashboard.student.categories')->with('categories',$categories);
+        else
+            return $categoriesServ->errors();
+    }
+
+    /**
+     * get courses bu category id
+     */
+    public function getCoursesByCategoryId($id)
+    {
+        $coursesServ = new coursesService();
+        $courses     = $coursesServ->getCourseByCategoryId($id);
+        if($courses)
+            return view('dashboard.student.categoryCourses')->with('courses',$courses);
+        else
+            return $coursesServ->errors();
+    }
 
     // index
     public function index()

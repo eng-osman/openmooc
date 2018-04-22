@@ -74,6 +74,7 @@ class coursesCategoriesRepositories extends Repository
     {
         $categories = DB::table('courses_categories')
             ->leftJoin('users', 'courses_categories.created_by', '=', 'users.id')
+            ->select('courses_categories.*','users.username')
             ->get();
         if( $categories  &&   count($categories) > 0)
             return $categories;
