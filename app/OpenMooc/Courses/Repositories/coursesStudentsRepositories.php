@@ -69,6 +69,23 @@ class coursesStudentsRepositories extends  Repository
     }
 
     /**
+     * return student
+     */
+
+    public function getStudent()
+    {
+        $subscribe = DB::table('courses_students')
+            ->leftJoin('courses', 'courses_students.course_id', '=', 'courses.course_id')
+            ->leftJoin('users', 'courses_students.student_id', '=', 'users.id')
+            ->select('courses_students.*','courses.course_name','users.username')
+            ->get();
+        if(count($subscribe) > 0 )
+            return $subscribe;
+        else
+            return false;
+    }
+
+    /**
      * check Subscription
      * @param $studentId
      * @param $courseId

@@ -192,16 +192,32 @@ class studentController extends Controller
     }
 
 
-
+    /**
+     * approve subscribe
+     */
+    public function approveSubscribe()
+    {
+        $studentService = new coursesStudentsServices();
+        $subscribe = $studentService->getStudent();
+        return view('dashboard.student.subscribe')->with('subscribe',$subscribe);
+    }
 
     /**
-     * public function get average rate
+     * delete subscription
      */
-    public function averageRateByCourseId($id)
+    public function deleteSubscription($id)
     {
-        $rateServ = new coursesRateServices();
-        $rate     = $rateServ->getAVGRateByCourseId($id);
+        $studentServ = new coursesStudentsServices();
+        if($studentServ->deleteSubscription($id))
+            return redirect('student/courses/subs');
+        else
+            return $studentServ->errors();
+
     }
+
+
+
+
 
 
 

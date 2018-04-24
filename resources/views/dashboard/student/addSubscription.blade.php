@@ -12,7 +12,7 @@
                     Subscription Now To Your Favourite Courses
                 </header>
                 <div class="panel-body">
-                    <form role="form" action="{{url('student/course/{id}/subscribe')}}" method="post">
+                    <form role="form" action="{{url('student/courses/subs/{id}/add')}}" method="post">
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Our Courses</label>
                         <select class="form-control input-lg m-bot15" name="course_id">
                             @foreach($courses as $course)
@@ -21,8 +21,7 @@
                         </select>
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Subscription</label>
                         <select class="form-control input-lg m-bot15" name="is_approved">
-                            <option value="1">Subscripe</option>
-                            <option value="0">Remove Subscripe</option>
+                            <option value="1">Subscribe</option>
                         </select>
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="student_id" value="1">

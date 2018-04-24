@@ -88,6 +88,24 @@ class coursesStudentsServices extends  Service
     }
 
     /**
+     * return student
+     */
+    public function getStudent()
+    {
+        $serviceRepo = new coursesStudentsRepositories();
+        $Students = $serviceRepo->getStudent();
+        if($Students)
+        {
+            return $Students;
+        }
+        else
+        {
+            $this->setError('Error Retrieving Data');
+            return false;
+        }
+    }
+
+    /**
      * check
      * @param $studentId
      * @param $courseId
