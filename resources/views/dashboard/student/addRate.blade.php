@@ -12,7 +12,7 @@
                     Subscription Now To Your Favourite Courses
                 </header>
                 <div class="panel-body">
-                    <form role="form" action="{{url('student/course/{id}/rate')}}" method="post">
+                    <form role="form" action="{{url('student/courses/rates/{id}/add')}}" method="post">
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Vote Your Rate</label>
                         <select class="form-control input-lg m-bot15" name="rate">
                             <option value="1">1</option>
@@ -20,6 +20,12 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
+                        </select>
+                        <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Select Course</label>
+                        <select class="form-control input-lg m-bot15" name="course_id">
+                            @foreach($courses as $course)
+                            <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                            @endforeach
                         </select>
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Rate Comment</label>
                         <textarea  class="form-control" name="rate_comment"  rows="10" placeholder="Enter Your Comment"></textarea>

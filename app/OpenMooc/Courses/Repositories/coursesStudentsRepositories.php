@@ -78,8 +78,8 @@ class coursesStudentsRepositories extends  Repository
     public function checkSubscription($studentId,$courseId)
     {
         $user = DB::table('courses_students')->where([
-            ['student_id', '=', $studentId],
-            ['course_id', '=', $courseId],
+            ['student_id',  '=', $studentId],
+            ['course_id',   '=', $courseId],
             ['is_approved', '=', '1']
         ])->first();
         if($user)

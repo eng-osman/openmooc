@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use OpenMooc\Courses\Models\Courses;
+use OpenMooc\Courses\Models\CoursesRate;
 use OpenMooc\Courses\Services\coursesCategoriesServices;
 use OpenMooc\Courses\Services\coursesService;
 use OpenMooc\Courses\Services\coursesLessonsServices;
@@ -59,7 +60,6 @@ class studentController extends Controller
         // lessons service
         $lessonsServ = new coursesLessonsServices();
         $lessons     = $lessonsServ->getLessonsByCourseId($id);
-        //rate service
         if($course && $lessons )
             return view('dashboard.student.course')->with('course',$course)->with('lessons',$lessons);
     }
@@ -136,6 +136,65 @@ class studentController extends Controller
     }
 
     /**
+     * get all courses
+     */
+    public function information()
+    {
+        //courses services
+        $coursesServ = new coursesService();
+        $courses     = $coursesServ->getAllCourses();
+            return view('dashboard.student.information')->with('courses',$courses);
+    }
+
+    /**
+     * get all rates
+     */
+    public function getRates()
+    {
+        $ratesServ = new coursesRateServices();
+        $rates     = $ratesServ->getAllRates();
+        return view('dashboard.student.rates')->with('rates',$rates);
+    }
+
+    /**
+     * add rate
+     */
+    public  function addRate()
+    {
+        $courses = Courses::all();
+        return view('dashboard.student.addRate')->with('courses',$courses);
+    }
+
+
+    /**
+     * add rateToDB
+     */
+    public  function addRateToDB(Request $request)
+    {
+        $rateServ = new coursesRateServices();
+        if($rate     = $rateServ->addRate($request))
+            return redirect('student/courses/rates');
+        else
+            return $rateServ->errors();
+    }
+
+    /**
+     * delete rate by id
+     */
+    public function deleteRate($id)
+    {
+        $rService = new coursesRateServices();
+        if($rService->deleteRate($id))
+            return redirect('student/courses/rates');
+        else
+            return $rService->errors();
+
+    }
+
+
+
+
+    /**
      * public function get average rate
      */
     public function averageRateByCourseId($id)
@@ -143,6 +202,16 @@ class studentController extends Controller
         $rateServ = new coursesRateServices();
         $rate     = $rateServ->getAVGRateByCourseId($id);
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * add subscription
@@ -168,24 +237,18 @@ class studentController extends Controller
 
     }
 
-    /**
-     * add rate
-     */
-    public  function addRate()
-    {
-        return view('dashboard.student.addRate');
-    }
 
     /**
-     * add rateToDB
+     * check subscription
      */
-    public  function addRateToDB(Request $request)
+    public function checkSubscription($studentId=1,$courseId=1)
     {
-        $rateServ = new coursesRateServices();
-        if($rate     = $rateServ->addRate($request))
-            return redirect('student');
+        $studentServ = new coursesStudentsServices();
+        $student     = $studentServ->checkSubscription($studentId,$courseId);
+        if($student)
+            return view('dashboard.student.course')->with('student',$student);
         else
-            return $rateServ->errors();
+            return $studentServ->errors();
     }
 
 

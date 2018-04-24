@@ -19,10 +19,22 @@
     <li class="sub-menu">
         <a href="javascript:;" >
             <i class="fa fa-laptop"></i>
-            <span>Students</span>
+            <span>Courses</span>
         </a>
         <ul class="sub">
             <li><a  href="{{url('student')}}">Our Courses</a></li>
+        </ul>
+    </li>
+
+    <li class="sub-menu">
+        <a href="javascript:;" >
+            <i class="fa fa-laptop"></i>
+            <span>Subscriptions & Rates</span>
+        </a>
+        <ul class="sub">
+            <li><a  href="{{url('student/courses/information')}}">Our Courses</a></li>
+            <li><a  href="{{url('student/courses/rates')}}">Rates</a></li>
+            <li><a  href="{{url('student/courses/subs')}}">Subscription</a></li>
         </ul>
     </li>
     <!--multi level menu end-->

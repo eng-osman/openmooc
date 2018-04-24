@@ -94,6 +94,26 @@ class coursesRateServices extends  Service
         }
     }
 
+
+    /**
+     * get all rates
+     * @return bool
+     */
+    public function getAllRates()
+    {
+        $ratesRepo = new coursesRateRepositories();
+        $rate = $ratesRepo->getAllRates();
+        if($rate)
+        {
+            return $rate;
+        }
+        else
+        {
+            $this->setError('Error retrieving data');
+            return false;
+        }
+    }
+
     /**
      * get average rate by course id
      * @param $id

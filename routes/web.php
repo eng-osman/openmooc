@@ -50,16 +50,22 @@ Route::get('student/course/lessons/update/{id}','studentController@updateComment
 
 Route::post('student/course/lessons/update/{id}','studentController@updateCommentToDB');
 
+// information
+Route::get('student/courses/information','studentController@information');
+
 //subscription
 Route::get('student/course/{id}/subscribe','studentController@addSubscription');
 
 Route::post('student/course/{id}/subscribe','studentController@addSubscribeToDB');
 
 //rate
-Route::get('student/course/{id}/rate','studentController@addRate');
+Route::get('student/courses/rates','studentController@getRates');
 
-Route::post('student/course/{id}/rate','studentController@addRateToDB');
+Route::get('student/courses/rates/{id?}/add','studentController@addRate');
 
+Route::post('student/courses/rates/{id?}/add','studentController@addRateToDB');
+
+Route::get('student/courses/rates/{id?}/delete','studentController@deleteRate');
 
 
 

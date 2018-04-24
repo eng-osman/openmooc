@@ -13,17 +13,15 @@
                     <tr>
                         <th>Course Name</th>
                         <th>Created At</th>
-                        <th>Subscription</th>
-                        <th>Rates</th>
+                        <th>Subscription And Rate</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{$course->course_name}}</td>
                             <td>{{date("d-m-Y", strtotime($course->created_at))}}</td>
-                            <td><a class="btn btn-primary" href="{{url('student/course/'.$course->course_id).'/subscribe'}}">View Subscribe</a></td>
-                            <td><a class="btn btn-primary" href="{{url('student/course/'.$course->course_id).'/rate'}}">View Rate</a></td>
-
+                            <td><a class="btn btn-primary" href="{{url('student/courses/information')}}">Show</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -32,7 +30,7 @@
 
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading text-center text-danger">
+                <header class="panel-heading text-center text-primary">
                     <h1>Course Lessons</h1>
                 </header>
 

@@ -71,6 +71,23 @@ class coursesRateRepositories extends  Repository
     }
 
     /**
+     * get all rates
+     * @return mixed
+     */
+    public function getAllRates()
+    {
+        $rate = DB::table('courses_rate')
+            ->leftJoin('courses', 'courses_rate.course_id', '=', 'courses.course_id')
+            ->leftJoin('users', 'courses_rate.student_id', '=', 'users.id')
+            ->select('courses_rate.*','courses.course_name','users.name')
+            ->get();
+        if(count($rate) > 0)
+            return $rate;
+        else
+            return false;
+    }
+
+    /**
      * get Rate By Course Id
      * @param $id
      * @return mixed
