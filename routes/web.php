@@ -58,9 +58,11 @@ Route::get('student/courses/subs','studentController@approveSubscribe');
 
 Route::get('student/courses/subs/{id}/delete','studentController@deleteSubscription');
 
-Route::get('student/courses/subs/{id}/add','studentController@addSubscription');
+Route::get('student/courses/unsubs','studentController@getUnSubsStudent');
 
-Route::post('student/courses/subs/{id}/add','studentController@addSubscribeToDB');
+Route::get('student/courses/subs/add','studentController@addSubscription');
+
+Route::post('student/courses/subs/add','studentController@addSubscribeToDB');
 
 //rate
 Route::get('student/courses/rates','studentController@getRates');
@@ -75,13 +77,6 @@ Route::get('student/courses/rates/{id?}/delete','studentController@deleteRate');
 
 
 
-Route::post('student/updateSubscription','studentController@approveSubscriptionToDB');
-Route::get('student/mySubsCourses','studentController@mySubsCourses');
-
-//rate
-Route::get('student/coursesRate','studentRateController@index');
-Route::get('student/{id?}/addRate','studentRateController@addRate');
-Route::post('student /addRate','studentRateController@addRateToDB');
 
 
 

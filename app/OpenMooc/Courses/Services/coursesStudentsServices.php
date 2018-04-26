@@ -46,24 +46,17 @@ class coursesStudentsServices extends  Service
      * @param $request
      * @return bool
      */
-    public function approveSubscription($request)
+    public function approveSubscription($id,$active)
     {
-        $rules = [
-            'is_approved' => 'required'
-        ];
-
-        //validation
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            $this->setError($validator->errors()->all());
-            return false;
-        }
         $studentRepo = new coursesStudentsRepositories();
-        $student = $studentRepo->approveSubscription($request->all());
-        if ($student) {
+        $student = $studentRepo->approveSubscription($id,$active);
+        if($student)
+        {
             return $student;
-        } else {
-            $this->setError('Error Updating subs');
+        }
+        else
+        {
+            $this->setError('Error Approving');
             return false;
         }
     }
@@ -101,6 +94,25 @@ class coursesStudentsServices extends  Service
         else
         {
             $this->setError('Error Retrieving Data');
+            return false;
+        }
+    }
+
+    /**
+     * get all un subs
+     * @return bool
+     */
+    public function getUnApproveStudent()
+    {
+        $studentRepo = new coursesStudentsServices();
+        $Students = $studentRepo->getUnApproveStudent();
+        if($Students)
+        {
+            return $Students;
+        }
+        else
+       {
+           $studentRepo->setError('Error Retrieving Data');
             return false;
         }
     }

@@ -35,15 +35,15 @@ class coursesStudentsRepositories extends  Repository
      * @param $Data
      * @return bool
      */
-    public function approveSubscription($Data)
+    public function approveSubscription($id,$active)
     {
-        $student = CoursesStudents::find($Data['id']);
-        $student->is_approved  = $Data['is_approved'];
-        //store
+        $student = CoursesStudents::find($id);
+        $student->is_approved  = $active;
         if($student->save())
             return true;
         else
             return false;
+
 
     }
 
@@ -77,6 +77,23 @@ class coursesStudentsRepositories extends  Repository
         $subscribe = DB::table('courses_students')
             ->leftJoin('courses', 'courses_students.course_id', '=', 'courses.course_id')
             ->leftJoin('users', 'courses_students.student_id', '=', 'users.id')
+            ->select('courses_students.*','courses.course_name','users.username')
+            ->get();
+        if(count($subscribe) > 0 )
+            return $subscribe;
+        else
+            return false;
+    }
+
+    /**
+     * get all un subs
+     */
+    public function getUnApproveStudent()
+    {
+        $subscribe = DB::table('courses_students')
+            ->leftJoin('courses', 'courses_students.course_id', '=', 'courses.course_id')
+            ->leftJoin('users', 'courses_students.student_id', '=', 'users.id')
+            ->where('courses_students.is_approved','=','0')
             ->select('courses_students.*','courses.course_name','users.username')
             ->get();
         if(count($subscribe) > 0 )

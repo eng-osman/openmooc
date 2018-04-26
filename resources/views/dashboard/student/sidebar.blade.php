@@ -35,6 +35,7 @@
             <li><a  href="{{url('student/courses/information')}}">Our Courses</a></li>
             <li><a  href="{{url('student/courses/rates')}}">Rates</a></li>
             <li><a  href="{{url('student/courses/subs')}}">Subscription</a></li>
+            <li><a  href="{{url('student/courses/unsubs')}}">Un Subs</a></li>
         </ul>
     </li>
     <!--multi level menu end-->

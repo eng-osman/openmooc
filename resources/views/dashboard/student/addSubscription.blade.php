@@ -12,7 +12,7 @@
                     Subscription Now To Your Favourite Courses
                 </header>
                 <div class="panel-body">
-                    <form role="form" action="{{url('student/courses/subs/{id}/add')}}" method="post">
+                    <form role="form" action="{{url('student/courses/subs/add')}}" method="post">
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Our Courses</label>
                         <select class="form-control input-lg m-bot15" name="course_id">
                             @foreach($courses as $course)

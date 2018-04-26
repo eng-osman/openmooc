@@ -215,19 +215,15 @@ class studentController extends Controller
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * get all un subs
+     */
+    public function getUnSubsStudent()
+    {
+        $studentService = new coursesStudentsServices();
+        $subscribe = $studentService->getUnApproveStudent();
+        return view('dashboard.student.unSubs')->with('subscribe',$subscribe);
+    }
 
     /**
      * add subscription
@@ -246,7 +242,7 @@ class studentController extends Controller
     {
         $subscriptionServ  = new coursesStudentsServices();
         if ($subscription      = $subscriptionServ->addStudentToCourse($request))
-            return redirect('student');
+            return redirect('student/courses/subs');
         else
             return $subscriptionServ->errors();
 
@@ -267,71 +263,5 @@ class studentController extends Controller
             return $studentServ->errors();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * approve Subscription
-     * @param Request $request
-     */
-    public function approveSubscription()
-    {
-        $courses     = Courses::all();
-        return view('dashboard.student.updateSubscription')->with('courses',$courses);
-
-    }
-
-
-    /**
-     * add subscripe to db
-     */
-    public function approveSubscriptionToDB(Request $request)
-    {
-        $subscriptionServ  = new coursesStudentsServices();
-        if ($subscription      = $subscriptionServ->approveSubscription($request))
-            return redirect('student');
-        else
-            return $subscriptionServ->errors();
-
-
-    }
 
 }
