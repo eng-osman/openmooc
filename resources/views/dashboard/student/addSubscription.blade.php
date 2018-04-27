@@ -16,7 +16,7 @@
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Our Courses</label>
                         <select class="form-control input-lg m-bot15" name="course_id">
                             @foreach($courses as $course)
-                            <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                                <option value="{{$course->course_id}}">{{$course->course_name}}</option>
                             @endforeach
                         </select>
                         <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Subscription</label>

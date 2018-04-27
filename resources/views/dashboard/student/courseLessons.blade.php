@@ -73,10 +73,13 @@
                     <div>
                         <h3 class="text-primary comment_title">{{$comment->username}}</h3>
                         <h4 class="comment_paragraph"><i class="fa  fa-comments"></i> {{$comment->comment}}</h4>
-                        <ul class="">
-                            <li><a class="btn btn-danger" href="{{url('student/course/lessons/delete/'.$comment->comment_id)}}">delete comment</a></li>
-                            <li><a class="btn btn-success" href="{{url('student/course/lessons/update/'.$comment->comment_id)}}">update comment</a></li>
-                        </ul>
+                        @if($comment->created_by == 1)
+                            <ul class="">
+                                <li><a class="btn btn-danger" href="{{url('student/course/lessons/delete/'.$comment->comment_id)}}">delete comment</a></li>
+                                <li><a class="btn btn-success" href="{{url('student/course/lessons/update/'.$comment->comment_id)}}">update comment</a></li>
+                            </ul>
+                            @else
+                        @endif
                     </div>
                 </div>
                 @endforeach
