@@ -23,7 +23,10 @@ class coursesService extends Service
         if($validator->fails())
         {
             $this->setError($validator->errors()->all());
-            return false;
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         //store

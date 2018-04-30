@@ -17,7 +17,7 @@ class categoryService extends Service
     public function addCategory($request)
     {
         $rules = [
-            'category_name' => 'required|unique:courses_categories|max:20',
+            'category_name' => 'required|unique:courses_categories|min:3|max:20',
             'created_by'    => 'required|integer',
             'is_active'     => 'required|boolean'
         ];
@@ -27,7 +27,10 @@ class categoryService extends Service
         if($validator->fails())
         {
             $this->setError($validator->errors()->all());
-            return false;
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $cRepository = new categoryRepository();

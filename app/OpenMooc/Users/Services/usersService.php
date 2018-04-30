@@ -8,32 +8,30 @@ use Validator;
 
 class usersService extends Service
 {
-    public function addUser($request)
+    public function addUser($userData)
     {
         $rules = [
             'name'           => 'required|unique:users|min:3|max:20',
             'username'       => 'required|unique:users|min:5|max:20',
             'password'       => 'required|min:6|max:20',
             'email'          => 'required|unique:users|email',
-            'image'          => 'required|image',
-            'about'          => 'required|max:500',
-            'user_group'     => 'required|integer',
-            'is_active'      => 'required|boolean',
-            'remember_token' => 'required'
+            'image'          => 'image',
+            'about'          => 'max:500',
+            'user_group'     => 'integer'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($userData, $rules);
 
         if($validator->fails())
         {
             $this->setError($validator->errors()->all());
-            return false;
+            return redirect()
+                ->back()
+                 ->withInput();
         }
 
-       // $request->file('image')->store('uploads');
-
         $uRepository = new usersRepository();
-        if($uRepository->addUser($request->all())){
+        if($uRepository->addUser($userData)){
             return true;
         }
     }
@@ -136,8 +134,6 @@ class usersService extends Service
             $this->setError($validator->errors()->all());
             return false;
         }
-
-        //$request->file('image')->store('uploads');
 
         $uRepository = new usersRepository();
         if($uRepository->updateUser($request->all())){

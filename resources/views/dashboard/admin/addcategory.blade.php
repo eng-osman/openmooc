@@ -11,16 +11,19 @@
             Add Category
         </header>
         <div class="panel-body">
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
             <form  action="{{url('admin/categories')}}" method="post" role="form">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" name="category_name" class="form-control" id="exampleInputEmail1">
+                    <input type="text" name="category_name" value="{{ old('category_name') }}" class="form-control" id="exampleInputEmail1">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">status</label>
                     <select name="is_active" class="form-control">
-                        <option value="1">Active</option>
                         <option value="0">Not Active</option>
+                        <option value="1">Active</option>
                     </select>
                 </div>
                 {{csrf_field()}}

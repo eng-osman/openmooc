@@ -8,7 +8,25 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 */
-Route::prefix('admin')->group(function () {
+
+// Home Page
+Route::get('/','frontController@index');
+Route::get('about','frontController@about');
+Route::get('contact','frontController@contact');
+Route::get('register','frontController@register');
+Route::post('register','frontController@processregister');
+Route::get('login','frontController@login');
+Route::post('login','frontController@processlogin');
+Route::get('logout','frontController@logout');
+Route::get('category/{id}','frontController@category');
+Route::get('course/{id}','frontController@course');
+Route::get('profile/{id}','frontController@instructor');
+Route::get('about','frontController@about');
+Route::get('contact','frontController@contact');
+
+
+
+Route::group(['prefix' => 'admin','middleware' => 'admin'],function () {
     // Home
     Route::get('/','adminController@index');
     // Users Groups

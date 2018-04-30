@@ -11,10 +11,13 @@
             Add Course
         </header>
         <div class="panel-body">
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
             <form  action="{{url('admin/courses')}}" method="post" enctype="multipart/form-data" role="form">
                 <div class="form-group">
                     <label for="exampleInputEmail1">title</label>
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter course title">
+                    <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" placeholder="Enter course title">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">category</label>
@@ -26,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">description</label>
-                    <textarea name="description" class="form-control" rows="7"></textarea>
+                    <textarea name="description" class="form-control" rows="7">{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">status</label>

@@ -9,18 +9,17 @@ use Illuminate\Support\Facades\DB;
 class usersRepository extends Repository
 {
     // add user
-    public function addUser($userData)
+    public function addUser($userData,$group = 3,$active = 0)
     {
         $user = new User();
         $user->username       = $userData['username'];
         $user->name           = $userData['name'];
-        $user->image          = $userData['image'];
+        $user->image          = isset($userData['image']) ? $userData['image'] : '';
         $user->email          = $userData['email'];
-        $user->password       = $userData['password'];
-        $user->user_group     = $userData['user_group'];
+        $user->password       = bcrypt($userData['password']);
+        $user->user_group     = isset($userData['user_group']) ? $userData['user_group'] : $group;
         $user->about          = $userData['about'];
-        $user->is_active      = $userData['is_active'];
-        $user->remember_token = $userData['remember_token'];
+        $user->is_active      = isset($userData['is_active']) ? $userData['is_active'] : $active;
         if ($user->save()) {
             return true;
         } else {

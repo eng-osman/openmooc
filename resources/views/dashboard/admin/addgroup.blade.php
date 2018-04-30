@@ -11,10 +11,13 @@
             Add User Group
         </header>
         <div class="panel-body">
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
             <form  action="{{url('admin/groups')}}" method="post" role="form">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="text" name="group_name" class="form-control" id="exampleInputEmail1">
+                    <label>Name</label>
+                    <input type="text" name="group_name" value="{{ old('group_name') }}" class="form-control" id="exampleInputEmail1">
                 </div>
                 {{csrf_field()}}
                 <button type="submit" class="btn btn-primary">Save</button>
